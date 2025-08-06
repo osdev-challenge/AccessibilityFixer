@@ -17,6 +17,7 @@ AI 분석을 통해 접근성 문제가 감지되면 해당 위치에 **진단(D
 
 ## 📁 폴더 구조
 
+```
 web-a11y-fixer-extension/
 ├── package.json # 확장 프로그램 설정 (명령어, activationEvents 등)
 ├── src/
@@ -34,6 +35,7 @@ web-a11y-fixer-extension/
 │ └── constants.ts # 규칙명 목록, 설정 상수 등
 ├── test/ # 테스트용 예시 파일
 └── README.md # 확장 설명 및 설치 안내
+```
 
 ---
 
