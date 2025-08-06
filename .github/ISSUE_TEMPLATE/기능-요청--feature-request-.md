@@ -2,7 +2,7 @@
 name: 기능 요청 (Feature request)
 about: 프로젝트에 필요한 기능을 추가합니다.
 title: "[Feature] "
-labels: ''
+labels: feature
 assignees: ''
 
 ---
