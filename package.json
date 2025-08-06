@@ -1,0 +1,100 @@
+{
+  "name": "web-a11y-fixer-extension",
+  "displayName": "web-a11y-fixer-extension",
+  "description": "웹 접근성 문제를 감지하고 수정 제안하는 확장 프로그램입니다.",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.101.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onLanguage:javascriptreact",
+    "onLanguage:typescriptreact"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "languages": [
+      {
+        "id": "javascriptreact",
+        "aliases": [
+          "JavaScript React"
+        ],
+        "extensions": [
+          ".jsx"
+        ]
+      },
+      {
+        "id": "typescriptreact",
+        "aliases": [
+          "TypeScript React"
+        ],
+        "extensions": [
+          ".tsx"
+        ]
+      },
+      {
+        "id": "typescript",
+        "aliases": [
+          "TypeScript"
+        ],
+        "extensions": [
+          ".ts"
+        ]
+      },
+      {
+        "id": "javascript",
+        "aliases": [
+          "JavaScript"
+        ],
+        "extensions": [
+          ".js"
+        ]
+      }
+    ],
+    "commands": [
+      {
+        "command": "a11yFix.showFix",
+        "title": "웹 접근성 수정 제안"
+      },
+      {
+        "command": "a11yFix.aiFix",
+        "title": "AI 기반 수정 제안"
+      }
+    ],
+    "codeActions": [
+      {
+        "language": "html",
+        "kind": "quickfix",
+        "title": "Add missing alt attribute"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@html-eslint/eslint-plugin": "^0.44.0",
+    "@html-eslint/parser": "^0.44.0",
+    "@types/mocha": "^10.0.10",
+    "@types/node": "20.x",
+    "@types/vscode": "^1.102.0",
+    "@typescript-eslint/eslint-plugin": "^8.38.0",
+    "@typescript-eslint/parser": "^8.38.0",
+    "@vscode/test-cli": "^0.0.11",
+    "@vscode/test-electron": "^2.5.2",
+    "eslint": "^9.32.0",
+    "eslint-plugin-html": "^8.1.3",
+    "eslint-plugin-jsx-a11y": "^6.10.2",
+    "typescript": "^5.8.3"
+  },
+  "dependencies": {
+    "ts-node": "^10.9.2"
+  }
+}
