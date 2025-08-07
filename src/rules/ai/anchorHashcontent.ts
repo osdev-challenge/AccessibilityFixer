@@ -17,5 +17,5 @@ export async function runAnchorHasContentFixer(context: RuleContext): Promise<st
   const prompt = buildAnchorHasContentPrompt(context);
   const response = await callGpt(prompt);
   return extractOnlyHtmlFromResponse(response);
-//   return extractOnlyHtmlFromResponse("NULL");
+  
 }
