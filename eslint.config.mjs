@@ -19,6 +19,7 @@ export default [
       "jsx-a11y/alt-text": "warn",
       "jsx-a11y/anchor-is-valid": "warn",
       "jsx-a11y/label-has-associated-control": "warn",
+      "anchor-has-content" : "warn",
       // 수정에 관여할 규칙만 추가하기
     },
   },
