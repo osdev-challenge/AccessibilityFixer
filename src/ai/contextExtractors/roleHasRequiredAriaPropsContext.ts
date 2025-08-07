@@ -2,7 +2,7 @@ import { RuleContext } from "../../rules/types";
 import { PartialHTMLElement } from "../../rules/types";
 
 
-export function extractControlHasAssociatedLabelContext(node: RuleContext): RuleContext {
+export function extractroleHasRequiredAriaPropsContext(node: RuleContext): RuleContext {
 
     const lines = node.fileCode.split('\n');
     const startLine = Math.max(0, node.lineNumber - 6); // lineNumber는 1-based니까 -6
@@ -13,7 +13,7 @@ export function extractControlHasAssociatedLabelContext(node: RuleContext): Rule
 
 
   return {
-    ruleName: "control-has-associated-label",
+    ruleName: "role-has-required-aria-props",
     code: node.code,
     fileCode: node.fileCode,
     lineNumber: node.lineNumber,
