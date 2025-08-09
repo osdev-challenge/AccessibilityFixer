@@ -66,9 +66,14 @@
     ],
     "codeActions": [
       {
-        "language": "html",
+        "language": "javascriptreact",
         "kind": "quickfix",
-        "title": "Add missing alt attribute"
+        "title": "웹 접근성 수정 제안"
+      },
+      {
+        "language": "typescriptreact",
+        "kind": "quickfix",
+        "title": "웹 접근성 수정 제안"
       }
     ]
   },
