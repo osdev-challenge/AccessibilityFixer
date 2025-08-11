@@ -17,16 +17,7 @@ const BadA11yComponent = () => {
       </div>
 
       {/* ❌ interactive-supports-focus */}
-      <div
-        tabIndex="0"
-        role="button"
-        onClick={() => alert("Pressed!")}
-        onKeyDown={(event) => {
-          if (event.key === "Enter" || event.key === " ") {
-            /* onClick={() => alert("Pressed!")} */
-          }
-        }}
-      >
+      <div role="button" onClick={() => alert("Pressed!")}>
         Custom Button (no tabIndex)
       </div>
 
@@ -39,7 +30,7 @@ const BadA11yComponent = () => {
       </div>
 
       {/* ❌ tabindex-no-positive */}
-      <div tabIndex="0">I have a positive tabIndex</div>
+      <div tabIndex={2}>I have a positive tabIndex</div>
     </div>
   );
 };
