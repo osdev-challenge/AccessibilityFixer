@@ -1,16 +1,14 @@
 {
   "compilerOptions": {
-    "module": "Node16",
     "target": "ES2022",
+    "module": "Node16",
+    "moduleResolution": "NodeNext",          // Node 환경에서 경로 해석
     "outDir": "out",
-    "lib": ["ES2022"],
+    "lib": ["ES2022", "DOM"],                // fetch, console 등 포함
+    "esModuleInterop": true,                 // node-fetch용
     "sourceMap": true,
     "rootDir": "src",
-    "strict": true /* enable all strict type-checking options */
-    /* Additional Checks */
-    // "noImplicitReturns": true, /* Report error when not all code paths in function return a value. */
-    // "noFallthroughCasesInSwitch": true, /* Report errors for fallthrough cases in switch statement. */
-    // "noUnusedParameters": true,  /* Report errors on unused parameters. */
+    "strict": true
   },
   "exclude": ["node_modules", ".vscode-test"]
 }
