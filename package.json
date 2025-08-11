@@ -66,6 +66,14 @@
     ],
     "codeActions": [
       {
+  "contributes": {
+    "codeActions": [
+      {
+        "language": "html",
+        "kind": "quickfix",
+        "title": "Add missing alt attribute"
+      },
+      {
         "language": "javascriptreact",
         "kind": "quickfix",
         "title": "웹 접근성 수정 제안"
@@ -75,6 +83,10 @@
         "kind": "quickfix",
         "title": "웹 접근성 수정 제안"
       }
+    ]
+  }
+}
+
     ]
   },
   "scripts": {
@@ -89,16 +101,19 @@
     "@html-eslint/eslint-plugin": "^0.44.0",
     "@html-eslint/parser": "^0.44.0",
     "@types/mocha": "^10.0.10",
-    "@types/node": "20.x",
+    "@types/node": "^20.19.9",
     "@types/vscode": "^1.102.0",
     "eslint": "^9.32.0",
     "eslint-plugin-html": "^8.1.3",
     "eslint-plugin-jsx-a11y": "^6.10.2",
+    "ts-node": "^10.9.2",
     "typescript": "^5.8.3",
     "@typescript-eslint/eslint-plugin": "^8.38.0",
     "@typescript-eslint/parser": "^8.38.0"
   },
   "dependencies": {
-    "ts-node": "^10.9.2"
+    "axios": "^1.11.0",
+    "dotenv": "^17.2.1",
+    "node-fetch": "^3.3.2"
   }
 }
