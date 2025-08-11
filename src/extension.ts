@@ -11,17 +11,34 @@ let diagnosticCollection: vscode.DiagnosticCollection;
 // lintTimeout 변수 추가
 let lintTimeout: NodeJS.Timeout | undefined;
 
+// 헬퍼 함수: Diagnostic Code에서 규칙 ID 문자열을 안전하게 추출
+function getRuleIdString(
+  code: vscode.Diagnostic["code"] | null
+): string | undefined {
+  if (code === null) {
+    return undefined;
+  }
+  if (typeof code === "string") {
+    return code;
+  }
+  if (code && typeof code === "object") {
+    if (typeof (code as any).value === "string") {
+      return (code as any).value;
+    }
+    if (typeof (code as any).name === "string") {
+      return (code as any).name;
+    }
+  }
+  return undefined;
+}
+
 export function activate(context: vscode.ExtensionContext) {
-  // diagnosticCollection을 activate 시점에 한 번만 생성
   diagnosticCollection =
     vscode.languages.createDiagnosticCollection("jsx-a11y");
-  context.subscriptions.push(diagnosticCollection); // 확장 기능 종료 시 자동으로 정리되도록 등록
+  context.subscriptions.push(diagnosticCollection);
 
-  // onDidChangeTextDocument 이벤트 리스너 추가: 타이핑 중에도 린팅 실행
   vscode.workspace.onDidChangeTextDocument((event) => {
-    // 변경된 문서가 현재 활성 문서이거나, 저장된 문서와 동일하면 린팅 트리거
     if (event.document.uri.scheme === "file") {
-      // 파일 시스템에 있는 파일만 처리
       lintDocument(event.document);
     }
   });
@@ -33,7 +50,7 @@ export function activate(context: vscode.ExtensionContext) {
       [
         { scheme: "file", language: "javascript" },
         { scheme: "file", language: "javascriptreact" },
-        { scheme: "file", language: "typescript" },
+        { scheme: "typescript" },
         { scheme: "file", language: "typescriptreact" },
       ],
       new HtmlLintQuickFixProvider(),
@@ -44,7 +61,6 @@ export function activate(context: vscode.ExtensionContext) {
   );
 
   async function lintDocument(document: vscode.TextDocument) {
-    // 디바운스 로직: 너무 자주 린팅이 실행되는 것을 방지
     if (lintTimeout) {
       clearTimeout(lintTimeout);
     }
@@ -65,7 +81,6 @@ export function activate(context: vscode.ExtensionContext) {
 
       if (!supportedLanguages.includes(document.languageId)) return;
 
-      // 워크스페이스 루트가 undefined일 경우, 현재 파일 경로에서 프로젝트 루트를 추정
       let effectiveEslintCwd = workspaceRoot;
       if (!effectiveEslintCwd) {
         const pathSegments = filePath.split(path.sep);
@@ -91,8 +106,8 @@ export function activate(context: vscode.ExtensionContext) {
           filePath,
         });
 
-        const diagnosticSet = new Set<string>();
-        const diagnostics: vscode.Diagnostic[] = [];
+        // ✅ Map을 사용하여 진단 중복 제거 (ruleId, range, message 기반)
+        const uniqueDiagnosticsMap = new Map<string, vscode.Diagnostic>();
 
         for (const result of results) {
           const lines = result.source?.split("\n") ?? [];
@@ -106,9 +121,16 @@ export function activate(context: vscode.ExtensionContext) {
               )
             );
 
-            const key = `${msg.ruleId}-${range.start.line}:${range.start.character}-${range.end.line}:${range.end.character}`;
-            if (diagnosticSet.has(key)) continue;
-            diagnosticSet.add(key);
+            const ruleIdString = getRuleIdString(msg.ruleId);
+            // ✅ 고유 키에 메시지 내용까지 포함하여 더 정확한 중복 제거
+            const key = `${ruleIdString ?? "unknown"}-${range.start.line}:${
+              range.start.character
+            }-${range.end.line}:${range.end.character}-${msg.message}`;
+
+            if (uniqueDiagnosticsMap.has(key)) {
+              // console.log(`[DEBUG - lintDocument] Duplicate diagnostic skipped: ${key}`); // 디버그용
+              continue;
+            }
 
             const diagnostic = new vscode.Diagnostic(
               range,
@@ -116,19 +138,9 @@ export function activate(context: vscode.ExtensionContext) {
               vscode.DiagnosticSeverity.Warning
             );
             diagnostic.source = "jsx-a11y";
-            if (typeof msg.ruleId === "string") {
-              diagnostic.code = msg.ruleId;
-            } else if (msg.ruleId !== null && typeof msg.ruleId === "object") {
-              const rawRuleId = msg.ruleId as any;
-              if (typeof rawRuleId.value === "string") {
-                diagnostic.code = rawRuleId.value;
-              } else {
-                diagnostic.code = undefined;
-              }
-            } else {
-              diagnostic.code = undefined;
-            }
-            diagnostics.push(diagnostic);
+            diagnostic.code = ruleIdString;
+
+            uniqueDiagnosticsMap.set(key, diagnostic); // 맵에 추가
 
             const line = lines[msg.line - 1] ?? "";
             console.log(
@@ -140,8 +152,10 @@ export function activate(context: vscode.ExtensionContext) {
           }
         }
 
-        if (diagnostics.length > 0) {
-          diagnosticCollection.set(document.uri, diagnostics);
+        const finalDiagnostics = Array.from(uniqueDiagnosticsMap.values()); // 맵의 값들을 배열로 변환
+
+        if (finalDiagnostics.length > 0) {
+          diagnosticCollection.set(document.uri, finalDiagnostics); // 중복 제거된 진단 설정
         } else {
           diagnosticCollection.delete(document.uri);
         }
@@ -158,75 +172,120 @@ class HtmlLintQuickFixProvider implements vscode.CodeActionProvider {
     range: vscode.Range,
     context: vscode.CodeActionContext
   ): vscode.CodeAction[] {
-    return context.diagnostics
-      .filter((d) => {
-        if (typeof d.code !== "string") {
-          return false;
-        }
-        const isA11y = d.code.startsWith("jsx-a11y");
+    const finalCodeActions: vscode.CodeAction[] = [];
+    const seenActionKeys = new Set<string>(); // 최종 CodeAction 중복 제거를 위한 Set
 
-        const isEslintDisableFix = d.message.includes("Disable");
-        const isShowDocumentation = d.message.includes("Show documentation");
+    // 1. 들어오는 진단(diagnostics) 자체에서 중복 제거 (ESLint 보고 중복 방지)
+    // 이 부분은 lintDocument에서 이미 처리되므로, 여기서는 필터링만 집중
+    const uniqueDiagnosticsMap = new Map<string, vscode.Diagnostic>();
+    for (const diag of context.diagnostics) {
+      const ruleId = getRuleIdString(diag.code);
+      if (ruleId) {
+        const key = `${ruleId}-${diag.range.start.line}:${diag.range.start.character}-${diag.range.end.line}:${diag.range.end.character}-${diag.message}`;
+        uniqueDiagnosticsMap.set(key, diag);
+      }
+    }
+    const uniqueContextDiagnostics = Array.from(uniqueDiagnosticsMap.values());
 
-        return (isA11y && !isEslintDisableFix) || isShowDocumentation;
-      })
-      .flatMap((diagnostic) => {
-        const ruleId = diagnostic.code as string;
-        if (!ruleId) {
-          console.warn(
-            `[DEBUG] diagnostic.code가 없습니다 (필터링 후):`,
-            diagnostic
-          );
-          return [];
-        }
+    for (const diagnostic of uniqueContextDiagnostics) {
+      const diagnosticCodeString = getRuleIdString(diagnostic.code);
 
-        if (diagnostic.message.includes("Show documentation")) {
-          const showDocAction = new vscode.CodeAction(
-            diagnostic.message,
-            vscode.CodeActionKind.QuickFix
-          );
-          showDocAction.diagnostics = [diagnostic];
-          showDocAction.command = {
-            command: "eslint.showDocumentation",
-            title: diagnostic.message,
-            arguments: [diagnostic.code],
-          };
-          return [showDocAction];
-        }
+      if (!diagnosticCodeString) {
+        continue;
+      }
 
-        const problemText = document.getText(diagnostic.range);
-        const fullLine = document.lineAt(diagnostic.range.start.line).text;
-        const lineNumber = diagnostic.range.start.line + 1;
+      const isA11y = diagnosticCodeString.startsWith("jsx-a11y");
 
-        const ruleContext: RuleContext = {
-          ruleName: ruleId,
-          code: problemText,
-          fileCode: document.getText(),
-          lineNumber: lineNumber,
-          fullLine: fullLine,
-          range: diagnostic.range,
-          document: document,
+      const isEslintDisableFix = diagnostic.message.includes("Disable");
+      const isShowDocumentation =
+        diagnostic.message.includes("Show documentation");
+
+      if (!(isA11y && !isEslintDisableFix) && !isShowDocumentation) {
+        continue;
+      }
+
+      const ruleId = diagnosticCodeString;
+
+      if (!ruleId) {
+        console.warn(
+          `[DEBUG] diagnostic.code에서 ruleId 추출 실패 (flatMap 내부):`,
+          diagnostic.code
+        );
+        return []; // 이 경우는 이미 필터링에서 걸러졌어야 하지만 안전을 위해 유지
+      }
+
+      if (isShowDocumentation) {
+        // isShowDocumentation 변수 사용
+        const showDocAction = new vscode.CodeAction(
+          diagnostic.message,
+          vscode.CodeActionKind.QuickFix
+        );
+        showDocAction.diagnostics = [diagnostic];
+        showDocAction.command = {
+          command: "eslint.showDocumentation",
+          title: diagnostic.message,
+          arguments: [ruleId],
         };
+        const actionKey = `doc-${ruleId}`;
+        if (!seenActionKeys.has(actionKey)) {
+          finalCodeActions.push(showDocAction);
+          seenActionKeys.add(actionKey);
+        }
+        continue;
+      }
 
-        console.log("📌 [문제 코드 추출]", {
-          rule: ruleId,
-          message: diagnostic.message,
-          text: problemText,
-          fullLine: fullLine,
-          range: diagnostic.range,
-        });
+      const problemText = document.getText(diagnostic.range);
+      const fullLine = document.lineAt(diagnostic.range.start.line).text;
+      const lineNumber = diagnostic.range.start.line + 1;
 
-        const fixes = dispatchRule(ruleContext);
+      const ruleContext: RuleContext = {
+        ruleName: ruleId,
+        code: problemText,
+        fileCode: document.getText(),
+        lineNumber: lineNumber,
+        fullLine: fullLine,
+        range: diagnostic.range,
+        document: document,
+      };
 
-        fixes.forEach((fix) => {
+      console.log("📌 [문제 코드 추출]", {
+        rule: ruleId,
+        message: diagnostic.message,
+        text: problemText,
+        fullLine: fullLine,
+        range: diagnostic.range,
+      });
+
+      const fixesFromDispatcher = dispatchRule(ruleContext);
+
+      fixesFromDispatcher.forEach((fix) => {
+        let fixKeyParts: string[] = [fix.title, ruleId];
+        if (fix.edit) {
+          fix.edit.entries().forEach(([uri, edits]) => {
+            edits.forEach((edit) => {
+              fixKeyParts.push(
+                `${uri.fsPath}`,
+                `${edit.range.start.line}:${edit.range.start.character}`,
+                `${edit.range.end.line}:${edit.range.end.character}`,
+                `${edit.newText}`
+              );
+            });
+          });
+        }
+        const actionKey = fixKeyParts.join("|");
+
+        if (!seenActionKeys.has(actionKey)) {
           if (!fix.diagnostics) {
             fix.diagnostics = [];
           }
           fix.diagnostics.push(diagnostic);
-        });
-
-        return fixes;
+          finalCodeActions.push(fix);
+          seenActionKeys.add(actionKey);
+        }
       });
+    }
+
+    return finalCodeActions;
   }
 }
 

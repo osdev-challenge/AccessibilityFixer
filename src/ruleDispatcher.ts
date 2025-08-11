@@ -24,10 +24,10 @@ export function dispatchRule(context: RuleContext): vscode.CodeAction[] {
   const fixFunction = ruleFixers[context.ruleName];
 
   if (fixFunction) {
-    console.log(`✅ [${context.ruleName}] 규칙 수정 로직 실행`);
+    console.log(`✅ [${context.ruleName}] 규칙 수정 로직 실행`); // 이 로그는 유지
     return fixFunction(context);
   }
 
-  console.warn(`⚠️ [${context.ruleName}] 규칙에 대한 수정 로직이 없습니다.`);
+  console.warn(`⚠️ [${context.ruleName}] 규칙에 대한 수정 로직이 없습니다.`); // 이 경고는 유지
   return [];
 }
