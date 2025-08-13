@@ -1,5 +1,4 @@
 // 규칙 처리 함수 타입 등 공통 타입 정의
-// src/rules/types.ts
 
 import * as vscode from "vscode";
 
@@ -14,6 +13,16 @@ export interface RuleContext {
   fullLine: string; // 문제가 발생한 전체 줄의 내용
   range: vscode.Range; // VS Code에서 문제의 정확한 시작 및 끝 위치
   document: vscode.TextDocument; // 현재 활성화된 VS Code 문서 객체
+}
+
+/**
+ * HTML/JSX 요소의 부분적인 정보를 나타내는 인터페이스
+ * (예: AI가 파싱하여 특정 속성만 전달할 때 사용)
+ */
+export interface PartialHTMLElement {
+  outerHTML: string; // 요소의 전체 HTML 문자열
+  getAttribute: (attr: string) => string | null; // 특정 속성 값을 가져오는 메서드
+  // 필요에 따라 tagName, children 등 다른 속성 추가 가능
 }
 
 /**
