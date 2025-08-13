@@ -1,5 +1,3 @@
-// src/rules/logic/tabindex-no-positive.ts
-
 import * as vscode from "vscode";
 import { RuleContext } from "../types";
 

@@ -1,5 +1,3 @@
-// src/rules/logic/click-events-have-key-events.ts
-
 import * as vscode from "vscode";
 import { RuleContext } from "../types";
 

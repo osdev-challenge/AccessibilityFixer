@@ -1,5 +1,3 @@
-// src/rules/logic/interactive-supports-focus.ts
-
 import * as vscode from "vscode";
 import { RuleContext } from "../types";
 
