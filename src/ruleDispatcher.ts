@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // src/ruleDispatcher.ts
 
 import * as vscode from "vscode";
@@ -30,4 +31,27 @@ export function dispatchRule(context: RuleContext): vscode.CodeAction[] {
 
   console.warn(`⚠️ [${context.ruleName}] 규칙에 대한 수정 로직이 없습니다.`); // 이 경고는 유지
   return [];
+=======
+// 규칙 이름 → 처리 함수 실행 (AI/로직 기반 분기 포함)
+import { RuleContext } from "./rules/types";
+import {
+  fixAriaProps,
+  fixAriaRole,
+  fixNoInteractiveToNoninteractive,
+  fixNoNoninteractiveToInteractive
+} from "./rules/ai/aria-role";
+
+type Fixer = (rc: RuleContext) => Promise<string>;
+
+const handlers: Record<string, Fixer> = {
+  "aria-props": fixAriaProps,
+  "aria-role": fixAriaRole,
+  "no-interactive-element-to-noninteractive-role": fixNoInteractiveToNoninteractive,
+  "no-noninteractive-element-to-interactive-role": fixNoNoninteractiveToInteractive,
+  // labeling-content 쪽은 다음 턴에 추가
+};
+
+export function getFixer(ruleName: string): Fixer | undefined {
+  return handlers[ruleName];
+>>>>>>> e05bbed (feat(aria-role): 파이프라인 활용 코드 생성(refs #이슈번호))
 }

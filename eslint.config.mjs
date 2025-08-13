@@ -1,6 +1,6 @@
-import typescriptEslint from "@typescript-eslint/eslint-plugin";
-import tsParser from "@typescript-eslint/parser";
+// eslint.config.mjs
 import jsxA11y from "eslint-plugin-jsx-a11y";
+<<<<<<< HEAD
 
 export default [
   {
@@ -46,5 +46,39 @@ export default [
       "jsx-a11y/mouse-events-have-key-events": "warn",
       "jsx-a11y/tabindex-no-positive": "warn",
     },
+=======
+import tsParser from "@typescript-eslint/parser";
+
+export default [
+  {
+    ignores: ["node_modules/**", "out/**", "dist/**"]
+>>>>>>> e05bbed (feat(aria-role): 파이프라인 활용 코드 생성(refs #이슈번호))
   },
+  {
+    files: ["**/*.{js,jsx}"],
+    languageOptions: {
+      ecmaVersion: "latest",
+      sourceType: "module",
+      parserOptions: { ecmaFeatures: { jsx: true } }
+    },
+    plugins: { "jsx-a11y": jsxA11y },
+    rules: {
+      "jsx-a11y/aria-role": "warn",
+      "jsx-a11y/aria-props": "warn"
+    }
+  },
+  {
+    files: ["**/*.{ts,tsx}"],
+    languageOptions: {
+      ecmaVersion: "latest",
+      sourceType: "module",
+      parser: tsParser,
+      parserOptions: { ecmaFeatures: { jsx: true } }
+    },
+    plugins: { "jsx-a11y": jsxA11y },
+    rules: {
+      "jsx-a11y/aria-role": "warn",
+      "jsx-a11y/aria-props": "warn"
+    }
+  }
 ];

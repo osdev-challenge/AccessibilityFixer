@@ -13,7 +13,7 @@ export interface RuleContext {
   ruleName: string; // 위반된 ESLint 규칙 ID (예: "jsx-a11y/alt-text")
   code: string; // 문제가 발생한 특정 코드 스니펫 문자열
   fileCode: string; // 현재 파일의 전체 코드 내용
-  lineNumber: number; // 문제가 발생한 코드의 시작 줄 번호 (1-based)
+  lineNumber: number; // 문제가 발생한 코드의 시작 줄 번호 (0-based)
   fullLine: string; // 문제가 발생한 전체 줄의 내용
   range: vscode.Range; // VS Code에서 문제의 정확한 시작 및 끝 위치
   document: vscode.TextDocument; // 현재 활성화된 VS Code 문서 객체

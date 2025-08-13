@@ -1,18 +1,19 @@
 // src/ai/aiClient.ts
 import axios from 'axios';
 import * as dotenv from 'dotenv';
+import * as path from 'path';
 
-dotenv.config();
+// .env 로드 시도 (없어도 에러를 던지지 않음)
+dotenv.config({ path: path.resolve(__dirname, '../../.env') });
 
-const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
 const OPENAI_API_URL = 'https://api.openai.com/v1/chat/completions';
 
-console.log('env:', process.env);
-if (!OPENAI_API_KEY) {
-  throw new Error('❌ OPENAI_API_KEY가 .env에 설정되어 있지 않습니다.');
-}
-
 export async function callGpt(prompt: string): Promise<string> {
+  const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
+  if (!OPENAI_API_KEY) {
+    throw new Error('❌ OPENAI_API_KEY가 .env에 설정되어 있지 않습니다.');
+  }
+
   const response = await axios.post(
     OPENAI_API_URL,
     {

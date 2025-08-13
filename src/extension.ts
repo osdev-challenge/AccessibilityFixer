@@ -1,5 +1,8 @@
 // src/extension.ts
+<<<<<<< HEAD
 
+=======
+>>>>>>> e05bbed (feat(aria-role): 파이프라인 활용 코드 생성(refs #이슈번호))
 import * as vscode from "vscode";
 import { ESLint } from "eslint";
 import * as path from "path";
@@ -32,7 +35,79 @@ function getRuleIdString(
   return undefined;
 }
 
+// ▼ JSX 요소 전체 범위로 확장에 필요한 AST 유틸
+import { parse } from "@babel/parser";
+import traverse from "@babel/traverse";
+import * as t from "@babel/types";
+
+// ▼ 우리 디스패처/타입
+import { getFixer } from "./ruleDispatcher";
+import { RuleContext as FixRuleContext } from "./rules/types";
+
+/** 규칙 ID 정규화: "jsx-a11y/aria-role" -> "aria-role" */
+function normalizeRuleId(ruleIdFull: string): string {
+  return ruleIdFull.replace(/^jsx-a11y\//, "");
+}
+
+/** diagnostic.range 를 감싸는 가장 가까운 JSXElement 전체 범위로 확장 */
+// ✅ 기존 expandRangeToJsxElement 를 이 버전으로 교체
+function expandRangeToJsxElement(
+  document: vscode.TextDocument,
+  original: vscode.Range
+): vscode.Range {
+  try {
+    const code = document.getText();
+    const startOffset = document.offsetAt(original.start);
+    const endOffset = document.offsetAt(original.end);
+
+    const ast = parse(code, {
+      sourceType: "module",
+      plugins: ["jsx", "typescript"],
+      // Babel은 기본적으로 node.start/node.end를 제공합니다.
+    });
+
+    // ✅ 객체 대신 숫자 두 개로만 추적
+    let bestStart: number | null = null;
+    let bestEnd: number | null = null;
+
+    traverse(ast, {
+      JSXElement(path) {
+        const n = path.node;
+        const s = typeof n.start === "number" ? n.start : null;
+        const e = typeof n.end === "number" ? n.end : null;
+        if (
+          s !== null &&
+          e !== null &&
+          s <= startOffset &&
+          endOffset <= e
+        ) {
+          // 더 안쪽(짧은) 요소를 택함
+          if (
+            bestStart === null ||
+            bestEnd === null ||
+            (e - s) < (bestEnd - bestStart)
+          ) {
+            bestStart = s;
+            bestEnd = e;
+          }
+        }
+      },
+    });
+
+    if (bestStart !== null && bestEnd !== null) {
+      const startPos = document.positionAt(bestStart);
+      const endPos = document.positionAt(bestEnd);
+      return new vscode.Range(startPos, endPos);
+    }
+  } catch (e) {
+    console.warn("[expandRangeToJsxElement] fallback to original range:", e);
+  }
+  return original;
+}
+
+
 export function activate(context: vscode.ExtensionContext) {
+<<<<<<< HEAD
   diagnosticCollection =
     vscode.languages.createDiagnosticCollection("jsx-a11y");
   context.subscriptions.push(diagnosticCollection);
@@ -42,9 +117,13 @@ export function activate(context: vscode.ExtensionContext) {
       lintDocument(event.document);
     }
   });
+=======
+  // 문서 열기/저장 시 ESLint 실행
+>>>>>>> e05bbed (feat(aria-role): 파이프라인 활용 코드 생성(refs #이슈번호))
   vscode.workspace.onDidSaveTextDocument(lintDocument);
   vscode.workspace.onDidOpenTextDocument(lintDocument);
 
+  // Quick Fix 제공자 등록
   context.subscriptions.push(
     vscode.languages.registerCodeActionsProvider(
       [
@@ -54,13 +133,44 @@ export function activate(context: vscode.ExtensionContext) {
         { scheme: "file", language: "typescriptreact" },
       ],
       new HtmlLintQuickFixProvider(),
-      {
-        providedCodeActionKinds: [vscode.CodeActionKind.QuickFix],
-      }
+      { providedCodeActionKinds: [vscode.CodeActionKind.QuickFix] }
     )
   );
 
+  // 👉 Quick Fix가 실제 수정을 적용하는 명령
+  const aiFixCmd = vscode.commands.registerCommand(
+    "a11yFix.aiFix",
+    async (rc: FixRuleContext) => {
+      try {
+        const fixer = getFixer(rc.ruleName);
+        if (!fixer) {
+          vscode.window.showWarningMessage(
+            `[web-a11y-fixer] No fixer for rule: ${rc.ruleName}`
+          );
+          return;
+        }
+        const fixedCode = await fixer(rc);
+        if (!fixedCode || fixedCode === rc.code) {
+          vscode.window.showInformationMessage(
+            `[web-a11y-fixer] No change for: ${rc.ruleName}`
+          );
+          return;
+        }
+        const edit = new vscode.WorkspaceEdit();
+        edit.replace(rc.document.uri, rc.range, fixedCode); // ✅ 확장된 범위 통째 교체
+        await vscode.workspace.applyEdit(edit);
+      } catch (e: any) {
+        vscode.window.showErrorMessage(
+          `[web-a11y-fixer] Fix failed: ${e?.message || e}`
+        );
+      }
+    }
+  );
+  context.subscriptions.push(aiFixCmd);
+
+  // 내부: ESLint 실행해 Diagnostics 생성
   async function lintDocument(document: vscode.TextDocument) {
+<<<<<<< HEAD
     if (lintTimeout) {
       clearTimeout(lintTimeout);
     }
@@ -71,6 +181,16 @@ export function activate(context: vscode.ExtensionContext) {
       const filePath = document.uri.fsPath;
       const workspaceRoot = vscode.workspace.workspaceFolders?.[0]?.uri.fsPath;
       const configFilePath = path.resolve(__dirname, "..", "eslint.config.mjs");
+=======
+    const filePath = document.uri.fsPath;
+    const supported = new Set([
+      "javascript",
+      "javascriptreact",
+      "typescript",
+      "typescriptreact",
+    ]);
+    if (!supported.has(document.languageId)) return;
+>>>>>>> e05bbed (feat(aria-role): 파이프라인 활용 코드 생성(refs #이슈번호))
 
       const supportedLanguages = [
         "javascript",
@@ -81,6 +201,7 @@ export function activate(context: vscode.ExtensionContext) {
 
       if (!supportedLanguages.includes(document.languageId)) return;
 
+<<<<<<< HEAD
       let effectiveEslintCwd = workspaceRoot;
       if (!effectiveEslintCwd) {
         const pathSegments = filePath.split(path.sep);
@@ -93,6 +214,44 @@ export function activate(context: vscode.ExtensionContext) {
           );
         } else {
           effectiveEslintCwd = process.cwd();
+=======
+    try {
+      const results = await eslint.lintText(document.getText(), { filePath });
+
+      const diagnosticSet = new Set<string>();
+      const diagnostics: vscode.Diagnostic[] = [];
+
+      for (const result of results) {
+        const lines = result.source?.split("\n") ?? [];
+
+        for (const msg of result.messages) {
+          const range = new vscode.Range(
+            new vscode.Position(msg.line - 1, msg.column - 1),
+            new vscode.Position(
+              msg.endLine ? msg.endLine - 1 : msg.line - 1,
+              msg.endColumn ? msg.endColumn - 1 : msg.column
+            )
+          );
+
+          const key = `${msg.ruleId}-${range.start.line}:${range.start.character}-${range.end.line}:${range.end.character}`;
+          if (diagnosticSet.has(key)) continue;
+          diagnosticSet.add(key);
+
+          const diagnostic = new vscode.Diagnostic(
+            range,
+            msg.message,
+            vscode.DiagnosticSeverity.Warning
+          );
+          diagnostic.source = "jsx-a11y";
+          diagnostic.code = msg.ruleId ?? undefined;
+          diagnostics.push(diagnostic);
+
+          const line = lines[msg.line - 1] ?? "";
+          console.log(
+            `❌ ESLint: ${msg.message} (${msg.ruleId ?? "unknown"}) at ${filePath}:${msg.line}:${msg.column}`
+          );
+          console.log(`   ⤷ ${line}`);
+>>>>>>> e05bbed (feat(aria-role): 파이프라인 활용 코드 생성(refs #이슈번호))
         }
       }
 
@@ -169,9 +328,10 @@ export function activate(context: vscode.ExtensionContext) {
 class HtmlLintQuickFixProvider implements vscode.CodeActionProvider {
   provideCodeActions(
     document: vscode.TextDocument,
-    range: vscode.Range,
+    _range: vscode.Range,
     context: vscode.CodeActionContext
   ): vscode.CodeAction[] {
+<<<<<<< HEAD
     const finalCodeActions: vscode.CodeAction[] = [];
     const seenActionKeys = new Set<string>(); // 최종 CodeAction 중복 제거를 위한 Set
 
@@ -254,6 +414,42 @@ class HtmlLintQuickFixProvider implements vscode.CodeActionProvider {
         text: problemText,
         fullLine: fullLine,
         range: diagnostic.range,
+=======
+    return context.diagnostics
+      .filter((d) => (d.code ?? "").toString().startsWith("jsx-a11y"))
+      .map((diagnostic) => {
+        const ruleIdFull = String(diagnostic.code || "");
+        const ruleName = normalizeRuleId(ruleIdFull);
+
+        // ✅ 2) 교체 범위를 JSX 요소 전체로 확장
+        const targetRange = expandRangeToJsxElement(document, diagnostic.range);
+
+        // ✅ 1) AI/로직에 전달할 코드도 요소 전체로
+        const rc: FixRuleContext = {
+          ruleName,
+          code: document.getText(targetRange),
+          fileCode: document.getText(),
+          lineNumber: targetRange.start.line, // 0-based
+          fullLine: document.lineAt(targetRange.start.line).text,
+          range: targetRange,
+          document,
+        };
+
+        const fix = new vscode.CodeAction(
+          `🛠 Fix with AI: ${ruleIdFull}`,
+          vscode.CodeActionKind.QuickFix
+        );
+        // ✅ 3) 명령에 확장된 범위/코드를 그대로 넘긴다
+        fix.command = {
+          title: `Apply AI fix for ${ruleIdFull}`,
+          command: "a11yFix.aiFix",
+          arguments: [rc],
+        };
+        fix.diagnostics = [diagnostic];
+        fix.isPreferred = true;
+
+        return fix;
+>>>>>>> e05bbed (feat(aria-role): 파이프라인 활용 코드 생성(refs #이슈번호))
       });
 
       const fixesFromDispatcher = dispatchRule(ruleContext);
