@@ -4,7 +4,7 @@ import { parseFixedCodeJson } from "../../../../ai/pipelines/parsers";
 import { buildNoInteractiveToNoninteractivePrompt } from "../prompts/noInteractiveElementToNoninteractiveRolePrompt";
 import { isValidRole, isNativeConflictRole } from "../../../../utils/ariaSpec";
 import { removeRoleAst } from "../../../../utils/codeMods";
-import { approveOrNull, Evidence } from "../../../../utils/scoring";
+import { approveOrNull } from "../../../../utils/scoring";
 
 function isPresentational(role: string) {
   return role === "presentation" || role === "none";
@@ -19,8 +19,7 @@ export const NoInteractiveElementToNoninteractiveRoleStrategy: RuleStrategy<Elem
 
     if (!ctx.nativeInteractive) return null; // 이 규칙은 인터랙티브 요소에 한정
 
-    let evidence: Evidence | null = null; // ⬅️ 공용 타입 사용
-    // let evidence: ("invalidRole" | "presentationalOnInteractive" | "roleConflict") | null = null;
+    let evidence: ("invalidRole" | "presentationalOnInteractive" | "roleConflict") | null = null;
 
     if (!isValidRole(role)) evidence = "invalidRole";
     else if (isPresentational(role)) evidence = "presentationalOnInteractive";

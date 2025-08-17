@@ -1,11 +1,15 @@
-// Place your settings in this file to overwrite default and user settings.
 {
-	"files.exclude": {
-		"out": false // set this to true to hide the "out" folder with the compiled JS files
-	},
-	"search.exclude": {
-		"out": true // set this to false to include "out" folder in search results
-	},
-	// Turn off tsc task auto detection since we have the necessary tasks as npm scripts
-	"typescript.tsc.autoDetect": "off"
+  "files.exclude": { "out": false },
+  "search.exclude": { "out": true },
+  "typescript.tsc.autoDetect": "off",
+
+  // ✅ ESLint를 이 언어들에 붙임
+  "eslint.validate": ["javascript", "javascriptreact", "typescript", "typescriptreact"],
+
+  // ✅ 저장 시 ESLint 자동수정 트리거(명시적으로)
+  "editor.codeActionsOnSave": { "source.fixAll.eslint": "explicit" },
+
+  // 모노레포/상위 리포 섞일 때 경로 혼선 방지
+  "eslint.workingDirectories": [{ "mode": "auto" }]
+  // (구버전 확장이라면) "eslint.useFlatConfig": true 도 고려
 }
