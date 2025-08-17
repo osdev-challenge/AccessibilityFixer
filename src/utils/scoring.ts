@@ -1,29 +1,33 @@
 // src/utils/scoring.ts
 import { parseJsxFragment } from "./jsxAst";
 
-/**
- * 로직 수정의 신뢰도 임계치.
- * 필요 시 .env/설정값으로 노출해도 됨.
- */
+/** 로직 수정의 기본 신뢰도 임계치 */
 export const MIN_CONFIDENCE = 0.6;
 
 /** 로직 판단의 근거(증거) 유형 */
 export type Evidence =
-  | "deterministic"        // 결정적 치환(금지어 제거, id 부여 등)
-  | "caption"              // 캡션/figure/타이틀 기반 추정
-  | "labelledby"           // aria-labelledby 대상 텍스트 기반 추정
-  | "filename"             // src 파일명 기반 추정
-  | "decorative"           // 장식 처리(alt="" / aria-hidden 등)
-  | "emojiSemantic"        // 이모지 의미 키워드 매칭 성공
-  | "emojiDecorative"      // 이모지 장식 처리
-  | "actionDerived"        // 버튼/링크 행동 라벨(삭제/저장 등) 추정
-  | "actionFallback"       // 버튼 기본값('Action') 같은 보수값
-  | "derivedControl"       // input type/name/placeholder 기반 라벨 추정
-  | "defaultControl"       // 컨트롤 기본값('Input'/'Field') 같은 보수값
-  | "idDeterministic";     // ID 생성/부여(결정적)
+  // (라벨링/콘텐츠 계열 — 기존)
+  | "deterministic"
+  | "caption"
+  | "labelledby"
+  | "filename"
+  | "decorative"
+  | "emojiSemantic"
+  | "emojiDecorative"
+  | "actionDerived"
+  | "actionFallback"
+  | "derivedControl"
+  | "defaultControl"
+  | "idDeterministic"
+  // (aria-role 계열 — 추가)
+  | "invalidRole"                   // 명세에 없는 role 제거
+  | "roleConflict"                  // 네이티브 시맨틱과 충돌하는 role 제거
+  | "presentationalOnInteractive"   // 인터랙티브 요소에 presentation/none 제거
+  | "interactiveRoleOnNoninteractive"; // 비인터랙티브 요소의 인터랙티브 role 제거
 
 /** 증거 유형별 기본 가중치(보수적) */
 const WEIGHTS: Record<Evidence, number> = {
+  // 기존
   deterministic:   0.75,
   idDeterministic: 0.7,
   caption:         0.65,
@@ -36,12 +40,14 @@ const WEIGHTS: Record<Evidence, number> = {
   derivedControl:  0.65,
   actionFallback:  0.55,
   defaultControl:  0.55,
+  // aria-role 계열 (결정성 높은 순으로 약간 차등)
+  invalidRole:                 0.75,
+  roleConflict:                0.72,
+  presentationalOnInteractive: 0.72,
+  interactiveRoleOnNoninteractive: 0.70,
 };
 
-/**
- * 여러 증거가 있는 경우, 가장 강한 근거를 사용(보수적 max 전략).
- * 합산/평균보다 과한 낙관주의를 피하기 위함.
- */
+/** 여러 증거가 있을 땐 가장 강한 근거만 채택(보수적 max 전략) */
 export function scoreByEvidences(evidences: Evidence[]): number {
   if (!evidences.length) return 0;
   return Math.max(...evidences.map(e => WEIGHTS[e] ?? 0));
@@ -60,11 +66,15 @@ export function validateJsx(snippet: string): boolean {
 /**
  * 점수/검증을 한 번에 처리.
  * - evidences로 점수 계산
- * - 점수가 임계치 미만이면 null
+ * - 임계치 미만이면 null
  * - JSX 파싱 실패면 null
  * - 둘 다 통과하면 snippet 반환
  */
-export function approveOrNull(snippet: string, evidences: Evidence[], min = MIN_CONFIDENCE): string | null {
+export function approveOrNull(
+  snippet: string,
+  evidences: Evidence[],
+  min = MIN_CONFIDENCE
+): string | null {
   const s = scoreByEvidences(evidences);
   if (!meetsThreshold(s, min)) return null;
   if (!validateJsx(snippet)) return null;

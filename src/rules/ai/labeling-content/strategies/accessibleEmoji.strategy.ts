@@ -3,6 +3,7 @@ import { ensureEmojiAccessible, hideDecorativeEmoji } from "../../../../utils/co
 import { buildAccessibleEmojiPrompt } from "../prompts/accessibleEmojiPrompt";
 import { approveOrNull } from "../../../../utils/scoring";
 
+
 const EMOJI_LABEL_DICT: Array<{ r: RegExp; label: string }> = [
   { r: /\b(success|ok|done|passed|complete|check|checked)\b/i, label: "success" },
   { r: /\b(warn|warning|caution|attention)\b/i, label: "warning" },
