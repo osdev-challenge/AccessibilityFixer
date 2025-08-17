@@ -4,7 +4,7 @@ import { extractLabelingContext } from "../../../../ai/context/extractLabelingCo
 import { callGpt } from "../../../../ai/aiClient";
 import { parseFixedCodeJson } from "../../../../ai/pipelines/parsers";
 import { createReplaceAction } from "../../../../ai/pipelines/codeActions";
-import { buildControlHasAssociatedLabelPrompt } from "../prompts/controlHasAssociatedLabelPrompt";
+import { buildControlHasAssociatedLabelPrompt } from "../prompts/controlLabelingPrompt";
 
 export async function fixControlHasAssociatedLabel(rc: RuleContext): Promise<vscode.CodeAction[]> {
   const ctx = extractLabelingContext(rc);
