@@ -1,10 +1,15 @@
+import * as vscode from "vscode";
 import { RuleContext } from "../../../types";
 import { extractLabelingContext } from "../../../../ai/context/extractLabelingContext";
-import { runAIFix } from "../../../../ai/pipelines/runAIFix";
-import { ControlHasAssociatedLabelStrategy } from "../strategies/controlHasAssociatedLabel.strategy";
 import { callGpt } from "../../../../ai/aiClient";
+import { parseFixedCodeJson } from "../../../../ai/pipelines/parsers";
+import { createReplaceAction } from "../../../../ai/pipelines/codeActions";
+import { buildControlHasAssociatedLabelPrompt } from "../prompts/controlHasAssociatedLabelPrompt";
 
-export async function fixControlHasAssociatedLabel(rc: RuleContext): Promise<string> {
+export async function fixControlHasAssociatedLabel(rc: RuleContext): Promise<vscode.CodeAction[]> {
   const ctx = extractLabelingContext(rc);
-  return runAIFix(ControlHasAssociatedLabelStrategy, ctx, callGpt);
+  const prompt = buildControlHasAssociatedLabelPrompt(ctx);
+  const resp = await callGpt(prompt);
+  const patched = parseFixedCodeJson(resp);
+  return createReplaceAction(rc, patched, "Associate label with control");
 }

@@ -1,16 +1,15 @@
+import * as vscode from "vscode";
 import { RuleContext } from "../../../types";
 import { extractLabelingContext } from "../../../../ai/context/extractLabelingContext";
-import { runAIFix } from "../../../../ai/pipelines/runAIFix";
-import { ImgRedundantAltStrategy } from "../strategies/imgRedundantAlt.strategy";
 import { callGpt } from "../../../../ai/aiClient";
-import { fixAltText } from "./fixAltText";
+import { parseFixedCodeJson } from "../../../../ai/pipelines/parsers";
+import { createReplaceAction } from "../../../../ai/pipelines/codeActions";
+import { buildImgRedundantAltPrompt } from "../prompts/imgRedundantAltPrompt";
 
-export async function fixImgRedundantAlt(rc: RuleContext): Promise<string> {
+export async function fixImgRedundantAlt(rc: RuleContext): Promise<vscode.CodeAction[]> {
   const ctx = extractLabelingContext(rc);
-  const first = await runAIFix(ImgRedundantAltStrategy, ctx, callGpt);
-  // alt가 비게 되거나 사라졌다면 alt-text로 재보강
-  if (!/alt\s*=/.test(first) || /alt\s*=\s*["']\s*["']/.test(first)) {
-    return fixAltText({ ...rc, codeSnippet: first });
-  }
-  return first;
+  const prompt = buildImgRedundantAltPrompt(ctx);
+  const resp = await callGpt(prompt);
+  const patched = parseFixedCodeJson(resp);
+  return createReplaceAction(rc, patched, "Remove redundant words from img alt");
 }
