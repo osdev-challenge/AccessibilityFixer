@@ -5,7 +5,10 @@ import * as vscode from "vscode";
 /**
  * ESLint 규칙 위반 시 전달되는 컨텍스트 객체 인터페이스
  */
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 export interface RuleContext {
   ruleName: string; // 위반된 ESLint 규칙 ID (예: "jsx-a11y/alt-text")
   code: string; // 문제가 발생한 특정 코드 스니펫 문자열
@@ -14,9 +17,20 @@ export interface RuleContext {
   fullLine: string; // 문제가 발생한 전체 줄의 내용
   range: vscode.Range; // VS Code에서 문제의 정확한 시작 및 끝 위치
   document: vscode.TextDocument; // 현재 활성화된 VS Code 문서 객체
+<<<<<<< Updated upstream
   peripheralCode?: string;
 }
 
+=======
+  codeSnippet?: string;
+  surroundingText?: string;
+}
+
+/**
+ * HTML/JSX 요소의 부분적인 정보를 나타내는 인터페이스
+ * (예: AI가 파싱하여 특정 속성만 전달할 때 사용)
+ */
+>>>>>>> Stashed changes
 export interface PartialHTMLElement {
   outerHTML: string;
   getAttribute: (attr: string) => string | null;
