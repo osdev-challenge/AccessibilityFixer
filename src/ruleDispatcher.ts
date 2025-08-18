@@ -11,7 +11,22 @@ const ruleFixers: Record<string, RuleFixer> = {
 export async function dispatchRule(
   context: RuleContext
 ): Promise<vscode.CodeAction[]> {
+
+
+  console.log("[dispatchRule] context =", {
+    ruleName: context.ruleName,
+    lineNumber: context.lineNumber,
+    fullLine: context.fullLine,
+    range: context.range,                 // VS Code Range는 객체라 그대로 보여도 됨
+    hasDoc: !!context.document,
+    codeLen: context.code?.length,
+    fileCodeLen: context.fileCode?.length,
+  });
+
+
   const fixer = ruleFixers[context.ruleName];
+  // console.log(fixer);
+
   if (fixer) {
     console.log(`✅ [${context.ruleName}] 규칙 수정 로직 실행`);
     return await Promise.resolve(fixer(context)); // 동기/비동기 둘 다 처리

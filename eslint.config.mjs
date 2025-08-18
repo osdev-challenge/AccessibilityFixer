@@ -47,7 +47,7 @@ export default [
       "jsx-a11y/mouse-events-have-key-events": "warn",
       "jsx-a11y/tabindex-no-positive": "warn",
       "jsx-a11y/accessible-emoji": "warn",
-      "no-console": "warn",          // test 코드
+      // "no-console": "warn",          // test 코드
       "jsx-a11y/aria-props": "warn"
     },
   },
