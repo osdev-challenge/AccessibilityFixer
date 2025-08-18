@@ -1,23 +1,18 @@
 // src/rules/logic/role-supports-aria-props/fix.ts
 import * as vscode from "vscode";
-import { RuleContext, RuleFixer } from "../../types";
-import { ALLOWED_BY_ROLE } from "../scripts-data/allowed-by-role.gen";
+import { RuleContext } from "../types";
+import { ALLOWED_BY_ROLE } from "./scripts-data/allowed-by-role.gen";
 
 const { elementRoles } = require("aria-query") as { elementRoles: Map<any, Set<string>> };
 
 /** aria-query의 elementRoles 데이터로 암시적 role 추론 */
 function inferImplicitRole(tag: string, attrs: Record<string, string | true>): string | null {
   const t = tag.toLowerCase();
-
-  // attrs 정규화: 키/값 전부 소문자. 불리언 단축은 존재만 의미(true)
   const norm: Record<string, string | true> = {};
   for (const k of Object.keys(attrs)) {
     const v = attrs[k];
     norm[k.toLowerCase()] = typeof v === "string" ? v.toLowerCase() : true;
   }
-
-  // elementRoles: Map<ElementSchema, Set<Role>>
-  // ElementSchema 예: { name: 'a', attributes: [{ name: 'href' }] }
   for (const [schema, roles] of elementRoles.entries()) {
     const name = String(schema?.name ?? "").toLowerCase();
     if (name !== t) continue;
@@ -25,40 +20,29 @@ function inferImplicitRole(tag: string, attrs: Record<string, string | true>): s
     const specs: Array<{ name: string; value?: string; values?: string[] }> =
       (schema?.attributes as any[]) ?? [];
 
-    // 스키마의 모든 속성 조건을 만족해야 함
     const ok = specs.every((spec) => {
       const key = String(spec.name || "").toLowerCase();
       const has = Object.prototype.hasOwnProperty.call(norm, key);
-
-      // 존재만 요구: { name: 'href' }
       if (!("value" in spec) && !("values" in spec)) return has;
-
-      // 단일 값 요구: { name: 'type', value: 'checkbox' }
       if ("value" in spec && spec.value != null) {
         return has && norm[key] === String(spec.value).toLowerCase();
       }
-
-      // 여러 값 중 하나: { name: 'type', values: ['button','submit','reset'] }
       if (Array.isArray(spec.values)) {
         if (!has) return false;
         const val = String(norm[key]);
         return spec.values.map(String).map((s) => s.toLowerCase()).includes(val);
       }
-
       return false;
     });
 
     if (!ok) continue;
 
-    // 매칭되면 첫 role을 반환(대부분 1개)
     const it = (roles as Set<string>).values();
     const first = it.next();
     if (!first.done) return String(first.value).toLowerCase();
   }
-
   return null;
 }
-
 
 function parseOpeningTag(tagText: string): { tag: string; attrs: Record<string, string | true> } | null {
   if (/<\s*\//.test(tagText)) return null; // </...> 제외
@@ -103,10 +87,11 @@ function stripAttributesInTag(tagText: string, dropNames: string[]): string {
 }
 
 // ── rule fixer ────────────────────────────────────────────────────────────────
-export const fixRoleSupportsAriaProps: RuleFixer = (context: RuleContext): vscode.CodeAction[] => {
+export function fixRoleSupportsAriaProps (context: RuleContext): vscode.CodeAction[] {
   const { code, range, document } = context;
+  const fixes: vscode.CodeAction[] = [];
 
-  // 빠른 bail‑out: aria-* 없으면 패스
+  // 빠른 bail-out: aria-* 없으면 패스
   if (!/\saria-[a-z0-9-]+/i.test(code)) return [];
 
   const parsed = parseOpeningTag(code);
@@ -114,7 +99,6 @@ export const fixRoleSupportsAriaProps: RuleFixer = (context: RuleContext): vscod
 
   const role = resolveRole(parsed.attrs, parsed.tag);
 
-  // 우리는 생성 데이터에 글로벌도 포함시켰으므로, role이 없으면 일단 아무것도 허용 안 함(정책에 맞춰 조정 가능)
   const list = role ? (ALLOWED_BY_ROLE[role] ?? []) : [];
   const allowed = new Set(list.map((s) => s.toLowerCase()));
 
@@ -124,23 +108,25 @@ export const fixRoleSupportsAriaProps: RuleFixer = (context: RuleContext): vscod
   const fixedText = stripAttributesInTag(code, unsupported);
   if (fixedText === code) return [];
 
-  // 네가 보여준 패턴에 맞춘 CodeAction 구성
   const fix = new vscode.CodeAction(
     `Unsupported ARIA 제거: ${unsupported.join(", ")}`,
     vscode.CodeActionKind.QuickFix
   );
   const edit = new vscode.WorkspaceEdit();
   edit.replace(document.uri, range, fixedText);
+
+  // ✅ 빠졌던 부분!
   fix.edit = edit;
+
   fix.isPreferred = true;
   fix.diagnostics = [
-    {
-      message: `role="${role ?? "∅"}"에서 지원하지 않는 ARIA: ${unsupported.join(", ")}`,
-      range,
-      severity: vscode.DiagnosticSeverity.Warning,
-      source: "web-a11y-fixer",
-    },
+    new vscode.Diagnostic(
+      context.range,
+      `role="${role ?? "∅"}"에서 지원하지 않는 ARIA: ${unsupported.join(", ")}`,
+      vscode.DiagnosticSeverity.Warning
+    ),
   ];
 
-  return [fix];
-};
+  fixes.push(fix);
+  return fixes;
+}
