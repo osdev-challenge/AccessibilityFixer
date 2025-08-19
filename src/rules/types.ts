@@ -1,5 +1,3 @@
-// 규칙 처리 함수 타입 등 공통 타입 정의
-
 import * as vscode from "vscode";
 
 /**
