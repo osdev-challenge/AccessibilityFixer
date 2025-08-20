@@ -4,6 +4,7 @@
   "description": "Automatically detect and fix common accessibility issues in your React code, with AI-powered suggestions and quick fixes.",
   "version": "0.0.1",
   "publisher": "uno-accessibilityfixer",
+  "icon": "images/logo.png",
   "engines": {
     "vscode": "^1.102.0",
     "node": "22.18.0"
