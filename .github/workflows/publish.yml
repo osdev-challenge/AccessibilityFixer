@@ -22,37 +22,8 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Bump version and generate changelog
-        run: |
-          npm install -g standard-version
-          standard-version
-          git config user.name github-actions
-          git config user.email github-actions@github.com
-          git push --follow-tags origin main
-
-      - name: Extract latest tag
-        id: get_tag
-        run: |
-          echo "TAG_NAME=$(git describe --tags --abbrev=0)" >> $GITHUB_OUTPUT
-
       - name: Compile TypeScript
         run: npm run compile
 
-      - name: Package Extension
-        run: npx vsce package
-
-      - name: Publish to VSCode Marketplace
-        run: npx vsce publish -p ${{ secrets.VSCE_TOKEN }}
-
-      - name: Upload VSIX artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: accessibilityfixer-extension
-          path: "*.vsix"
-
-      - name: Create GitHub Release
-        uses: softprops/action-gh-release@v1
-        with:
-          tag_name: ${{ steps.get_tag.outputs.TAG_NAME }}
-          name: Release ${{ steps.get_tag.outputs.TAG_NAME }}
-          body_path: CHANGELOG.md
+      - name: Publish with Patch Version Bump
+        run: npx vsce publish patch -p ${{ secrets.VSCE_TOKEN }}
