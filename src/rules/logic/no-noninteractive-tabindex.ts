@@ -9,8 +9,13 @@ export const noNoninteractiveTabindexFix: RuleFixer = (
 ): vscode.CodeAction[] => {
   const { code, range, document } = context;
 
-  // 'tabIndex' 속성을 제거하는 정규식
-  const fixed = code.replace(/\s*tabIndex\s*=\s*\{?[^}>]*\}?/i, "");
+  // tabIndex 속성과 값만 정확히 일치시키는 정규식으로 수정
+  // 공백을 포함하여 'tabIndex' 속성만 정확히 제거하도록 개선
+  const fixed = code.replace(/\s+tabIndex\s*=\s*(?:".*?"|'.*?'|{[^}]*})/, "");
+
+  if (fixed === code) {
+    return [];
+  }
 
   const fix = new vscode.CodeAction(
     `tabIndex 속성 제거`,

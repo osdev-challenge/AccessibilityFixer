@@ -1,4 +1,3 @@
-// src/rules/logic/prefer-native-elements.ts
 import * as vscode from "vscode";
 import { RuleContext, RuleFixer } from "../types";
 
@@ -8,7 +7,6 @@ export const preferNativeElementsFix: RuleFixer = (
   const { code, range, document } = context;
   const fixes: vscode.CodeAction[] = [];
 
-  // role="link" → <a>로 교체
   const linkMatch = code.match(/<(?:\w+)\s+role="link"([^>]*)>/i);
   if (linkMatch) {
     const attrs = linkMatch[1];
@@ -33,10 +31,10 @@ export const preferNativeElementsFix: RuleFixer = (
     fixes.push(fix);
   }
 
-  // role="checkbox" → <input type="checkbox">로 교체
   const checkboxMatch = code.match(/<(?:\w+)\s+role="checkbox"([^>]*)>/i);
   if (checkboxMatch) {
-    const attrs = checkboxMatch[1].replace(/\saria-checked/i, "");
+    // aria-checked 속성을 이름과 값까지 완전히 제거하도록 수정
+    const attrs = checkboxMatch[1].replace(/\s*aria-checked="[^"]*"/i, "");
     const newCode = code.replace(
       /<(?:\w+)\s+role="checkbox"([^>]*)>/i,
       `<input type="checkbox"${attrs}>`
