@@ -1,7 +1,7 @@
 {
   "name": "AccessibilityFixer",
   "displayName": "AccessibilityFixer",
-  "description": "웹 접근성 문제를 감지하고 수정 제안하는 확장 프로그램입니다.",
+  "description": "Automatically detect and fix common accessibility issues in your React code, with AI-powered suggestions and quick fixes.",
   "version": "0.0.1",
   "publisher": "uno-accessibilityfixer",
   "engines": {
