@@ -5,20 +5,20 @@ export default function AriaUnsupportedElementsViolations() {
     <>
       {/* 1) <meta> : role/aria 금지 */}
       <meta role="button" />
-      <meta aria-hidden="true" />
+      <meta />
 
       {/* 2) <style> : role/aria 금지 */}
-      <style role="region" aria-label="스타일 태그는 ARIA 불가">{`
+      <style role="region">{`
         .x { color: red; }
       `}</style>
 
       {/* 3) <script> : role/aria 금지 */}
-      <script role="dialog" aria-modal="true">
+      <script role="dialog">
         {`console.log('스크립트 태그는 ARIA 불가');`}
       </script>
 
       {/* 4) <base> : role/aria 금지 */}
-      <base role="link" href="/" />
+      <base href="/" />
 
       {/* 5) <param> : role/aria 금지 */}
       <param name="movie" value="intro.mp4" role="img" />
@@ -27,10 +27,10 @@ export default function AriaUnsupportedElementsViolations() {
       <title role="heading" aria-level="1">제목</title>
 
       {/* 7) <head> : role/aria 금지 */}
-      <head role="banner" aria-label="헤드 ARIA 불가"></head>
+      <head role="banner"></head>
 
       {/* 8) <html> : role/aria 금지 */}
-      <html role="application"></html>
+      <html lang="ko" role="application"></html>
 
       {/* 보너스) 금지 요소 안쪽 자식에 aria를 두는 것도 흔한 실수 (부모 자체가 금지인 케이스) */}
       <script>

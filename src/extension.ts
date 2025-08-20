@@ -5,6 +5,12 @@ import { ESLint } from "eslint";
 import * as path from "path";
 import { dispatchRule } from "./ruleDispatcher";
 import { RuleContext } from "./rules/types";
+import {
+  stripAllLangAttrs,
+  injectLang,
+  normalizeBCP47,
+  COMMON_LANG_CANDIDATES,
+} from "./utils/htmllang";
 
 // diagnosticCollection을 activate 함수 외부(전역) 또는 activate 함수 내에서 한 번만 선언
 let diagnosticCollection: vscode.DiagnosticCollection;
@@ -164,6 +170,26 @@ export function activate(context: vscode.ExtensionContext) {
       }
     }, 200);
   }
+  const pickLangCmd = vscode.commands.registerCommand(
+    "a11yFix.pickHtmlLang",
+    async (arg?: { uri: vscode.Uri; range: vscode.Range; original: string }) => {
+      if (!arg) return;
+
+      const picked = await vscode.window.showQuickPick(COMMON_LANG_CANDIDATES, {
+        placeHolder: "언어 코드를 선택하세요 (예: en, ko, en-US, zh-CN)",
+      });
+      if (!picked) return;
+
+      const lang = normalizeBCP47(picked);
+      const newTag = injectLang(stripAllLangAttrs(arg.original), lang);
+
+      const edit = new vscode.WorkspaceEdit();
+      edit.replace(arg.uri, arg.range, newTag);
+      await vscode.workspace.applyEdit(edit);
+    }
+  );
+
+  context.subscriptions.push(pickLangCmd);
 }
 
 class HtmlLintQuickFixProvider implements vscode.CodeActionProvider {

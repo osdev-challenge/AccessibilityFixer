@@ -1,21 +1,29 @@
-// src/rules/logic/html-has-lang/html-has-lang.ts
 import * as vscode from "vscode";
 import { RuleContext } from "../types";
+import {
+  stripAllLangAttrs,
+  injectLang,
+  normalizeBCP47,
+  resolveDefaultHtmlLang,
+} from "../../utils/htmllang";
 
 /**
- * <html> 태그에서 기존 lang 속성(빈 값/중복/임의 값 포함)을 모두 제거하고
- * lang="ko" 하나만 깔끔하게 주입한다.
- * - code에 <html> 없으면 fullLine로 fallback
- * - 대문자 <Html> 컴포넌트는 제외(소문자 html만 처리)
+ * <html> 태그의 lang 속성을 정리하고, 사용자 환경/설정에 맞게 주입.
+ * - 우선순위: workspace 설정(webA11yFixer.defaultLang) → vscode.env.language → 'en'
+ * - Quick Fix 2개 제공:
+ *   1) 자동 설정(위 우선순위 반영)
+ *   2) "다른 언어로 설정…" (QuickPick으로 직접 선택)
+ *
+ * 참고: 대문자 <Html> 컴포넌트는 제외(소문자 html만 처리)
  */
 export function fixHtmlHasLang(context: RuleContext): vscode.CodeAction[] {
   const actions: vscode.CodeAction[] = [];
   const { document, range } = context;
 
-  // 기본 언어 (설정으로 바꾸고 싶으면 webA11yFixer.defaultLang 활용)
-  const defaultLang = "ko";
+  // 0) 언어 결정 (유틸 사용)
+  const resolvedLang = resolveDefaultHtmlLang();
 
-  // 현재 교체 대상 텍스트 결정: 우선 code, 없다면 한 줄 전체
+  // 1) 교체 대상 텍스트/범위 결정
   let textToFix = context.code ?? "";
   let replaceRange = range;
 
@@ -28,56 +36,46 @@ export function fixHtmlHasLang(context: RuleContext): vscode.CodeAction[] {
     );
   };
 
-  // 현재 code에 <html …>가 없으면 한 줄 전체에서 시도
+  // code에 <html>이 없다면 fullLine로 시도
   if (!/<html\b/.test(textToFix) && context.fullLine) {
     textToFix = context.fullLine;
     ensureLineRange();
   }
 
-  // 소문자 <html>이 없으면 스킵(대문자 <Html> 컴포넌트는 제외)
+  // 소문자 html이 없으면 종료
   if (!/<html\b/.test(textToFix)) return [];
 
-  // 1) 태그 내부의 lang 속성(값 무관/빈 값/표현식 포함) 전부 제거
-  //    예: lang="", lang={'  '}, lang={`ko`}, lang={expr}, lang=ko 등
-  const stripAllLangAttrs = (tag: string) =>
-    tag.replace(
-      /\s+\blang\b\s*=\s*(?:"[^"]*"|'[^']*'|\{[^}]*\}|[^\s>]+)/g,
-      ""
+  // 2) 기존 lang 속성 제거 → 선택한 lang 삽입
+  const fixedAuto = injectLang(stripAllLangAttrs(textToFix), resolvedLang);
+  if (fixedAuto !== textToFix) {
+    const fixAuto = new vscode.CodeAction(
+      `<html> lang="${resolvedLang}" 설정`,
+      vscode.CodeActionKind.QuickFix
     );
+    const edit = new vscode.WorkspaceEdit();
+    edit.replace(document.uri, replaceRange, fixedAuto);
+    fixAuto.edit = edit;
+    fixAuto.isPreferred = true;
+    actions.push(fixAuto);
+  }
 
-  // 2) lang="ko" 주입 (태그에 속성이 없어도 안전)
-  const injectDefaultLang = (tag: string) =>
-    tag.replace(
-      /^<html\b([^>]*)>/,
-      (_all, attrs) => {
-        const trimmed = (attrs || "").replace(/\s+/g, " ").trim();
-        return trimmed
-          ? `<html lang="${defaultLang}" ${trimmed}>`
-          : `<html lang="${defaultLang}">`;
-      }
-    );
-
-  // 3) 실제 변환 수행
-  const fixed = injectDefaultLang(stripAllLangAttrs(textToFix));
-
-  if (fixed === textToFix) return [];
-
-  const fix = new vscode.CodeAction(
-    `<html> lang="${defaultLang}" 재설정`,
+  // 3) "다른 언어로 설정…" 액션 (명령 실행)
+  const fixPick = new vscode.CodeAction(
+    `다른 언어로 설정…`,
     vscode.CodeActionKind.QuickFix
   );
-  const edit = new vscode.WorkspaceEdit();
-  edit.replace(document.uri, replaceRange, fixed);
-  fix.edit = edit;
-  fix.isPreferred = true;
-  fix.diagnostics = [
-    new vscode.Diagnostic(
-      replaceRange,
-      `<html>의 기존 lang 속성을 정리하고 lang="${defaultLang}"로 재설정했습니다.`,
-      vscode.DiagnosticSeverity.Warning
-    ),
-  ];
+  fixPick.command = {
+    title: "Pick lang",
+    command: "a11yFix.pickHtmlLang", // ※ extension.ts에 등록 필요
+    arguments: [
+      {
+        uri: document.uri,
+        range: replaceRange,
+        original: textToFix,
+      },
+    ],
+  };
+  actions.push(fixPick);
 
-  actions.push(fix);
   return actions;
 }

@@ -6,7 +6,7 @@ export default function TestHtmlHasLang() {
   return (
     <>
       {/* ❌ Case 1: lang 속성 자체 없음 */}
-      <html lang="ko">
+      <html >
         <head>
           <title>No lang attribute</title>
         </head>
@@ -16,7 +16,7 @@ export default function TestHtmlHasLang() {
       </html>
 
       {/* ❌ Case 2: 빈 문자열 */}
-      <html lang="ko">
+      <html >
         <head>
           <title>Empty lang</title>
         </head>
