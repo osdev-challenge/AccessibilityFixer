@@ -6,12 +6,18 @@ export function ariaActivedescendantHasTabindexFix(
 ): vscode.CodeAction[] {
   const fixes: vscode.CodeAction[] = [];
 
+  // 이미 tabIndex 속성이 있다면 수정을 제안하지 않음
+  if (context.code.match(/\stabIndex\s*=/i)) {
+    return [];
+  }
+
   const fix = new vscode.CodeAction(
     `aria-activedescendant 요소에 tabIndex="0" 추가`,
     vscode.CodeActionKind.QuickFix
   );
   fix.edit = new vscode.WorkspaceEdit();
 
+  // 열림 태그에 tabIndex="0" 추가
   const newCode = context.code.replace(/^<(\w+)/, `<$1 tabIndex="0"`);
 
   fix.edit.replace(context.document.uri, context.range, newCode);

@@ -6,6 +6,11 @@ export function interactiveSupportsFocusFix(
 ): vscode.CodeAction[] {
   const fixes: vscode.CodeAction[] = [];
 
+  // 이미 tabIndex 속성이 있다면 수정을 제안하지 않음
+  if (context.code.match(/\stabIndex\s*=/i)) {
+    return [];
+  }
+
   const fix = new vscode.CodeAction(
     `인터랙티브 요소에 tabIndex="0" 추가`,
     vscode.CodeActionKind.QuickFix

@@ -5,33 +5,40 @@ export function mouseEventsHaveKeyEventsFix(
   context: RuleContext
 ): vscode.CodeAction[] {
   const fixes: vscode.CodeAction[] = [];
-
-  const fix = new vscode.CodeAction(
-    `마우스 이벤트에 onFocus/onBlur 키보드 이벤트 추가`,
-    vscode.CodeActionKind.QuickFix
-  );
-  fix.edit = new vscode.WorkspaceEdit();
-
   let newCode = context.code;
+  let isModified = false;
 
-  if (newCode.includes("onMouseOver") && !newCode.includes("onFocus")) {
+  // onMouseOver 핸들러 이름 추출
+  const onMouseOverMatch = newCode.match(/onMouseOver=\{([^}]+)\}/);
+  if (onMouseOverMatch && !newCode.includes("onFocus")) {
+    const handlerName = onMouseOverMatch[1].trim();
     newCode = newCode.replace(
-      /onMouseOver=\{([^}]+)\}/,
-      `onMouseOver={$1} onFocus={() => { /* Focus logic */ }}`
+      /onMouseOver=\{[^}]+\}/,
+      `onMouseOver={${handlerName}} onFocus={${handlerName}}`
     );
+    isModified = true;
   }
 
-  if (newCode.includes("onMouseOut") && !newCode.includes("onBlur")) {
+  // onMouseOut 핸들러 이름 추출
+  const onMouseOutMatch = newCode.match(/onMouseOut=\{([^}]+)\}/);
+  if (onMouseOutMatch && !newCode.includes("onBlur")) {
+    const handlerName = onMouseOutMatch[1].trim();
     newCode = newCode.replace(
-      /onMouseOut=\{([^}]+)\}/,
-      `onMouseOut={$1} onBlur={() => { /* Blur logic */ }}`
+      /onMouseOut=\{[^}]+}/,
+      `onMouseOut={${handlerName}} onBlur={${handlerName}}`
     );
+    isModified = true;
   }
 
-  if (newCode === context.code) {
+  if (!isModified) {
     return [];
   }
 
+  const fix = new vscode.CodeAction(
+    `마우스 이벤트에 키보드 포커스 이벤트 추가`,
+    vscode.CodeActionKind.QuickFix
+  );
+  fix.edit = new vscode.WorkspaceEdit();
   fix.edit.replace(context.document.uri, context.range, newCode);
   fix.diagnostics = [
     new vscode.Diagnostic(

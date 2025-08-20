@@ -3,3 +3,7 @@ export * from "./click-events-have-key-events";
 export * from "./interactive-supports-focus";
 export * from "./mouse-events-have-key-events";
 export * from "./tabindex-no-positive";
+export * from "./no-noninteractive-tabindex";
+export * from "./prefer-native-elements";
+export * from "./label-has-associated-control";
+export * from "./anchor-is-valid";
