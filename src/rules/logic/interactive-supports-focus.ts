@@ -1,5 +1,3 @@
-// src/rules/logic/interactive-supports-focus.ts
-
 import * as vscode from "vscode";
 import { RuleContext } from "../types";
 
@@ -7,6 +5,11 @@ export function interactiveSupportsFocusFix(
   context: RuleContext
 ): vscode.CodeAction[] {
   const fixes: vscode.CodeAction[] = [];
+
+  // 이미 tabIndex 속성이 있다면 수정을 제안하지 않음
+  if (context.code.match(/\stabIndex\s*=/i)) {
+    return [];
+  }
 
   const fix = new vscode.CodeAction(
     `인터랙티브 요소에 tabIndex="0" 추가`,
