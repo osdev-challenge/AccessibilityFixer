@@ -1,4 +1,3 @@
-// src/ruleDispatcher.ts
 import * as vscode from "vscode";
 import { RuleContext, RuleFixer } from "./rules/types";
 import {
@@ -17,7 +16,11 @@ import {
   fixNoStaticElementInteractions,
   fixRequiredAria,
   fixRoleSupportsAriaProps,
-} from "./rules/logic"; // ✅ 배럴에서 모아 임포트
+  noNoninteractiveTabindexFix,
+  preferNativeElementsFix,
+  labelHasAssociatedControlFix,
+  anchorIsValidFix,
+} from "./rules/logic";
 
 // 규칙 이름과 수정 로직 함수를 매핑하는 객체
 const ruleFixers: { [key: string]: RuleFixer } = {
@@ -36,6 +39,10 @@ const ruleFixers: { [key: string]: RuleFixer } = {
   "jsx-a11y/no-static-element-interactions" : fixNoStaticElementInteractions,
   "jsx-a11y/role-has-required-aria-props" : fixRequiredAria,
   "jsx-a11y/role-supports-aria-props" : fixRoleSupportsAriaProps,
+  "jsx-a11y/no-noninteractive-tabindex": noNoninteractiveTabindexFix,
+  "jsx-a11y/prefer-native-elements": preferNativeElementsFix,
+  "jsx-a11y/label-has-associated-control": labelHasAssociatedControlFix,
+  "jsx-a11y/anchor-is-valid": anchorIsValidFix,
 };
 
 const a11yDiagnosticCollection =

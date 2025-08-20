@@ -1,5 +1,3 @@
-// src/rules/logic/index.ts
-
 export * from "./aria-activedescendant-has-tabindex";
 export * from "./click-events-have-key-events";
 export * from "./interactive-supports-focus";
@@ -15,4 +13,7 @@ export * from "./no-distracting-elements";
 export * from "./no-static-element-interactions";
 export * from "./role-has-required-aria-props";
 export * from "./role-supports-aria-props";
-
+export * from "./no-noninteractive-tabindex";
+export * from "./prefer-native-elements";
+export * from "./label-has-associated-control";
+export * from "./anchor-is-valid";
