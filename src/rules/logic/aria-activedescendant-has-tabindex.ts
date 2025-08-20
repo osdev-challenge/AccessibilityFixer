@@ -1,5 +1,3 @@
-// src/rules/logic/aria-activedescendant-has-tabindex.ts
-
 import * as vscode from "vscode";
 import { RuleContext } from "../types";
 

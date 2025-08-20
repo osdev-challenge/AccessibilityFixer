@@ -19,7 +19,6 @@ import {
   fixRoleSupportsAriaProps,
 } from "./rules/logic"; // ✅ 배럴에서 모아 임포트
 
-
 // 규칙 이름과 수정 로직 함수를 매핑하는 객체
 const ruleFixers: { [key: string]: RuleFixer } = {
   "jsx-a11y/aria-activedescendant-has-tabindex": ariaActivedescendantHasTabindexFix,
