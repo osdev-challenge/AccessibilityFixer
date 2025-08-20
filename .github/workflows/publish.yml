@@ -25,5 +25,10 @@ jobs:
       - name: Compile TypeScript
         run: npm run compile
 
+      - name: Set Git user (for versioning)
+        run: |
+          git config user.name ${{ secrets.USER_NAME }}
+          git config user.email ${{ secrets.USER_EMAIL }}
+
       - name: Publish with Patch Version Bump
         run: npx vsce publish patch -p ${{ secrets.VSCE_TOKEN }}
