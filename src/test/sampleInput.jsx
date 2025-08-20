@@ -35,7 +35,7 @@ const BadA11yComponent = () => {
       {/* ❌ tabindex-no-positive */}
       <div tabIndex={2}>I have a positive tabIndex</div>
 
-      <div aria-label='설명' aria-  invalid-prop="value">Hello</div>
+      <div aria-label='설명' aria-invalid-prop="value">Hello</div>
 
       
       

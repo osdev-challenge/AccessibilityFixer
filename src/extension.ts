@@ -271,6 +271,7 @@ class A11yCodeActionProvider implements vscode.CodeActionProvider {
    3) 활성화/등록
    ──────────────────────────────── */
 export function activate(context: vscode.ExtensionContext) {
+  
   console.log("[a11y-fixer] activating…");
 
   const selector: vscode.DocumentSelector = [
