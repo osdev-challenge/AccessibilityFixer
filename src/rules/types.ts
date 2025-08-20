@@ -26,5 +26,6 @@ export interface PartialHTMLElement {
 /**
  * 각 규칙별 수정 로직 함수의 타입 정의
  * RuleContext를 인수로 받아 vscode.CodeAction 배열을 반환합니다.
+ * 동기/비동기 함수 모두 지원합니다.
  */
-export type RuleFixer = (context: RuleContext) => vscode.CodeAction[];
+export type RuleFixer = (context: RuleContext) => vscode.CodeAction[] | Promise<vscode.CodeAction[]>;
