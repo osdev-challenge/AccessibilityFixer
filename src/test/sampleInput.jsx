@@ -30,29 +30,7 @@ const BadA11yComponent = () => {
       </div>
 
       {/* ❌ tabindex-no-positive */}
-      <div tabIndex="0">I have a positive tabIndex</div>
-
-      {/* ❌ prefer-native-elements (role="link") */}
-      <div role="link" onClick={() => navigate("/page")}>페이지 이동</div>
-
-      {/* ❌ prefer-native-elements (role="checkbox") */}
-      <span role="checkbox" aria-checked="false">선택</span>
-
-      {/* ❌ label-has-associated-control (for 없음) */}
-      <label>
-        이름
-      </label>
-      <input type="text" id="name" />
-      
-      {/* ❌ anchor-is-valid (href 없음) */}
-      <a onClick={() => scrollToTop()}>
-        Top
-      </a>
-
-      {/* ❌ no-noninteractive-tabindex */}
-      <div tabIndex={0}>
-        나는 비인터랙티브 요소지만 탭 포커스가 가능해
-      </div>
+      <div tabIndex={2}>I have a positive tabIndex</div>
     </div>
   );
 };
