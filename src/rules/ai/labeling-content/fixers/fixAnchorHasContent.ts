@@ -1,9 +1,10 @@
+// src/rules/ai/anchor-has-content/fixers/fixAnchorHasContent.ts
 import * as vscode from "vscode";
 import { RuleContext } from "../../../types";
 import { extractElementA11yContext, ElementA11yContext } from "../../../../ai/context/extractElementA11yContext";
-import { runAIFix, RuleStrategy } from "../../../../ai/pipelines/runAIFix";
-import { parseFixedCodeJson } from "../../../../ai/pipelines/parsers";
-import { createReplaceAction } from "../../../../ai/pipelines/codeActions";
+import { runAIFix, RuleStrategy, AiFixResult } from "../../../../ai/pipelines/runAIFix";
+import { findElementRanges, parseFixedCodeJson } from "../../../../ai/pipelines/parsers";
+import { buildReplaceWholeElementAction } from "../../../../ai/pipelines/codeActions";
 import { approveOrNull } from "../../../../utils/scoring";
 import { buildAnchorHasContentPrompt } from "../prompts/anchorHasContentPrompt";
 import { callGpt } from "../../../../ai/aiClient";
@@ -37,10 +38,27 @@ const AnchorHasContentInlineStrategy: RuleStrategy<ElementA11yContext> = {
 
 export async function fixAnchorHasContent(rc: RuleContext): Promise<vscode.CodeAction[]> {
   const ctx = extractElementA11yContext(rc);
-  const fixed = await runAIFix(AnchorHasContentInlineStrategy, ctx, callGpt, {
+  const result: AiFixResult = await runAIFix(AnchorHasContentInlineStrategy, ctx, callGpt, {
     log: true,
     ruleName: "anchor-has-content",
     validateJsx: true,
   });
-  return createReplaceAction(rc, fixed, "Apply AI: anchor-has-content");
+
+  if (result.kind === "whole-element") {
+    const elementRanges = findElementRanges(rc.document, rc.range.start);
+
+    if (elementRanges) {
+      const replaceAction = buildReplaceWholeElementAction(
+        rc.document,
+        elementRanges.element,
+        result.html,
+        "Apply AI: anchor-has-content"
+      );
+      return [replaceAction];
+    } else {
+      console.warn('[A11Y][anchor-has-content] Could not find element ranges to apply whole-element fix.');
+    }
+  }
+
+  return [];
 }

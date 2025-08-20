@@ -3,9 +3,9 @@
 import * as vscode from "vscode";
 import { RuleContext } from "../types";
 
-export function mouseEventsHaveKeyEventsFix(
+export async function mouseEventsHaveKeyEventsFix(
   context: RuleContext
-): vscode.CodeAction[] {
+): Promise<vscode.CodeAction[]> {
   const fixes: vscode.CodeAction[] = [];
 
   const fix = new vscode.CodeAction(
