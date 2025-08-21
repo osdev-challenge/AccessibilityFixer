@@ -5,12 +5,13 @@
 export const BadAriaRole = () => (
   // jsx-a11y/aria-role
   <div role="buton">Click me</div> // "button" 오타
-  //<div <div>Click me</div>>Click me</div> 
+  //<div>Click me</div>
 );
 
 export const InteractiveToNoninteractiveRole = () => (
   // jsx-a11y/no-interactive-element-to-noninteractive-role
   <button role="presentation">Save</button>         // [jsx-a11y/prefer-tag-over-role] 규칙에 대한 수정 로직이 없습니다. 
+  //<button>Save</button>
 );
 
 export const NoninteractiveToInteractiveRole = () => (
@@ -27,11 +28,14 @@ export const BadAriaProps = () => (
   >
     Bad aria props
   </div>
+
+  // <div></div>
 );
 
 export const MissingAltText = () => (
   // jsx-a11y/alt-text
-  <img src="/static/photo.png" />         // 해결은 되는데 결과가 조금 이상한듯 
+  <img src="/static/photo.png" />         
+  // <img src="/static/photo.png" alt="Summer vacation activities" />         
 );
 
 export const EmptyAltButNotDecorative = () => (
@@ -47,6 +51,7 @@ export const RedundantAlt = () => (
 export const AnchorHasNoContent = () => (
   // jsx-a11y/anchor-has-content
   <a href="/docs"></a>        // 수정은 되는데, 오류가 뜸 -> [dispatchRule 오류] jsx-a11y/anchor-has-content SyntaxError: Expected corresponding JSX closing tag for <a>
+  // <div><label htmlFor="docs-link">Documentation</label><a id="docs-link" href="/docs">Documentation</a></div>
 );
 
 export const ControlHasNoAssociatedLabel = () => (
@@ -54,6 +59,7 @@ export const ControlHasNoAssociatedLabel = () => (
   <div>
     <input id="email" type="email" placeholder="email" />    
     {/* 라벨 누락      */}
+    {/* <div><label htmlFor="email">Email</label><input id="email" type="email" placeholder="email" /></div>     */}
   </div>
 );
 
@@ -62,6 +68,7 @@ export const FormHasNoLabel = () => (
   <form>
     <input type="text" name="nickname" />       
     {/* 이 입력을 설명하는 label/aria-label/aria-labelledby 없음 */}
+    {/* <div><label htmlFor="nickname">Nickname</label><input type="text" id="nickname" name="nickname" /></div>        */}
   </form>
 );
 
