@@ -2,7 +2,7 @@
   "name": "AccessibilityFixer",
   "displayName": "AccessibilityFixer",
   "description": "Automatically detect and fix common accessibility issues in your React code, with AI-powered suggestions and quick fixes.",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "publisher": "uno-accessibilityfixer",
   "icon": "images/logo.png",
   "engines": {
@@ -18,7 +18,10 @@
   ],
   "activationEvents": [
     "onLanguage:javascriptreact",
-    "onLanguage:typescriptreact"
+    "onLanguage:typescriptreact",
+    "onLanguage:javascript",
+    "onLanguage:typescript",
+    "onCommand:extension.fixAccessibility"
   ],
   "main": "./out/extension.js",
   "contributes": {
