@@ -6,13 +6,11 @@ on:
       - main
   workflow_dispatch:
 
-permissions:
-  contents: write
-
 jobs:
   publish:
     runs-on: ubuntu-latest
-
+    env:
+      API_KEY: ${{ secrets.OPENAI_API_KEY }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -22,10 +20,7 @@ jobs:
         with:
           node-version: 22
 
-      - name: Generate lockfile if missing
-        run: npm install --package-lock-only
-
-      - name: Install deps
+      - name: Install dependencies
         run: npm ci
 
       - name: Compile TypeScript
