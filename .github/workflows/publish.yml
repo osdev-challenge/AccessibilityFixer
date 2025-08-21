@@ -37,4 +37,4 @@ jobs:
 
       - name: Publish
         run: |
-          npx vsce publish -p ${{ secrets.VSCE_TOKEN }}
+          npx vsce publish patch -p ${{ secrets.VSCE_TOKEN }}
