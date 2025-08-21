@@ -39,17 +39,20 @@ import { fixFormHasLabel } from "./rules/ai/labeling-content/fixers/fixFormHasLa
 
 // 규칙 이름과 수정 로직 함수를 매핑하는 객체
 const ruleFixers: { [key: string]: RuleFixer } = {
-  "jsx-a11y/aria-activedescendant-has-tabindex": ariaActivedescendantHasTabindexFix,
+  "jsx-a11y/aria-activedescendant-has-tabindex":
+    ariaActivedescendantHasTabindexFix,
   "jsx-a11y/click-events-have-key-events": clickEventsHaveKeyEventsFix,
   "jsx-a11y/interactive-supports-focus": interactiveSupportsFocusFix,
   "jsx-a11y/mouse-events-have-key-events": mouseEventsHaveKeyEventsFix,
   "jsx-a11y/tabindex-no-positive": tabindexNoPositiveFix,
-  
+
   // AI 기반 규칙들
   "jsx-a11y/aria-role": fixAriaRole,
   "jsx-a11y/aria-props": fixAriaProps,
-  "jsx-a11y/no-interactive-element-to-noninteractive-role": fixNoInteractiveToNoninteractive,
-  "jsx-a11y/no-noninteractive-element-to-interactive-role": fixNoNoninteractiveToInteractive,
+  "jsx-a11y/no-interactive-element-to-noninteractive-role":
+    fixNoInteractiveToNoninteractive,
+  "jsx-a11y/no-noninteractive-element-to-interactive-role":
+    fixNoNoninteractiveToInteractive,
   "jsx-a11y/require-aria-label": fixAriaLabelIsString,
 
   "jsx-a11y/alt-text": fixAltText,
@@ -66,20 +69,21 @@ const ruleFixers: { [key: string]: RuleFixer } = {
   "jsx-a11y/html-has-lang": fixHtmlHasLang,
   "jsx-a11y/no-aria-hidden-on-focusable": fixNoAriaHiddenOnFocusable,
   "jsx-a11y/no-distracting-elements": fixNoDistractingElements,
-  "jsx-a11y/no-static-element-interactions" : fixNoStaticElementInteractions,
-  "jsx-a11y/role-has-required-aria-props" : fixRequiredAria,
-  "jsx-a11y/role-supports-aria-props" : fixRoleSupportsAriaProps,
+  "jsx-a11y/no-static-element-interactions": fixNoStaticElementInteractions,
+  "jsx-a11y/role-has-required-aria-props": fixRequiredAria,
+  "jsx-a11y/role-supports-aria-props": fixRoleSupportsAriaProps,
   "jsx-a11y/no-noninteractive-tabindex": noNoninteractiveTabindexFix,
   "jsx-a11y/prefer-native-elements": preferNativeElementsFix,
   "jsx-a11y/label-has-associated-control": labelHasAssociatedControlFix,
   "jsx-a11y/anchor-is-valid": anchorIsValidFix,
 };
-  
 
 const a11yDiagnosticCollection =
   vscode.languages.createDiagnosticCollection("a11y");
 
-export function dispatchRule(context: RuleContext): vscode.CodeAction[] {
+export async function dispatchRule(
+  context: RuleContext
+): Promise<vscode.CodeAction[]> {
   const fixFunction = ruleFixers[context.ruleName];
 
   if (!fixFunction) {
@@ -91,7 +95,7 @@ export function dispatchRule(context: RuleContext): vscode.CodeAction[] {
 
   console.log(`[A11y Fix]:[${context.ruleName}] 규칙 수정 로직 실행`);
 
-  const codeActions = fixFunction(context);
+  const codeActions = await fixFunction(context);
 
   codeActions.forEach((action) => {
     if (!action.title.startsWith("[A11y Fix]")) {
