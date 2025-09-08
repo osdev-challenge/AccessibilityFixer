@@ -1,4 +1,3 @@
-// src/rules/logic/no-distracting-elements.ts
 import * as vscode from "vscode";
 import { RuleContext } from "../types";
 

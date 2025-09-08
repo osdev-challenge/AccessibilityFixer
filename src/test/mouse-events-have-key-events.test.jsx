@@ -1,4 +1,3 @@
-// src/test/mouse-events-have-key-events.test.jsx
 
 /**
  * 마우스 이벤트 핸들러에 대응하는 키보드 이벤트 핸들러를 추가하는 테스트 함수
@@ -58,9 +57,9 @@ const testCases = [
 testCases.forEach((t, i) => {
   const result = fixMouseEventsHaveKeyEvents(t.input);
   const pass = result === t.expected;
-  console.log(`\n🧪 Test ${i + 1}: ${t.desc}`);
+  console.log(`\nTest ${i + 1}: ${t.desc}`);
   console.log(`  INPUT   : ${t.input}`);
   console.log(`  EXPECTED: ${t.expected}`);
   console.log(`  RESULT  : ${result}`);
-  console.log(pass ? '✅ PASS' : '❌ FAIL');
+  console.log(pass ? 'PASS' : 'FAIL');
 });

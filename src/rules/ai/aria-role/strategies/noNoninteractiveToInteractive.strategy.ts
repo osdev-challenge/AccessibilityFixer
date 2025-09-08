@@ -13,7 +13,7 @@ export const NoNoninteractiveElementToInteractiveRoleStrategy: RuleStrategy<Elem
     const role = ctx.role ?? null;
     if (!role) return null;
 
-    if (ctx.nativeInteractive) return null; // 이 규칙은 비인터랙티브 요소에 한정
+    if (ctx.nativeInteractive) return null; 
 
     let evidence: ("invalidRole" | "interactiveRoleOnNoninteractive" | "roleConflict") | null = null;
 

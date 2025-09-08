@@ -1,4 +1,3 @@
-// src/test/sample-role-has-required-aria-props.jsx
 // 여러 위반 케이스 모음 (jsx-a11y/role-has-required-aria-props)
 
 import React from "react";
@@ -6,37 +5,37 @@ import React from "react";
 export default function RoleHasRequiredAriaPropsCases() {
   return (
     <div style={{ display: "grid", gap: 16, padding: 16 }}>
-      {/* ❌ checkbox → aria-checked 필수 */}
+      {/* checkbox → aria-checked 필수 */}
       <div role="checkbox" aria-checked="false">Bad: checkbox without aria-checked</div>
 
-      {/* ❌ radio → aria-checked 필수 */}
+      {/* radio → aria-checked 필수 */}
       <div role="radio">Bad: radio without aria-checked</div>
 
-      {/* ❌ switch → aria-checked 필수 */}
+      {/* switch → aria-checked 필수 */}
       <div role="switch">Bad: switch without aria-checked</div>
 
-      {/* ❌ menuitemcheckbox → aria-checked 필수 */}
+      {/* menuitemcheckbox → aria-checked 필수 */}
       <div role="menuitemcheckbox">Bad: menuitemcheckbox without aria-checked</div>
 
-      {/* ❌ menuitemradio → aria-checked 필수 */}
+      {/* menuitemradio → aria-checked 필수 */}
       <div role="menuitemradio">Bad: menuitemradio without aria-checked</div>
 
-      {/* ❌ option → aria-selected 필수 */}
+      {/* option → aria-selected 필수 */}
       <li role="option">Bad: option without aria-selected</li>
 
-      {/* ❌ heading → aria-level 필수 */}
+      {/* heading → aria-level 필수 */}
       <div role="heading">Bad: heading without aria-level</div>
 
-      {/* ❌ slider → aria-valuenow (보통 valuemin/valuemax도 함께 사용) */}
+      {/* slider → aria-valuenow (보통 valuemin/valuemax도 함께 사용) */}
       <div role="slider">Bad: slider without aria-valuenow</div>
 
-      {/* ❌ spinbutton → aria-valuenow (보통 valuemin/valuemax도 함께 사용) */}
+      {/* spinbutton → aria-valuenow (보통 valuemin/valuemax도 함께 사용) */}
       <div role="spinbutton">Bad: spinbutton without aria-valuenow</div>
 
-      {/* ❌ scrollbar → aria-valuenow (및 관련 값/controls 필요) */}
+      {/* scrollbar → aria-valuenow (및 관련 값/controls 필요) */}
       <div role="scrollbar">Bad: scrollbar without aria-valuenow/controls</div>
 
-      {/* ✅ OK 예시들 (참고용) */}
+      {/* OK 예시들 (참고용) */}
       <div role="checkbox" aria-checked="false">OK: checkbox with aria-checked</div>
       <div role="radio" aria-checked="true">OK: radio with aria-checked</div>
       <div role="switch" aria-checked="mixed">OK: switch with aria-checked="mixed"</div>

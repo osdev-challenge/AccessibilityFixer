@@ -2,7 +2,7 @@ import { parseFixedCodeJson } from "./parsers";
 import { validateJsx } from "../../utils/scoring";
 
 /**
- * B안 반환 타입:
+ * 반환 타입:
  * - whole-element: 요소 전체를 새 HTML로 교체
  * - none: 적용할 것이 없음
  *
@@ -35,7 +35,7 @@ export interface RuleStrategy<TCtx = unknown> {
   buildPrompt(ctx: TCtx): string;
 
   /**
-   * 3) AI 응답 파서 (선택)
+   * 3) AI 응답 파서 
    * - raw string → 최종 JSX/HTML 문자열
    * - 제공하지 않으면 parseFixedCodeJson 사용
    */
@@ -57,15 +57,14 @@ function looksLikeWholeElement(html: string): boolean {
   const s = html.trim();
   if (!s) return false;
 
-  // ✨ 추가: 꺽쇠 괄호의 개수가 짝이 맞는지 확인하여 잘린 태그를 방지
+  // 꺽쇠 괄호의 개수가 짝이 맞는지 확인하여 잘린 태그를 방지
   const openBrackets = (s.match(/</g) || []).length;
   const closeBrackets = (s.match(/>/g) || []).length;
   if (openBrackets === 0 || openBrackets !== closeBrackets) {
     return false;
   }
 
-  // 예: <div ...>...</div>  (동일한 태그명 매칭)
-  // 예: <img ... /> (self-closing)
+
   const isSelfClosing = /\/\s*>$/.test(s);
   if (isSelfClosing) {
     return /^<\s*([a-zA-Z][\w:-]*)\b[\s\S]*\/\s*>$/.test(s);
@@ -75,7 +74,7 @@ function looksLikeWholeElement(html: string): boolean {
 }
 
 /**
- * 공통 실행기 (B안)
+ * 공통 실행기 
  * 1) tryLogic → 문자열이면 whole-element 판단 → 반환
  * 2) AI 호출 → parse → whole-element 판단 → 반환
  * 3) 실패/없음 → { kind: "none" }

@@ -1,4 +1,3 @@
-// src/rules/logic/no-access-key/no-access-key.ts
 import * as vscode from "vscode";
 import { RuleContext } from "../types";
 

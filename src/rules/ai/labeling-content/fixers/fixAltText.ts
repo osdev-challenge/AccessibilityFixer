@@ -1,4 +1,3 @@
-// src/rules/ai/alt-text/fixers/fixAltText.ts
 import * as vscode from "vscode";
 import { RuleContext } from "../../../types";
 import { extractLabelingContext, LabelingContext } from "../../../../ai/context/extractLabelingContext";

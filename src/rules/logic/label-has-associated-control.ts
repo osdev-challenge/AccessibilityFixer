@@ -1,4 +1,3 @@
-// src/rules/logic/label-has-associated-control.ts
 import * as vscode from "vscode";
 import { RuleContext, RuleFixer } from "../types";
 

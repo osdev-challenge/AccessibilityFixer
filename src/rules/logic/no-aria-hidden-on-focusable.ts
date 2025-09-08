@@ -1,4 +1,3 @@
-// src/rules/logic/no-aria-hidden-on-focusable/fix.ts
 import * as vscode from 'vscode';
 import { RuleContext } from '../types';
 

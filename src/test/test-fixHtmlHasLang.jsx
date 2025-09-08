@@ -1,11 +1,10 @@
-// src/test/sample-html-has-lang.jsx
 
 import React from "react";
 
 export default function TestHtmlHasLang() {
   return (
     <>
-      {/* ❌ Case 1: lang 속성 자체 없음 */}
+      {/* Case 1: lang 속성 자체 없음 */}
       <html >
         <head>
           <title>No lang attribute</title>
@@ -15,7 +14,7 @@ export default function TestHtmlHasLang() {
         </body>
       </html>
 
-      {/* ❌ Case 2: 빈 문자열 */}
+      {/* Case 2: 빈 문자열 */}
       <html >
         <head>
           <title>Empty lang</title>
@@ -25,7 +24,7 @@ export default function TestHtmlHasLang() {
         </body>
       </html>
 
-      {/* ❌ Case 3: 공백만 들어간 경우 */}
+      {/* Case 3: 공백만 들어간 경우 */}
       <html lang="   ">
         <head>
           <title>Whitespace lang</title>
@@ -35,7 +34,7 @@ export default function TestHtmlHasLang() {
         </body>
       </html>
 
-      {/* ❌ Case 4: 중괄호로 감쌌지만 빈 문자열 */}
+      {/* Case 4: 중괄호로 감쌌지만 빈 문자열 */}
       <html lang="ko">
         <head>
           <title>Brace Empty</title>
@@ -45,7 +44,7 @@ export default function TestHtmlHasLang() {
         </body>
       </html>
 
-      {/* ❌ Case 5: 중괄호로 공백만 */}
+      {/* Case 5: 중괄호로 공백만 */}
       <html lang={"   "}>
         <head>
           <title>Brace Whitespace</title>
@@ -55,7 +54,7 @@ export default function TestHtmlHasLang() {
         </body>
       </html>
 
-      {/* ❌ Case 6: 잘못된 값 (표준이 아닌 값) */}
+      {/* Case 6: 잘못된 값 (표준이 아닌 값) */}
       <html lang="xx-invalid">
         <head>
           <title>Invalid lang code</title>

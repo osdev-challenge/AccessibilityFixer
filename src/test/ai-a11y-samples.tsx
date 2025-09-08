@@ -1,4 +1,3 @@
-// src/test/ai-a11y-samples.tsx
 // 목적: ruleDispatcher + AI fixers가 실제로 Quick Fix를 내는지 한 눈에 점검
 // 사용법: 이 파일을 열고 문제(Problems) 탭에서 각 경고에 커서 → Ctrl+. (Quick Fix)
 

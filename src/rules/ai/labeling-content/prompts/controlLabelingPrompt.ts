@@ -1,4 +1,3 @@
-// src/rules/ai/labeling-content/prompts/controlHasAssociatedLabelPrompt.ts
 import { LabelingContext } from "../../../../ai/context/extractLabelingContext";
 
 export function buildControlHasAssociatedLabelPrompt(c: LabelingContext): string {
