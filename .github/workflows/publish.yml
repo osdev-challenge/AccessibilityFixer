@@ -29,10 +29,6 @@ jobs:
       - name: Compile TypeScript
         run: npm run compile
 
-      - name: Bump version
-        run: |
-          npm version patch --no-git-tag-version --force
-
       - name: Set Git user (for versioning)
         run: |
           git config user.name ${{ secrets.USER_NAME }}
