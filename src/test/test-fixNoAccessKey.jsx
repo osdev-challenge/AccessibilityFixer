@@ -1,4 +1,3 @@
-// NoAccessKeyViolations.jsx
 export default function NoAccessKeyViolations() {
   const props = { accessKey: 'x' };
   const dynamicKey = 'y';

@@ -1,4 +1,3 @@
-// AriaUnsupportedElementsViolations.jsx
 // 의도적으로 전부 위반 예시입니다.
 export default function AriaUnsupportedElementsViolations() {
   return (

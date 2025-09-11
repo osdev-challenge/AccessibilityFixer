@@ -1,4 +1,3 @@
-// src/rules/logic/aria-unsupported-elements.ts
 import * as vscode from "vscode";
 import { RuleContext } from "../types";
 

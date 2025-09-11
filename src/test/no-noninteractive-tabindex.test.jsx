@@ -1,4 +1,3 @@
-// src/test/no-noninteractive-tabindex.test.jsx
 
 /**
  * 비인터랙티브 요소의 tabIndex 속성을 제거하는 테스트 함수
@@ -31,9 +30,9 @@ const testCases = [
 testCases.forEach((t, i) => {
   const result = fixNoNoninteractiveTabindex(t.input);
   const pass = result === t.expected;
-  console.log(`\n🧪 Test ${i + 1}: ${t.desc}`);
+  console.log(`\nTest ${i + 1}: ${t.desc}`);
   console.log(`  INPUT   : ${t.input}`);
   console.log(`  EXPECTED: ${t.expected}`);
   console.log(`  RESULT  : ${result}`);
-  console.log(pass ? '✅ PASS' : '❌ FAIL');
+  console.log(pass ? 'PASS' : 'FAIL');
 });

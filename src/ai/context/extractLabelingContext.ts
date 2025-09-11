@@ -1,7 +1,4 @@
-// src/ai/context/extractLabelingContext.ts
 import { RuleContext } from "../../rules/types";
-
-/** labeling-content 전 규칙에서 공용으로 사용하는 컨텍스트 */
 export type LabelingContext = {
   // 위치/범위
   filePath: string;
@@ -31,7 +28,7 @@ export type LabelingContext = {
   emojiSequence?: string[];
 };
 
-/** 유틸: JSX 태그 제거 + {…} 표현 최소 제거 후 평문만 남기기 */
+/** JSX 태그 제거 + {…} 표현 최소 제거 후 평문만 남기기 */
 function stripJsxToText(s: string): string {
   // 제거 순서: 주석 -> script/style -> 태그 -> JSX 표현 -> 공백 정리
   return s
@@ -45,13 +42,13 @@ function stripJsxToText(s: string): string {
     .trim();
 }
 
-/** 유틸: 간단한 JSX 시작 태그에서 태그명 추출 */
+/** 간단한 JSX 시작 태그에서 태그명 추출 */
 function detectTagName(snippet: string): string | undefined {
   const m = snippet.match(/<\s*([A-Za-z][\w:-]*)\b/);
   return m?.[1]?.toLowerCase();
 }
 
-/** 유틸: JSX 속성 파싱(문자열/JSX 표현/불리언 속성 대응, 단순 휴리스틱) */
+/** JSX 속성 파싱(문자열/JSX 표현/불리언 속성 대응, 단순 휴리스틱) */
 function parseAttributes(snippet: string): Record<string, string | true> {
   const attrs: Record<string, string | true> = {};
   const openTag = snippet.match(/<\s*[A-Za-z][\w:-]*\b([^>]*)>/);
@@ -86,7 +83,7 @@ function parseAttributes(snippet: string): Record<string, string | true> {
   return attrs;
 }
 
-/** 유틸: 시작/종료 태그 사이 텍스트(대략) */
+/** 시작/종료 태그 사이 텍스트(대략) */
 function extractInnerText(snippet: string): string | undefined {
   // 단일 태그(img,input 등)는 내부 텍스트 없음
   if (/\/\s*>$/.test(snippet)) return undefined;
@@ -100,7 +97,7 @@ function extractInnerText(snippet: string): string | undefined {
   return text || undefined;
 }
 
-/** 유틸: 파일 전체에서 id -> 텍스트/태그 매핑(얕은 휴리스틱) */
+/** 파일 전체에서 id -> 텍스트/태그 매핑(얕은 휴리스틱) */
 function buildIdMap(fileCode: string): Record<string, { text?: string; tag?: string }> {
   const map: Record<string, { text?: string; tag?: string }> = {};
   const tagRegex =
@@ -122,7 +119,7 @@ function buildIdMap(fileCode: string): Record<string, { text?: string; tag?: str
   return map;
 }
 
-/** 유틸: label htmlFor/for -> label 텍스트 배열 매핑 */
+/** label htmlFor/for -> label 텍스트 배열 매핑 */
 function buildLabelForMap(fileCode: string): Record<string, string[]> {
   const map: Record<string, string[]> = {};
   const labelRegex =
@@ -142,7 +139,7 @@ function buildLabelForMap(fileCode: string): Record<string, string[]> {
   return map;
 }
 
-/** 유틸: control 타입 추정 */
+/** control 타입 */
 function guessControlType(
   tag?: string,
   attrs?: Record<string, string | true>
@@ -162,7 +159,7 @@ function guessControlType(
   return "other";
 }
 
-/** 유틸: 간단한 role 계산 */
+/** 간단한 role 계산 */
 function computeRole(tag?: string, attrs?: Record<string, string | true>): string | undefined {
   const roleAttr = typeof attrs?.role === "string" ? String(attrs!.role) : undefined;
   if (roleAttr) return roleAttr;
@@ -179,7 +176,7 @@ function computeRole(tag?: string, attrs?: Record<string, string | true>): strin
   return undefined;
 }
 
-/** 유틸: 파일명 기반 텍스트 */
+/** 파일명 기반 텍스트 */
 function baseNameFromSrc(src?: string): string | undefined {
   if (!src || typeof src !== "string") return undefined;
   const m = src.match(/[^/\\]+$/);
@@ -188,7 +185,7 @@ function baseNameFromSrc(src?: string): string | undefined {
   return name.replace(/[_\-]+/g, " ").trim();
 }
 
-/** 유틸: 인근 figcaption 텍스트(±10줄) */
+/** 인근 figcaption 텍스트(±10줄) */
 function findNearbyFigcaption(lines: string[], lineNumber: number): string | undefined {
   const start = Math.max(0, lineNumber - 10);
   const end = Math.min(lines.length - 1, lineNumber + 10);
@@ -199,7 +196,7 @@ function findNearbyFigcaption(lines: string[], lineNumber: number): string | und
   return text || undefined;
 }
 
-/** 유틸: 주변에 form이 있는지(±20줄) */
+/** 주변에 form이 있는지(±20줄) */
 function isNearForm(lines: string[], lineNumber: number): boolean {
   const start = Math.max(0, lineNumber - 20);
   const end = Math.min(lines.length - 1, lineNumber + 20);
@@ -207,7 +204,7 @@ function isNearForm(lines: string[], lineNumber: number): boolean {
   return /<\s*form\b/i.test(slice);
 }
 
-/** 유틸: 이모지 시퀀스 추출(간단 범위 기반) */
+/** 이모지 시퀀스 추출(간단 범위 기반) */
 function extractEmojis(text?: string): string[] | undefined {
   if (!text) return undefined;
   // BMP 기반 + 일부 확장 — 실용적 커버리지
@@ -216,7 +213,7 @@ function extractEmojis(text?: string): string[] | undefined {
   return list.length ? list : undefined;
 }
 
-/** 유틸: aria-labelledby -> 연결 텍스트 생성 */
+/** aria-labelledby -> 연결 텍스트 생성 */
 function computeAssociatedLabelText(
   attrs: Record<string, string | true> | undefined,
   idMap: Record<string, { text?: string; tag?: string }> | undefined,
@@ -239,7 +236,7 @@ function computeAssociatedLabelText(
   return undefined;
 }
 
-/** 메인: RuleContext -> LabelingContext */
+/** RuleContext -> LabelingContext */
 export function extractLabelingContext(rc: RuleContext): LabelingContext {
   const { document, fileCode, code, lineNumber } = rc;
 

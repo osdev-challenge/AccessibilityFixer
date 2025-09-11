@@ -1,4 +1,3 @@
-// src/rules/logic/no-static-element-interactions/fixNoStaticElementInteractions.ts
 import * as vscode from 'vscode';
 import { RuleContext } from '../types';
 

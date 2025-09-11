@@ -1,4 +1,3 @@
-// src/rules/logic/role-supports-aria-props/fix.ts
 import * as vscode from "vscode";
 import { RuleContext } from "../types";
 import { ALLOWED_BY_ROLE } from "./scripts-data/allowed-by-role.gen";
@@ -86,7 +85,7 @@ function stripAttributesInTag(tagText: string, dropNames: string[]): string {
   return tagText.replace(re, "");
 }
 
-// ── rule fixer ────────────────────────────────────────────────────────────────
+// rule fixer 
 export function fixRoleSupportsAriaProps (context: RuleContext): vscode.CodeAction[] {
   const { code, range, document } = context;
   const fixes: vscode.CodeAction[] = [];
@@ -115,7 +114,6 @@ export function fixRoleSupportsAriaProps (context: RuleContext): vscode.CodeActi
   const edit = new vscode.WorkspaceEdit();
   edit.replace(document.uri, range, fixedText);
 
-  // ✅ 빠졌던 부분!
   fix.edit = edit;
 
   fix.isPreferred = true;

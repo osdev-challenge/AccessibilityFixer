@@ -1,5 +1,5 @@
 /**
- * (유지) GPT 응답에서 { "fixedCode": "<JSX ...>" } 혹은
+ * GPT 응답에서 { "fixedCode": "<JSX ...>" } 혹은
  * 코드펜스( ```json ... ``` / ``` ... ``` ) / 느슨한 JSON / 직접 JSX
  * 등 다양한 포맷을 보수적으로 처리.
  */
@@ -54,7 +54,7 @@ function tryExtractFixedCodeFromText(s: string): string | null {
     .replace(/\\t/g, "\t");
 }
 
-/* ======================== 요소 범위 탐색(B안) ======================== */
+/* ======================== 요소 범위 탐색 ======================== */
 
 import * as vscode from "vscode";
 

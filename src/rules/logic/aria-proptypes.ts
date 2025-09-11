@@ -1,4 +1,3 @@
-// src/rules/logic/aria-prototype/aria-prototype.ts
 import * as vscode from "vscode";
 import { RuleContext } from "../types";
 

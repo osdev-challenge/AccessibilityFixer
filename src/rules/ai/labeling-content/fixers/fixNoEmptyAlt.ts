@@ -33,11 +33,11 @@ export async function fixNoEmptyAlt(rc: RuleContext): Promise<vscode.CodeAction[
     role === "presentation" || ariaHidden === "true";
 
   if (isDecorativeDefinite) {
-    // 확정 장식: alt="" 보장만 수행 (추가 변경 최소화)
+    // 확정 장식: alt="" 보장만 수행 
     const patched = setAltEmpty(lc.snippet);
     return createReplaceAction(rc, patched, "Apply fix: no-empty-alt (decorative)");
   }
 
-  // 장식 '확정'이 아니면 → alt-text로 위임 (AI/로직 처리)
+  // 장식 '확정'이 아니면 → alt-text로 위임 
   return await fixAltText(rc);
 }
