@@ -64,8 +64,14 @@ AccessibilityFixer works out of the box, even if you don’t have `eslint-plugin
 
 ## Contributing
 
-Contributions, suggestions, and issue reports are welcome!  
-Please visit our [GitHub Issues page](https://github.com/osdev-challenge/AccessibilityFixer) to submit feedback or bug reports.
+## Contributing
+
+We welcome contributions from everyone in the community.  
+Whether it’s fixing a bug, improving documentation, or suggesting a new feature — your help makes AccessibilityFixer better for everyone.
+
+For detailed contribution guidelines, please check our [CONTRIBUTING.md](.docs/CONTRIBUTING.md).
+
+📖 For a list of resolved accessibility rules, see [RULES.md](.docs/RULES.md).
 
 ---
 
