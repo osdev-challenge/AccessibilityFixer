@@ -1,4 +1,3 @@
-// src/rules/ai/labeling-content/prompts/accessibleEmojiPrompt.ts
 import { LabelingContext } from "../../../../ai/context/extractLabelingContext";
 
 export function buildAccessibleEmojiPrompt(c: LabelingContext): string {

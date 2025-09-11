@@ -1,4 +1,3 @@
-// src/rules/ai/control-has-associated-label/fixers/fixControlHasAssociatedLabel.ts
 import * as vscode from "vscode";
 import { RuleContext } from "../../../types";
 import { extractLabelingContext, LabelingContext } from "../../../../ai/context/extractLabelingContext";

@@ -1,4 +1,3 @@
-// src/test/tabindex-no-positive.test.jsx
 
 /**
  * tabIndex 양수 값을 0으로 변경하는 테스트 함수
@@ -42,9 +41,9 @@ const testCases = [
 testCases.forEach((t, i) => {
   const result = fixTabindex(t.input);
   const pass = result === t.expected;
-  console.log(`\n🧪 Test ${i + 1}: ${t.desc}`);
+  console.log(`\nTest ${i + 1}: ${t.desc}`);
   console.log(`  INPUT   : ${t.input}`);
   console.log(`  EXPECTED: ${t.expected}`);
   console.log(`  RESULT  : ${result}`);
-  console.log(pass ? '✅ PASS' : '❌ FAIL');
+  console.log(pass ? 'PASS' : 'FAIL');
 });

@@ -1,4 +1,3 @@
-// src/ai/pipelines/codeActions.ts
 import * as vscode from "vscode";
 import { RuleContext } from "../../rules/types";
 
@@ -24,7 +23,7 @@ export function createReplaceAction(
   return [action];
 }
 
-/* ===================== B안: 요소 전체 교체용 ===================== */
+/* ===================== 요소 전체 교체용 ===================== */
 
 /**
  * 요소 전체(elementRange)를 새 HTML로 한 번에 교체하는 QuickFix

@@ -1,4 +1,3 @@
-// src/utils/scoring.ts
 import { parseJsxFragment } from "./jsxAst";
 
 /** 로직 수정의 기본 신뢰도 임계치 */

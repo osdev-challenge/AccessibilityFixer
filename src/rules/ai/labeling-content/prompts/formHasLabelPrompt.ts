@@ -1,4 +1,3 @@
-// src/rules/ai/labeling-content/prompts/formHasLabelPrompt.ts
 import { LabelingContext } from "../../../../ai/context/extractLabelingContext";
 
 export function buildFormHasLabelPrompt(c: LabelingContext): string {

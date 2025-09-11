@@ -1,4 +1,3 @@
-// src/rules/ai/labeling-content/prompts/imgRedundantAltPrompt.ts
 import { LabelingContext } from "../../../../ai/context/extractLabelingContext";
 
 const REDUNDANT = ["image of", "picture of", "photo of", "graphic of", "icon", "logo"];

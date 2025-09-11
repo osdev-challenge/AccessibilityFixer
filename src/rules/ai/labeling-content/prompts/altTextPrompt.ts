@@ -1,4 +1,3 @@
-// src/rules/ai/labeling-content/prompts/altTextPrompt.ts
 import { LabelingContext } from "../../../../ai/context/extractLabelingContext";
 
 const STOPWORDS = [

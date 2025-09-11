@@ -1,12 +1,9 @@
-// src/rules/ai/aria-role/fixers/fixAriaProps.ts
 import * as vscode from "vscode";
 import { RuleContext } from "../../../types";
 import { extractElementA11yContext } from "../../../../ai/context/extractElementA11yContext";
 import { runAIFix, AiFixResult } from "../../../../ai/pipelines/runAIFix";
 import { AriaPropsStrategy } from "../strategies/ariaProps.strategy";
 import { callGpt } from "../../../../ai/aiClient";
-
-// ✅ B안을 위해 새로 추가/변경된 함수들을 import 합니다.
 import { findElementRanges } from "../../../../ai/pipelines/parsers";
 import { buildReplaceWholeElementAction } from "../../../../ai/pipelines/codeActions";
 

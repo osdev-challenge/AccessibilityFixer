@@ -16,10 +16,9 @@ export interface ElementA11yContext {
   tabIndex?: number | null;
   disabled?: boolean;
   ariaDisabled?: boolean;
-  /** 보강: 추가 신호 (optional) */
   inputType?: string | null;
   contentEditable?: boolean | null;
-  mediaControls?: boolean | null; // audio/video controls
+  mediaControls?: boolean | null; 
   nativeInteractive: boolean;
 }
 
@@ -40,7 +39,6 @@ export function extractElementA11yContext(rc: RuleContext): ElementA11yContext {
   let disabled = false;
   let ariaDisabled = false;
 
-  // 보강: 추가 탐지용
   let inputType: string | null = null;
   let contentEditable: boolean | null = null;
   let mediaControls: boolean | null = null;
@@ -74,12 +72,10 @@ export function extractElementA11yContext(rc: RuleContext): ElementA11yContext {
           hasHandlers = true;
         }
 
-        // 보강: 요소별 추가 신호
         if (el === "input" && name === "type" && typeof value === "string") {
           inputType = value.toLowerCase();
         }
         if (name === "contentEditable") {
-          // true | "true" | ""(존재만) 처리
           contentEditable = value === true || value === "true" || value === "";
         }
         if ((el === "audio" || el === "video") && name === "controls") {
@@ -91,7 +87,6 @@ export function extractElementA11yContext(rc: RuleContext): ElementA11yContext {
     }
   });
 
-  // 네이티브 인터랙티브 추정
   const el = elementName.toLowerCase();
   const nativeInteractiveNames = new Set(["button", "input", "select", "textarea", "summary"]);
 

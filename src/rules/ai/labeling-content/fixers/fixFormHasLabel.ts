@@ -1,4 +1,3 @@
-// src/rules/ai/form-has-label/fixers/fixFormHasLabel.ts
 import * as vscode from "vscode";
 import { RuleContext } from "../../../types";
 import { extractLabelingContext, LabelingContext } from "../../../../ai/context/extractLabelingContext";

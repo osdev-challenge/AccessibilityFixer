@@ -1,4 +1,3 @@
-// src/rules/logic/role-has-required-aria-props/fixRequiredAria_SafeMode_NoSnapshot.ts
 import * as vscode from "vscode";
 import { RuleContext } from "../types";
 
@@ -65,7 +64,7 @@ function buildRoleTables() {
       required = def!.requiredProps.map(String);
     }
 
-    // ⚠️ 일부 환경에서 requiredProps가 비어 올 수 있으므로 props에서 required: true 스캔
+    // 일부 환경에서 requiredProps가 비어 올 수 있으므로 props에서 required: true 스캔
     if (required.length === 0 && def?.props instanceof Map) {
       for (const [propName, propMeta] of def.props) {
         if ((propMeta as any)?.required) {
@@ -156,7 +155,7 @@ function stripUnknownAria(line: string, role: string): string {
 export function fixRequiredAria(context: RuleContext): vscode.CodeAction[] {
   const fixes: vscode.CodeAction[] = [];
 
-  // ✅ 태그 전체 범위로 확장
+  // 태그 전체 범위로 확장
   const tagRange = getOpeningTagRange(context.document, context.range);
   if (!tagRange) return [];
   let newCode = context.document.getText(tagRange);

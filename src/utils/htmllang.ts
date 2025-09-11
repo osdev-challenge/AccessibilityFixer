@@ -1,4 +1,3 @@
-// src/utils/htmlLang.ts
 import * as vscode from "vscode";
 
 /**

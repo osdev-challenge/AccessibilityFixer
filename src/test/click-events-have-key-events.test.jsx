@@ -1,4 +1,3 @@
-// src/test/click-events-have-key-events.test.jsx
 
 /**
  * onClick 핸들러에 onKeyDown 핸들러를 추가하는 테스트 함수
@@ -46,9 +45,9 @@ const testCases = [
 testCases.forEach((t, i) => {
   const result = fixClickEvents(t.input);
   const pass = result === t.expected;
-  console.log(`\n🧪 Test ${i + 1}: ${t.desc}`);
+  console.log(`\nTest ${i + 1}: ${t.desc}`);
   console.log(`  INPUT   : ${t.input}`);
   console.log(`  EXPECTED: ${t.expected}`);
   console.log(`  RESULT  : ${result}`);
-  console.log(pass ? '✅ PASS' : '❌ FAIL');
+  console.log(pass ? 'PASS' : 'FAIL');
 });

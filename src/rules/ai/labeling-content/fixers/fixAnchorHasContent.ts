@@ -1,4 +1,3 @@
-// src/rules/ai/anchor-has-content/fixers/fixAnchorHasContent.ts
 import * as vscode from "vscode";
 import { RuleContext } from "../../../types";
 import { extractElementA11yContext, ElementA11yContext } from "../../../../ai/context/extractElementA11yContext";

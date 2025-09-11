@@ -2,7 +2,7 @@ import * as vscode from 'vscode';
 import { RuleContext } from '../types';
 
 /**
- * 🔍 현재 Diagnostic 위치를 포함하는 정규식 매치를 문서 전체에서 탐색
+ *  현재 Diagnostic 위치를 포함하는 정규식 매치를 문서 전체에서 탐색
  * - 문서 전체 텍스트를 검색하면서 pos(커서/진단 위치)가 포함된 매치를 반환
  * - 매치 범위(Range)와 정규식 결과(RegExpExecArray)를 함께 반환
  */

@@ -1,6 +1,6 @@
 export const BadAriaRole = () => (
   // jsx-a11y/aria-role
-  <div role="buton">Click me</div> // "button" 오타
+  <div role="Sbuton">Click me</div> // "button" 오타
   
 );
 

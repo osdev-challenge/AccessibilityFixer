@@ -1,5 +1,3 @@
-// src/extension.ts
-
 import * as dotenv from "dotenv";
 dotenv.config();
 
@@ -58,7 +56,7 @@ export function activate(context: vscode.ExtensionContext) {
       [
         { scheme: "file", language: "javascript" },
         { scheme: "file", language: "javascriptreact" },
-        { scheme: "file", language: "typescript" },       // ✅ scheme 추가
+        { scheme: "file", language: "typescript" },      
         { scheme: "file", language: "typescriptreact" },
       ],
       new HtmlLintQuickFixProvider(),
@@ -113,7 +111,7 @@ export function activate(context: vscode.ExtensionContext) {
           filePath,
         });
 
-        // ✅ Map을 사용하여 진단 중복 제거 (ruleId, range, message 기반)
+        // Map을 사용하여 진단 중복 제거 (ruleId, range, message 기반)
         const uniqueDiagnosticsMap = new Map<string, vscode.Diagnostic>();
 
         for (const result of results) {
@@ -137,7 +135,7 @@ export function activate(context: vscode.ExtensionContext) {
                 ? vscode.DiagnosticSeverity.Error
                 : vscode.DiagnosticSeverity.Warning;
 
-            // ✅ 고유 키에 메시지 내용까지 포함하여 더 정확한 중복 제거
+            // 고유 키에 메시지 내용까지 포함하여 더 정확한 중복 제거
             const key = `${ruleIdString ?? "unknown"}-${range.start.line}:${
               range.start.character
             }-${range.end.line}:${range.end.character}-${msg.message}`;
@@ -154,7 +152,7 @@ export function activate(context: vscode.ExtensionContext) {
 
             const line = lines[(msg.line ?? 1) - 1] ?? "";
             console.log(
-              `❌ 문제 발생: ${msg.message} (Raw Rule ID: ${
+              `문제 발생: ${msg.message} (Raw Rule ID: ${
                 JSON.stringify(msg.ruleId) ?? "undefined"
               })`
             );
@@ -170,7 +168,7 @@ export function activate(context: vscode.ExtensionContext) {
           diagnosticCollection.delete(document.uri);
         }
       } catch (error) {
-        console.error("❌ ESLint 분석 중 오류 발생:", error);
+        console.error("ESLint 분석 중 오류 발생:", error);
       }
     }, 200);
   }
@@ -263,7 +261,7 @@ class HtmlLintQuickFixProvider implements vscode.CodeActionProvider {
         document: document,
       };
 
-      console.log("📌 [문제 코드 추출]", {
+      console.log(" [문제 코드 추출]", {
         rule: ruleId,
         message: diagnostic.message,
         text: problemText,
@@ -271,7 +269,7 @@ class HtmlLintQuickFixProvider implements vscode.CodeActionProvider {
         range: diagnostic.range,
       });
 
-      // ✅ 개별 오류 격리를 위한 try/catch
+      // 개별 오류 격리를 위한 try/catch
       let fixesFromDispatcher: vscode.CodeAction[] = [];
       try {
         fixesFromDispatcher = await dispatchRule(ruleContext);

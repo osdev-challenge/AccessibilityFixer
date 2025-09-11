@@ -1,4 +1,3 @@
-// HeadingHasContentViolations.jsx
 export default function HeadingHasContentViolations() {
   return (
     <>

@@ -1,4 +1,3 @@
-// src/ai/aiClient.ts
 import axios from 'axios';
 import * as dotenv from 'dotenv';
 import * as path from 'path';
@@ -33,7 +32,7 @@ export async function callGpt(prompt: string): Promise<string> {
   return data.choices[0].message.content;
 }
 
-// // GPT API 요청 및 응답 처리
+// // 제미나이 API 요청 및 응답 처리
 
 // import { GoogleGenerativeAI, HarmCategory, HarmBlockThreshold } from '@google/generative-ai';
 // import dotenv from 'dotenv';
