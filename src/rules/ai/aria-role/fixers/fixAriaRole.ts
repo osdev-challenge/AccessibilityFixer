@@ -3,13 +3,17 @@ import { RuleContext } from "../../../types";
 import { extractElementA11yContext } from "../../../../ai/context/extractElementA11yContext";
 import { runAIFix, AiFixResult } from "../../../../ai/pipelines/runAIFix";
 import { AriaRoleStrategy } from "../strategies/ariaRole.strategy";
-import { callGpt } from "../../../../ai/aiClient";
+import { getGpt } from "../../../../ai/aiSingleton";
 
 import { findElementRanges } from "../../../../ai/pipelines/parsers";
 import { buildReplaceWholeElementAction } from "../../../../ai/pipelines/codeActions";
 
-export async function fixAriaRole(rc: RuleContext): Promise<vscode.CodeAction[]> {
+export async function fixAriaRole(
+  rc: RuleContext
+): Promise<vscode.CodeAction[]> {
   const ctx = extractElementA11yContext(rc);
+  const callGpt = getGpt();
+
   const result: AiFixResult = await runAIFix(AriaRoleStrategy, ctx, callGpt, {
     log: true,
     ruleName: "aria-role",
@@ -28,9 +32,11 @@ export async function fixAriaRole(rc: RuleContext): Promise<vscode.CodeAction[]>
       );
       return [replaceAction];
     } else {
-      console.warn('[A11Y][aria-role] Could not find element ranges to apply whole-element fix.');
+      console.warn(
+        "[A11Y][aria-role] Could not find element ranges to apply whole-element fix."
+      );
     }
   }
-  
+
   return [];
 }
