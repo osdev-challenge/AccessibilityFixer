@@ -1,6 +1,3 @@
-import * as dotenv from "dotenv";
-dotenv.config();
-
 import * as vscode from "vscode";
 import { ESLint } from "eslint";
 import * as path from "path";
@@ -12,6 +9,8 @@ import {
   normalizeBCP47,
   COMMON_LANG_CANDIDATES,
 } from "./utils/htmllang";
+import { initGpt } from "./ai/aiSingleton";
+import { aiSettings } from "./ai/aiSettings";
 
 // diagnosticCollection을 activate 함수 외부(전역) 또는 activate 함수 내에서 한 번만 선언
 let diagnosticCollection: vscode.DiagnosticCollection;
@@ -39,8 +38,28 @@ function getRuleIdString(
   return undefined;
 }
 
-export function activate(context: vscode.ExtensionContext) {
-  diagnosticCollection = vscode.languages.createDiagnosticCollection("jsx-a11y");
+export async function activate(context: vscode.ExtensionContext) {
+  initGpt(context); // 한 번만 실행
+
+  const resetAndReconfigureGpt = vscode.commands.registerCommand(
+    "a11yFix.resetAndReconfigureGpt",
+    async () => {
+      await context.globalState.update("OPENAI_API_KEY", undefined);
+      await context.globalState.update("AI_MODEL", undefined);
+
+      vscode.window.showInformationMessage(
+        "[A11y Fix] 기존 GPT 설정이 초기화되었습니다. 새로 설정을 진행합니다."
+      );
+
+      const success = await aiSettings(context);
+      if (!success) return;
+    }
+  );
+
+  context.subscriptions.push(resetAndReconfigureGpt);
+
+  diagnosticCollection =
+    vscode.languages.createDiagnosticCollection("jsx-a11y");
   context.subscriptions.push(diagnosticCollection);
 
   vscode.workspace.onDidChangeTextDocument((event) => {
@@ -56,7 +75,7 @@ export function activate(context: vscode.ExtensionContext) {
       [
         { scheme: "file", language: "javascript" },
         { scheme: "file", language: "javascriptreact" },
-        { scheme: "file", language: "typescript" },      
+        { scheme: "file", language: "typescript" },
         { scheme: "file", language: "typescriptreact" },
       ],
       new HtmlLintQuickFixProvider(),
@@ -65,6 +84,16 @@ export function activate(context: vscode.ExtensionContext) {
       }
     )
   );
+
+  const apiKey = context.globalState.get<string>("OPENAI_API_KEY");
+  const aiModel = context.globalState.get<string>("AI_MODEL");
+
+  if (!apiKey || !aiModel) {
+    const success = await aiSettings(context);
+    if (!success) {
+      return;
+    }
+  }
 
   async function lintDocument(document: vscode.TextDocument) {
     if (lintTimeout) {
@@ -120,10 +149,13 @@ export function activate(context: vscode.ExtensionContext) {
           for (const msg of result.messages) {
             // VSCode Range 생성
             const range = new vscode.Range(
-              new vscode.Position(Math.max(0, (msg.line ?? 1) - 1), Math.max(0, (msg.column ?? 1) - 1)),
+              new vscode.Position(
+                Math.max(0, (msg.line ?? 1) - 1),
+                Math.max(0, (msg.column ?? 1) - 1)
+              ),
               new vscode.Position(
                 Math.max(0, (msg.endLine ?? msg.line ?? 1) - 1),
-                Math.max(0, (msg.endColumn ?? (msg.column ?? 1)) - 1)
+                Math.max(0, (msg.endColumn ?? msg.column ?? 1) - 1)
               )
             );
 
@@ -144,7 +176,11 @@ export function activate(context: vscode.ExtensionContext) {
               continue;
             }
 
-            const diagnostic = new vscode.Diagnostic(range, msg.message, severity);
+            const diagnostic = new vscode.Diagnostic(
+              range,
+              msg.message,
+              severity
+            );
             diagnostic.source = "jsx-a11y";
             diagnostic.code = ruleIdString;
 
@@ -172,9 +208,14 @@ export function activate(context: vscode.ExtensionContext) {
       }
     }, 200);
   }
+
   const pickLangCmd = vscode.commands.registerCommand(
     "a11yFix.pickHtmlLang",
-    async (arg?: { uri: vscode.Uri; range: vscode.Range; original: string }) => {
+    async (arg?: {
+      uri: vscode.Uri;
+      range: vscode.Range;
+      original: string;
+    }) => {
       if (!arg) return;
 
       const picked = await vscode.window.showQuickPick(COMMON_LANG_CANDIDATES, {
@@ -220,7 +261,8 @@ class HtmlLintQuickFixProvider implements vscode.CodeActionProvider {
 
       const isA11y = diagnosticCodeString.startsWith("jsx-a11y");
       const isEslintDisableFix = diagnostic.message.includes("Disable");
-      const isShowDocumentation = diagnostic.message.includes("Show documentation");
+      const isShowDocumentation =
+        diagnostic.message.includes("Show documentation");
 
       if (!(isA11y && !isEslintDisableFix) && !isShowDocumentation) {
         continue;
