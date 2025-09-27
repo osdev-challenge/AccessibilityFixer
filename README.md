@@ -44,6 +44,14 @@ AccessibilityFixer will highlight common accessibility violations and provide au
 
 To apply fixes, click the lightbulb icon or use the shortcut `Ctrl+.` / `Cmd+.`
 
+## Enable AI-Powered Fixes
+
+To use GPT-powered fixes:
+
+1. When started, **enter your OpenAI API Key** (e.g. `sk-...`)
+2. Then, **select your preferred GPT model** (`gpt-3.5-turbo`, `gpt-4`, `gpt-4o`, etc.)
+3. That's it! AI suggestions will be enabled automatically for supported rules.
+
 ---
 
 ## Configuration
@@ -62,7 +70,12 @@ AccessibilityFixer works out of the box, even if you don’t have `eslint-plugin
 
 ---
 
-## Contributing
+## ⚠️ Version Notice
+
+> AI-powered suggestions are only available in **v2.1.0 or later**.  
+> Please update to the latest version to unlock GPT-based accessibility fixes.
+
+---
 
 ## Contributing
 
