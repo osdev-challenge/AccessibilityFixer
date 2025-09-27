@@ -2,7 +2,7 @@
   "name": "accessibilityfixer",
   "displayName": "AccessibilityFixer",
   "description": "Automatically detect and fix common accessibility issues in your React code, with AI-powered suggestions and quick fixes.",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "publisher": "uno-accessibilityfixer",
   "icon": "images/logo.png",
   "engines": {
@@ -65,12 +65,8 @@
     ],
     "commands": [
       {
-        "command": "a11yFix.showFix",
-        "title": "웹 접근성 수정 제안"
-      },
-      {
-        "command": "a11yFix.aiFix",
-        "title": "AI 기반 수정 제안"
+        "command": "a11yFix.resetAndReconfigureGpt",
+        "title": "[A11y Fix] Reset and Reconfigure Gpt Setting"
       }
     ],
     "codeActions": [

@@ -3,12 +3,16 @@ import { RuleContext } from "../../../types";
 import { extractElementA11yContext } from "../../../../ai/context/extractElementA11yContext";
 import { runAIFix, AiFixResult } from "../../../../ai/pipelines/runAIFix";
 import { AriaPropsStrategy } from "../strategies/ariaProps.strategy";
-import { callGpt } from "../../../../ai/aiClient";
+import { getGpt } from "../../../../ai/aiSingleton";
 import { findElementRanges } from "../../../../ai/pipelines/parsers";
 import { buildReplaceWholeElementAction } from "../../../../ai/pipelines/codeActions";
 
-export async function fixAriaProps(rc: RuleContext): Promise<vscode.CodeAction[]> {
+export async function fixAriaProps(
+  rc: RuleContext
+): Promise<vscode.CodeAction[]> {
   const ctx = extractElementA11yContext(rc);
+  const callGpt = getGpt();
+
   const result: AiFixResult = await runAIFix(AriaPropsStrategy, ctx, callGpt, {
     log: true,
     ruleName: "aria-props",
@@ -25,12 +29,14 @@ export async function fixAriaProps(rc: RuleContext): Promise<vscode.CodeAction[]
       const replaceAction = buildReplaceWholeElementAction(
         rc.document,
         elementRanges.element, // 요소 전체 범위
-        result.html,           // AI가 생성한 완성된 HTML
+        result.html, // AI가 생성한 완성된 HTML
         "Apply AI: Fix aria-props (replace element)"
       );
       return [replaceAction];
     } else {
-      console.warn('[A11Y][aria-props] Could not find element ranges to apply whole-element fix.');
+      console.warn(
+        "[A11Y][aria-props] Could not find element ranges to apply whole-element fix."
+      );
     }
   }
 

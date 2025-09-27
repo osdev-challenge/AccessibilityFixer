@@ -3,7 +3,7 @@ import { RuleContext } from "../../../types";
 import { extractElementA11yContext } from "../../../../ai/context/extractElementA11yContext";
 import { runAIFix, AiFixResult } from "../../../../ai/pipelines/runAIFix";
 import { NoNoninteractiveElementToInteractiveRoleStrategy } from "../strategies/noNoninteractiveToInteractive.strategy";
-import { callGpt } from "../../../../ai/aiClient";
+import { getGpt } from "../../../../ai/aiSingleton";
 
 import { findElementRanges } from "../../../../ai/pipelines/parsers";
 import { buildReplaceWholeElementAction } from "../../../../ai/pipelines/codeActions";
@@ -12,6 +12,8 @@ export async function fixNoNoninteractiveToInteractive(
   rc: RuleContext
 ): Promise<vscode.CodeAction[]> {
   const ctx = extractElementA11yContext(rc);
+  const callGpt = getGpt();
+
   const result: AiFixResult = await runAIFix(
     NoNoninteractiveElementToInteractiveRoleStrategy,
     ctx,
@@ -35,7 +37,9 @@ export async function fixNoNoninteractiveToInteractive(
       );
       return [replaceAction];
     } else {
-      console.warn('[A11Y][no-noninteractive-element-to-interactive-role] Could not find element ranges to apply whole-element fix.');
+      console.warn(
+        "[A11Y][no-noninteractive-element-to-interactive-role] Could not find element ranges to apply whole-element fix."
+      );
     }
   }
 
