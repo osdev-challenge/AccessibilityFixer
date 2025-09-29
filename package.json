@@ -65,12 +65,8 @@
     ],
     "commands": [
       {
-        "command": "a11yFix.showFix",
-        "title": "웹 접근성 수정 제안"
-      },
-      {
-        "command": "a11yFix.aiFix",
-        "title": "AI 기반 수정 제안"
+        "command": "a11yFix.resetAndReconfigureGpt",
+        "title": "[A11y Fix] Reset and Reconfigure Gpt Setting"
       }
     ],
     "codeActions": [
