@@ -74,7 +74,7 @@ export async function fixAnchorHasContent(
         rc.document,
         elementRanges.element,
         result.html,
-        "Apply AI: anchor-has-content"
+        "링크에 콘텐츠 추가"
       );
       return [replaceAction];
     } else {
