@@ -20,6 +20,6 @@ The list below includes the direct dependencies declared in `package.json`.
 
 ## License Notice
 
-This project is licensed under the terms specified in the root [LICENSE](./LICENSE.txt) file.  
+This project is licensed under the terms specified in the root [LICENSE](./LICENSE) file.  
 Third-party libraries included in this project are licensed under their respective licenses,  
 and their usage complies with all applicable open-source license requirements.
