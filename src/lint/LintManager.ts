@@ -280,7 +280,7 @@ export class LintManager {
           : vscode.DiagnosticSeverity.Information;
       const d = new vscode.Diagnostic(range, m.message, sev);
       (d as any).code = m.ruleId ?? "unknown";
-      d.source = "eslint";
+      d.source = "a11y-fixer";
       out.push(d);
     }
     return out;
