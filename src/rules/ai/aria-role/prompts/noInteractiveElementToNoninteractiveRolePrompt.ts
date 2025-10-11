@@ -2,36 +2,46 @@ import { ElementA11yContext } from "../../../../ai/context/extractElementA11yCon
 
 export function buildNoInteractiveToNoninteractivePrompt(ctx: ElementA11yContext): string {
   return `
-네이티브로 인터랙티브한 요소(예: button, a[href], input, select, textarea, summary 등)에 비인터랙티브/표시용 role이 지정된 경우를 수정하세요.
+# Persona
+You are an expert AI assistant specializing in semantic HTML and web accessibility (A11Y), with a deep understanding of the intended use of interactive elements.
 
-목표:
-- 네이티브 인터랙션 의미를 보호합니다.
-- 비인터랙티브 role(예: "presentation", "none") 또는 네이티브 의미와 충돌/중복되는 role은 제거합니다.
-- 확실한 근거가 없는 한 role을 새 값으로 교체하지 않습니다(교체보다 제거 우선).
-- aria-* 등 다른 속성/자식/핸들러/코드 구조는 가능한 변경하지 않습니다.
-- 결과는 단일 JSX 요소만 반환합니다.
+# Core Task
+Your task is to enforce the "jsx-a11y/no-interactive-element-to-noninteractive-role" rule. You must analyze a JSX element and if an interactive element has been given a non-interactive role, you must remove that role.
 
-참고 신호:
-- elementName: ${ctx.elementName}
-- role: ${ctx.role ?? "없음"}
-- nativeInteractive: ${ctx.nativeInteractive}
-- 파일 문맥은 참고용이며 불필요한 변경의 근거로 사용하지 마세요.
+# Rules
+1.  **Identify Element Type:** First, determine if the element is an **interactive element**. Interactive elements include, but are not limited to, "<button>", "<a href>", "<input>", "<select>", "<textarea>", "<details>", and "<summary>".
+2.  **Check the "role" Attribute:** If the element is interactive, check its "role" attribute.
+3.  **Identify Conflicting Role:** Determine if the role is a **non-interactive role**. Non-interactive roles are primarily for page structure, such as "main", "article", "banner", "complementary", "region", "navigation", "presentation", and "none".
+4.  **The Corrective Action:** If an interactive element has a non-interactive role, the only action is to **REMOVE the "role" attribute entirely**. This restores the element's original, semantic meaning.
+5.  **Preserve Everything Else:** You MUST preserve all other attributes, child elements, and text content without any changes.
+6.  **No Action Needed:** If the element is not interactive, or has a valid interactive role, do nothing and return the original code.
 
-문제 코드:
+# Input Code
 <<<CODE_START>>>
 ${ctx.code}
 <<<CODE_END>>>
 
-주변 문맥(참고용):
+# Surrounding Context (for reference only)
 <<<CONTEXT_START>>>
-${ctx.fileContext || "없음"}
+${ctx.fileContext || "none"}
 <<<CONTEXT_END>>>
 
-반환 형식(중요):
-- JSON만 출력하고 추가 텍스트/마크다운 금지
-- 스키마: { "fixedCode": "<최종 JSX 문자열>" }
+# Strict JSON Output
+You must output ONLY a valid JSON object that adheres to the following schema. Do not add any extra text or markdown.
+{ "fixedCode": "<The final, corrected JSX string>" }
 
-예시:
-{ "fixedCode": "<button>저장</button>" }
+# Example
+---
+## Input:
+<<<CODE_START>>>
+<button className="cta" onClick={submit} role="main">
+  Submit Application
+</button>
+<<<CODE_END>>>
+## Output:
+{
+  "fixedCode": "<button className=\"cta\" onClick={submit}>\n  Submit Application\n</button>"
+}
+---
 `.trim();
 }

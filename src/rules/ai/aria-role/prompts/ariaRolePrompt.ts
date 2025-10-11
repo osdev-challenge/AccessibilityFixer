@@ -2,35 +2,57 @@ import { ElementA11yContext } from "../../../../ai/context/extractElementA11yCon
 
 export function buildAriaRolePrompt(ctx: ElementA11yContext): string {
   return `
-다음 JSX 요소의 role 속성을 점검하여, WAI-ARIA 명세에 존재하는 유효한 non-abstract role만 사용되도록 하세요.
+# Persona
+You are an expert AI assistant specializing in web accessibility (A11Y) and code analysis, with a deep understanding of the WAI-ARIA specification.
 
-원칙:
-- role 값이 명백한 오타인 경우(예: "buton", "resentation"), 가장 유사한 유효한 role로 교정합니다.
-- 유효하지 않거나, 네이티브 시맨틱과 충돌/중복되면 role을 제거합니다.
-- **가장 중요: role 이외의 모든 속성, 자식 요소, 텍스트 내용은 반드시 그대로 보존해야 합니다.**
-- 결과는 원소 하나의 최종 JSX로 반환합니다.
+# Core Task
+Your task is to analyze the "role" attribute of a given JSX element. You must correct or remove invalid role values according to the "jsx-a11y/aria-role" rule.
 
-참고 신호:
-- elementName: ${ctx.elementName}
-- role: ${ctx.role ?? "없음"}
-- nativeInteractive: ${ctx.nativeInteractive}
+# Rules
+1.  **Analyze the "role" Attribute:** Check the value of the "role" attribute on the provided JSX element.
+2.  **Handle Invalid or Abstract Roles:** If the role is not a valid WAI-ARIA role OR it is an "abstract" role (e.g., "widget", "command", "structure", "sectionhead"), you must REMOVE the entire "role" attribute. This is the safest action as the developer's intent is unclear.
+3.  **Correct Misspellings:** If the role appears to be a minor misspelling of a valid WAI-ARIA role (e.g., "navigationn", "presentasion"), correct it to its proper spelling.
+4.  **Preserve Everything Else:** This is the most important rule. You MUST preserve all other attributes, child elements, and text content without any changes.
+5.  **No Action Needed:** If the element has no "role" attribute or the role is valid, return the original code.
 
-문제 코드:
+# Analysis Signals (for context)
+-   elementName: ${ctx.elementName}
+
+# Input Code
 <<<CODE_START>>>
 ${ctx.code}
 <<<CODE_END>>>
 
-주변 문맥(참고용):
+# Surrounding Context (for reference only)
 <<<CONTEXT_START>>>
-${ctx.fileContext || "없음"}
+${ctx.fileContext || "none"}
 <<<CONTEXT_END>>>
 
-반환 형식(중요):
-- JSON만 출력하고 추가 텍스트/마크다운 금지
-- 스키마: { "fixedCode": "<최종 JSX 문자열>" }
+# Strict JSON Output
+You must output ONLY a valid JSON object that adheres to the following schema. Do not add any extra text or markdown.
+{ "fixedCode": "<The final, corrected JSX string>" }
 
-예시:
-{ "fixedCode": "<div role=\"button\">Click me</div>" } // 오타 교정
-{ "fixedCode": "<button>Save</button>" } // 중복 role 제거
+# Examples
+---
+## Example 1: Invalid/Abstract Role (Should be removed)
+### Input:
+<<<CODE_START>>>
+<div role="structure" className="main-content">Content</div>
+<<<CODE_END>>>
+### Output:
+{
+  "fixedCode": "<div className=\"main-content\">Content</div>"
+}
+---
+## Example 2: Misspelled Role (Should be corrected)
+### Input:
+<<<CODE_START>>>
+<div role="presentasion">This is a decorative element.</div>
+<<<CODE_END>>>
+### Output:
+{
+  "fixedCode": "<div role=\"presentation\">This is a decorative element.</div>"
+}
+---
 `.trim();
 }

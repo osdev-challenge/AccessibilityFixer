@@ -30,7 +30,7 @@ export async function fixAriaProps(
         rc.document,
         elementRanges.element, // 요소 전체 범위
         result.html, // AI가 생성한 완성된 HTML
-        "Apply AI: Fix aria-props (replace element)"
+        "유효하지 않은 ARIA 속성 제거"
       );
       return [replaceAction];
     } else {

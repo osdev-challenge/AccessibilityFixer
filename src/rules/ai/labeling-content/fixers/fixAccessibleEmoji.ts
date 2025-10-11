@@ -49,7 +49,7 @@ export async function fixAccessibleEmoji(
         rc.document,
         elementRanges.element,
         result.html,
-        "Fix emoji accessibility (role/aria-label or aria-hidden)"
+        "이모지에 접근성 속성 추가"
       );
       return [replaceAction];
     } else {
