@@ -24,6 +24,7 @@ export const noNoninteractiveTabindexFix: RuleFixer = (
 
   fix.edit = new vscode.WorkspaceEdit();
   fix.edit.replace(document.uri, range, fixed);
+  fix.isPreferred = true;
 
   fix.diagnostics = [
     {
