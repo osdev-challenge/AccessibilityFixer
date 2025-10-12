@@ -14,6 +14,7 @@ Your task is to analyze the "role" attribute of a given JSX element. You must co
 3.  **Correct Misspellings:** If the role appears to be a minor misspelling of a valid WAI-ARIA role (e.g., "navigationn", "presentasion"), correct it to its proper spelling.
 4.  **Preserve Everything Else:** This is the most important rule. You MUST preserve all other attributes, child elements, and text content without any changes.
 5.  **No Action Needed:** If the element has no "role" attribute or the role is valid, return the original code.
+6.  **JSX Format:** Ensure all non-void HTML elements (like 'div', 'span', 'textarea') have a matching closing tag (e.g., '</textarea>'). Void elements (like 'img', 'input') must be self-closing (e.g., '<input ... />').
 
 # Analysis Signals (for context)
 -   elementName: ${ctx.elementName}

@@ -18,6 +18,7 @@ export function buildAnchorHasContentPrompt(ctx: LabelingContext): string {
     4.  **The Corrective Action:** Insert the generated text content directly inside the "<a>" tags.
     5.  **Safety Rule:** If the "href" attribute is missing, empty, or a placeholder ("#"), and no other context is available, use a generic but clear placeholder text like "Read More". **Do NOT leave the anchor empty.**
     6.  **Preserve Everything Else:** You MUST preserve all existing attributes of the "<a>" tag ("href", "className", "target", etc.) without any changes.
+    7.  **JSX Format:** Ensure all non-void HTML elements (like 'div', 'span', 'textarea') have a matching closing tag (e.g., '</textarea>'). Void elements (like 'img', 'input') must be self-closing (e.g., '<input ... />').
 
     # Input Code
     <<<CODE_START>>>

@@ -21,6 +21,7 @@ export function buildFormHasLabelPrompt(ctx: LabelingContext): string {
             a.  Infer the control's purpose from its attributes ("placeholder", "name", "type").
             b.  Add an "aria-label" attribute directly to the control with a concise, descriptive English label.
     3.  **Preserve Everything Else:** You MUST preserve all existing attributes on the control and surrounding elements. Your changes must be minimal and only serve to add the label association.
+    4.  **JSX Format:** Ensure all non-void HTML elements (like 'div', 'span', 'textarea') have a matching closing tag (e.g., '</textarea>'). Void elements (like 'img', 'input') must be self-closing (e.g., '<input ... />').
 
     # Input Code
     <<<CODE_START>>>

@@ -13,6 +13,7 @@ Analyze the "aria-*" properties of the provided JSX element. Remove invalid prop
 2.  **Correct Value Types:** If a valid "aria-*" property has an incorrect value type (e.g., a number "aria-label={123}" instead of a string), correct the type but preserve the value (e.g., "aria-label="123"").
 3.  **Preserve Everything Else:** This is the most important rule. You MUST preserve all other existing attributes (like "className", "id", event handlers), child elements, and text content without any changes.
 4.  **No New Properties:** Do not add any new "aria-*" properties that were not in the original code.
+5.  **JSX Format:** Ensure all non-void HTML elements (like 'div', 'span', 'textarea') have a matching closing tag (e.g., '</textarea>'). Void elements (like 'img', 'input') must be self-closing (e.g., '<input ... />').
 
 # Analysis Signals (for context)
 -   elementName: ${ctx.elementName}
