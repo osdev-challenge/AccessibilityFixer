@@ -1,10 +1,9 @@
-name: Publish VSCode Extension
+name: Release
 
 on:
   push:
     branches:
       - main
-  workflow_dispatch:
 permissions:
   contents: write
 
@@ -13,14 +12,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
       - name: Set up Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: 22
+          cache: 'npm'
 
       - name: Install dependencies
         run: npm ci
@@ -30,47 +30,10 @@ jobs:
 
       - name: Compile TypeScript
         run: npm run compile
-        
-      - name: Read package.json version
-        id: pkg
-        run: echo "VERSION=$(node -p \"require('./package.json').version\")" >> $GITHUB_ENV
 
-      - name: Check if tag exists
-        id: tagcheck
-        run: |
-          if git rev-parse "v${VERSION}" >/dev/null 2>&1; then
-            echo "SHOULD_RELEASE=false" >> $GITHUB_ENV
-            echo "Tag v${VERSION} already exists. Skipping release."
-          else
-            echo "SHOULD_RELEASE=true" >> $GITHUB_ENV
-          fi
-          
-      - name: Set Git user (for versioning)
-        if: env.SHOULD_RELEASE == 'true'
-        run: |
-          git config user.name ${{ secrets.USER_NAME }}
-          git config user.email ${{ secrets.USER_EMAIL }}
-
-      - name: Package VSIX
-        if: env.SHOULD_RELEASE == 'true'
-        run: npx vsce package
-        
-      - name: Publish to VS Marketplace
-        if: env.SHOULD_RELEASE == 'true'
-        run: npx vsce publish -p ${{ secrets.VSCE_TOKEN }}
-
-      - name: Create & push tag
-        if: env.SHOULD_RELEASE == 'true'
-        run: |
-          git tag "v${VERSION}" -m "Release v${VERSION}"
-          git push origin "v${VERSION}"
-
-      - name: Create GitHub Release
-        if: env.SHOULD_RELEASE == 'true'
-        uses: softprops/action-gh-release@v2
-        with:
-          tag_name: v${{ env.VERSION }}
-          name: v${{ env.VERSION }}
-          generate_release_notes: true
-          files: |
-            *.vsix
+      - name: semantic-release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          VSCE_TOKEN: ${{ secrets.VSCE_TOKEN }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: npx semantic-release
