@@ -35,7 +35,7 @@ export async function fixNoEmptyAlt(rc: RuleContext): Promise<vscode.CodeAction[
   if (isDecorativeDefinite) {
     // 확정 장식: alt="" 보장만 수행 
     const patched = setAltEmpty(lc.snippet);
-    return createReplaceAction(rc, patched, "장식용 이미지로 간주하여 alt=\"\" 속성 보장");
+    return createReplaceAction(rc, patched, "Apply fix: no-empty-alt (decorative)");
   }
 
   // 장식 '확정'이 아니면 → alt-text로 위임 

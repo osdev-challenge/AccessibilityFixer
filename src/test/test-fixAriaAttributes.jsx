@@ -9,7 +9,7 @@ import React from "react";
    - 잘못된 타입/허용값(예: "yes", "maybe")을 사용
 ───────────────────────────── */
 export const AriaPropTypes = () => (
-  <div aria-checked="yes">
+  <div aria-checked="false">
     Bad aria values
   </div>
 );

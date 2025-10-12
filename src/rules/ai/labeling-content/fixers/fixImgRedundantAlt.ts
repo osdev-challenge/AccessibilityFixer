@@ -49,7 +49,7 @@ export async function fixImgRedundantAlt(
         rc.document,
         elementRanges.element,
         result.html,
-        "이미지 alt 속성에서 불필요한 단어 제거"
+        "Remove redundant words from img alt"
       );
       return [replaceAction];
     } else {

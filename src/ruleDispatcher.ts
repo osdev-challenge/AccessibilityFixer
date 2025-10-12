@@ -95,19 +95,31 @@ export async function dispatchRule(
 
   console.log(`[A11y Fix]:[${context.ruleName}] 규칙 수정 로직 실행`);
 
-  // --- 성능 측정 시작 ---
-  const start = performance.now();
   const codeActions = await fixFunction(context);
-  const end = performance.now();
-  const elapsed = (end - start).toFixed(2);
-  console.log(`[PERF][${context.ruleName}] 실행 시간: ${elapsed}ms`);
-  // --- 성능 측정 끝 ---
-  
+
   codeActions.forEach((action) => {
     if (!action.title.startsWith("[A11y Fix]")) {
       action.title = `[A11y Fix] ${action.title}`;
     }
   });
 
+  const diagnosticSet = new Set<string>();
+  const diagnostics: vscode.Diagnostic[] = [];
+
+  for (const fix of codeActions) {
+    if (fix.diagnostics && fix.diagnostics.length > 0) {
+      for (const d of fix.diagnostics) {
+        const key = `${d.code}-${d.range.start.line}:${d.range.start.character}-${d.range.end.line}:${d.range.end.character}`;
+        if (diagnosticSet.has(key)) continue; // 중복 방지
+        diagnosticSet.add(key);
+        diagnostics.push(d);
+      }
+    }
+  }
+
+  if (diagnostics.length > 0) {
+    a11yDiagnosticCollection.delete(context.document.uri); // 기존 진단 제거
+    a11yDiagnosticCollection.set(context.document.uri, diagnostics);
+  }
   return codeActions;
 }
