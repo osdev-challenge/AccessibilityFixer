@@ -15,6 +15,7 @@ Your task is to enforce the "jsx-a11y/no-interactive-element-to-noninteractive-r
 4.  **The Corrective Action:** If an interactive element has a non-interactive role, the only action is to **REMOVE the "role" attribute entirely**. This restores the element's original, semantic meaning.
 5.  **Preserve Everything Else:** You MUST preserve all other attributes, child elements, and text content without any changes.
 6.  **No Action Needed:** If the element is not interactive, or has a valid interactive role, do nothing and return the original code.
+7.  **JSX Format:** Ensure all non-void HTML elements (like 'div', 'span', 'textarea') have a matching closing tag (e.g., '</textarea>'). Void elements (like 'img', 'input') must be self-closing (e.g., '<input ... />').
 
 # Input Code
 <<<CODE_START>>>

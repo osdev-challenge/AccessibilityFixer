@@ -24,6 +24,7 @@ export function buildImgRedundantAltPrompt(ctx: LabelingContext): string {
     6.  **Consider Decorative:** If the context suggests the image is purely decorative, it is best to set the "alt" attribute to an empty string ("alt=""").
     7.  **Safety Rule:** Any new description must be based **ONLY on the provided hints**. Do NOT guess the content of the image beyond what the context suggests.
     8.  **Preserve Everything Else:** You MUST preserve all other attributes of the "<img>" tag.
+    9.  **JSX Format:** Ensure all non-void HTML elements (like 'div', 'span', 'textarea') have a matching closing tag (e.g., '</textarea>'). Void elements (like 'img', 'input') must be self-closing (e.g., '<input ... />').
 
     # Input Code
     <<<CODE_START>>>

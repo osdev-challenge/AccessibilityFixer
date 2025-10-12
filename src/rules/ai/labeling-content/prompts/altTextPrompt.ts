@@ -30,6 +30,7 @@ export function buildAltTextPrompt(ctx: LabelingContext): string {
       4.  **Corrective Action (Decorative):** If the image is **decorative**, you must set the "alt" attribute to an empty string ("alt=""").
       5.  **Safety Rule:** If the image's purpose is completely ambiguous from the hints, it is safer to treat it as decorative and use "alt=""".
       6.  **Preserve Everything Else:** You MUST preserve all other attributes ("src", "className", etc.) of the element without any changes.
+      7.  **JSX Format:** Ensure all non-void HTML elements (like 'div', 'span', 'textarea') have a matching closing tag (e.g., '</textarea>'). Void elements (like 'img', 'input') must be self-closing (e.g., '<input ... />').
 
       # Input Code
       <<<CODE_START>>>

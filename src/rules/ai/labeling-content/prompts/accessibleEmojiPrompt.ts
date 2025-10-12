@@ -21,6 +21,7 @@ export function buildAccessibleEmojiPrompt(ctx: LabelingContext): string {
           b.  Add an "aria-hidden="true"" attribute to hide it from screen readers.
       5.  **Preserve Everything Else:** You MUST preserve all other attributes, child elements, and surrounding text without any changes. The change must be minimal.
       6.  **Safety Rule:** If the emoji's purpose is ambiguous from the context, it is safer to treat it as decorative and apply "aria-hidden="true"".
+      7.  **JSX Format:** Ensure all non-void HTML elements (like 'div', 'span', 'textarea') have a matching closing tag (e.g., '</textarea>'). Void elements (like 'img', 'input') must be self-closing (e.g., '<input ... />').
 
       # Input Code
       <<<CODE_START>>>

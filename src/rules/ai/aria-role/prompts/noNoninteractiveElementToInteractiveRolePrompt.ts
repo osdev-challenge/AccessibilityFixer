@@ -16,6 +16,7 @@ Your task is to enforce the "jsx-a11y/no-noninteractive-element-to-interactive-r
     b.  Add an appropriate keyboard event handler. For most roles like "button", this is "onKeyDown". The handler function should be a placeholder for the developer to implement.
 4.  **Preserve Everything Else:** You MUST preserve all other attributes (especially existing "onClick" handlers), child elements, and text content without any changes.
 5.  **No Action Needed:** If the rule is not violated, return the original code.
+6.  **JSX Format:** Ensure all non-void HTML elements (like 'div', 'span', 'textarea') have a matching closing tag (e.g., '</textarea>'). Void elements (like 'img', 'input') must be self-closing (e.g., '<input ... />').
 
 # Input Code
 <<<CODE_START>>>
