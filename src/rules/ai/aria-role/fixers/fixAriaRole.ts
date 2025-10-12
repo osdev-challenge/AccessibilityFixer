@@ -28,7 +28,7 @@ export async function fixAriaRole(
         rc.document,
         elementRanges.element,
         result.html,
-        "ARIA role 속성 수정/제거"
+        "Apply AI: Fix aria-role (replace element)"
       );
       return [replaceAction];
     } else {

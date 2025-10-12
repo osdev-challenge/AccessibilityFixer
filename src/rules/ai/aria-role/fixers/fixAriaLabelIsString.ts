@@ -44,7 +44,7 @@ export async function fixAriaLabelIsString(
   const nextAttr = `aria-label="${escaped}"`;
 
   const patched = src.replace(fullAttr, nextAttr);
-  return createReplaceAction(rc, patched, "aria-label 값을 문자열로 수정");
+  return createReplaceAction(rc, patched, "Apply fix: aria-label-is-string");
 }
 
 /** { ... } 로 감싼 JSX 표현식이면 중괄호 제거 */

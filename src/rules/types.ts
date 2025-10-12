@@ -11,8 +11,6 @@ export interface RuleContext {
   fullLine: string; // 문제가 발생한 전체 줄의 내용
   range: vscode.Range; // VS Code에서 문제의 정확한 시작 및 끝 위치
   document: vscode.TextDocument; // 현재 활성화된 VS Code 문서 객체
-
-  diagnostics?: vscode.Diagnostic[];
 }
 
 /**
