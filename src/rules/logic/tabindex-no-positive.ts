@@ -18,6 +18,9 @@ export function tabindexNoPositiveFix(
 
   const [, prefix, opener, originalValue, closer] = match;
 
+  if (parseInt(originalValue, 10) <= 0) {
+   return []; // 양수가 아니면 수정 제안을 만들지 않고 종료합니다.
+ }
   // 매개변수 'targetValue'에 string 타입을 명시적으로 지정
   const createReplacementCode = (targetValue: string) => {
     return context.code.replace(match[0], `${prefix}"${targetValue}"`);
@@ -29,7 +32,7 @@ export function tabindexNoPositiveFix(
     vscode.CodeActionKind.QuickFix
   );
   fixToZero.edit = new vscode.WorkspaceEdit();
-
+  fixToZero.isPreferred = true;
   const newCodeZero = createReplacementCode("0");
 
   fixToZero.edit.replace(context.document.uri, context.range, newCodeZero);

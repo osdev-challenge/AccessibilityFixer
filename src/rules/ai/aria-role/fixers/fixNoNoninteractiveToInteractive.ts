@@ -33,7 +33,7 @@ export async function fixNoNoninteractiveToInteractive(
         rc.document,
         elementRanges.element,
         result.html,
-        "Apply AI: no-noninteractive-element-to-interactive-role"
+        "비-인터랙티브 요소의 인터랙티브 role 수정"
       );
       return [replaceAction];
     } else {

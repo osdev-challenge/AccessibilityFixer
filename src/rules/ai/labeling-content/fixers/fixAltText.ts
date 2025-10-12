@@ -45,7 +45,7 @@ export async function fixAltText(
         rc.document,
         elementRanges.element,
         result.html,
-        "Add or refine <img> alt text"
+        "이미지에 alt 속성 추가/개선"
       );
       return [replaceAction];
     } else {

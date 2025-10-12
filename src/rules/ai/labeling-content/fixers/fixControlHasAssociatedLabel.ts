@@ -49,7 +49,7 @@ export async function fixControlHasAssociatedLabel(
         rc.document,
         elementRanges.element,
         result.html,
-        "Associate label with control"
+        "컨트롤에 레이블 연결"
       );
       return [replaceAction];
     } else {
