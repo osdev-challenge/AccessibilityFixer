@@ -90,7 +90,7 @@ For detailed contribution guidelines, please check our [CONTRIBUTING.md](.docs/C
 
 ## License
 
-[MIT License](./LICENSE.txt)
+[MIT License](./LICENSE)
 
 ---
 
