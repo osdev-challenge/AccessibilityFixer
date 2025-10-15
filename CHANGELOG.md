@@ -1,3 +1,10 @@
+## [2.1.3](https://github.com/osdev-challenge/AccessibilityFixer/compare/v2.1.2...v2.1.3) (2025-10-15)
+
+
+### Bug Fixes
+
+* edit license notices ([#47](https://github.com/osdev-challenge/AccessibilityFixer/issues/47)) ([0b8f48e](https://github.com/osdev-challenge/AccessibilityFixer/commit/0b8f48eedfc72649f337c912cbd38b1b127f395f)), closes [#29](https://github.com/osdev-challenge/AccessibilityFixer/issues/29) [#29](https://github.com/osdev-challenge/AccessibilityFixer/issues/29) [#29](https://github.com/osdev-challenge/AccessibilityFixer/issues/29) [feature/#29](https://github.com/osdev-challenge/AccessibilityFixer/issues/29)
+
 ## [2.1.2](https://github.com/osdev-challenge/AccessibilityFixer/compare/v2.1.1...v2.1.2) (2025-10-12)
 
 
