@@ -2,7 +2,7 @@
   "name": "accessibilityfixer",
   "displayName": "AccessibilityFixer",
   "description": "Automatically detect and fix common accessibility issues in your React code, with AI-powered suggestions and quick fixes.",
-  "version": "2.1.1",
+  "version": "2.1.3",
   "publisher": "uno-accessibilityfixer",
   "icon": "images/logo.png",
   "engines": {

@@ -1,3 +1,24 @@
+## [2.1.3](https://github.com/osdev-challenge/AccessibilityFixer/compare/v2.1.2...v2.1.3) (2025-10-15)
+
+
+### Bug Fixes
+
+* edit license notices ([#47](https://github.com/osdev-challenge/AccessibilityFixer/issues/47)) ([0b8f48e](https://github.com/osdev-challenge/AccessibilityFixer/commit/0b8f48eedfc72649f337c912cbd38b1b127f395f)), closes [#29](https://github.com/osdev-challenge/AccessibilityFixer/issues/29) [#29](https://github.com/osdev-challenge/AccessibilityFixer/issues/29) [#29](https://github.com/osdev-challenge/AccessibilityFixer/issues/29) [feature/#29](https://github.com/osdev-challenge/AccessibilityFixer/issues/29)
+
+## [2.1.2](https://github.com/osdev-challenge/AccessibilityFixer/compare/v2.1.1...v2.1.2) (2025-10-12)
+
+
+### Bug Fixes
+
+* exclude .env and sensitive files from VSIX package ([#46](https://github.com/osdev-challenge/AccessibilityFixer/issues/46)) ([ed61ddd](https://github.com/osdev-challenge/AccessibilityFixer/commit/ed61ddd62ac6767da427600a7876fe2c95db74c1)), closes [#29](https://github.com/osdev-challenge/AccessibilityFixer/issues/29) [#29](https://github.com/osdev-challenge/AccessibilityFixer/issues/29) [#29](https://github.com/osdev-challenge/AccessibilityFixer/issues/29) [feature/#29](https://github.com/osdev-challenge/AccessibilityFixer/issues/29)
+* resolve duplicate fix issue and improve quick fix UX & AI prompt ([#42](https://github.com/osdev-challenge/AccessibilityFixer/issues/42)) ([82969a2](https://github.com/osdev-challenge/AccessibilityFixer/commit/82969a28a9b04aa05a29e4ce21ea1fbc09ff4ad1)), closes [#29](https://github.com/osdev-challenge/AccessibilityFixer/issues/29) [#29](https://github.com/osdev-challenge/AccessibilityFixer/issues/29) [#29](https://github.com/osdev-challenge/AccessibilityFixer/issues/29) [feature/#29](https://github.com/osdev-challenge/AccessibilityFixer/issues/29)
+* resolve duplicate fix issue and improve quick fix UX & AI prompt(fixed) ([#45](https://github.com/osdev-challenge/AccessibilityFixer/issues/45)) ([eab3bdb](https://github.com/osdev-challenge/AccessibilityFixer/commit/eab3bdb98520840ccd702368556683f423381358)), closes [#29](https://github.com/osdev-challenge/AccessibilityFixer/issues/29) [#29](https://github.com/osdev-challenge/AccessibilityFixer/issues/29) [#29](https://github.com/osdev-challenge/AccessibilityFixer/issues/29) [feature/#29](https://github.com/osdev-challenge/AccessibilityFixer/issues/29)
+
+
+### Reverts
+
+* Revert "fix: resolve duplicate fix issue and improve quick fix UX & AI prompt…" ([#44](https://github.com/osdev-challenge/AccessibilityFixer/issues/44)) ([b874a73](https://github.com/osdev-challenge/AccessibilityFixer/commit/b874a736ee30640adfa0079fe391c96cb197b201))
+
 # Change Log
 
 All notable changes to the "AccessibilityFixer" extension will be documented in this file.
