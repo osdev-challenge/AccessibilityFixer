@@ -4,241 +4,241 @@ This document provides license information for third-party open-source component
 used in the **AccessibilityFixer** project.  
 The list below includes the direct dependencies declared in `package.json`.
 
-[@babel/code-frame@7.27.1](https://github.com/babel/babel) - MIT
-[@babel/generator@7.28.3](https://github.com/babel/babel) - MIT
-[@babel/helper-globals@7.28.0](https://github.com/babel/babel) - MIT
-[@babel/helper-string-parser@7.27.1](https://github.com/babel/babel) - MIT
-[@babel/helper-validator-identifier@7.27.1](https://github.com/babel/babel) - MIT
-[@babel/parser@7.28.4](https://github.com/babel/babel) - MIT
-[@babel/template@7.27.2](https://github.com/babel/babel) - MIT
-[@babel/traverse@7.28.4](https://github.com/babel/babel) - MIT
-[@babel/types@7.28.4](https://github.com/babel/babel) - MIT
-[@cspotcode/source-map-support@0.8.1](https://github.com/cspotcode/node-source-map-support) - MIT
-[@eslint-community/eslint-utils@4.9.0](https://github.com/eslint-community/eslint-utils) - MIT
-[@eslint-community/regexpp@4.12.1](https://github.com/eslint-community/regexpp) - MIT
-[@eslint/config-array@0.21.0](https://github.com/eslint/rewrite) - Apache-2.0
-[@eslint/config-helpers@0.3.1](https://github.com/eslint/rewrite) - Apache-2.0
-[@eslint/core@0.15.2](https://github.com/eslint/rewrite) - Apache-2.0
-[@eslint/eslintrc@3.3.1](https://github.com/eslint/eslintrc) - MIT
-[@eslint/js@9.35.0](https://github.com/eslint/eslint) - MIT
-[@eslint/object-schema@2.1.6](https://github.com/eslint/rewrite) - Apache-2.0
-[@eslint/plugin-kit@0.3.5](https://github.com/eslint/rewrite) - Apache-2.0
-[@humanfs/core@0.19.1](https://github.com/humanwhocodes/humanfs) - Apache-2.0
-[@humanfs/node@0.16.7](https://github.com/humanwhocodes/humanfs) - Apache-2.0
-[@humanwhocodes/module-importer@1.0.1](https://github.com/humanwhocodes/module-importer) - Apache-2.0
-[@humanwhocodes/retry@0.4.3](https://github.com/humanwhocodes/retry) - Apache-2.0
-[@jridgewell/gen-mapping@0.3.13](https://github.com/jridgewell/sourcemaps) - MIT
-[@jridgewell/resolve-uri@3.1.2](https://github.com/jridgewell/resolve-uri) - MIT
-[@jridgewell/sourcemap-codec@1.5.5](https://github.com/jridgewell/sourcemaps) - MIT
-[@jridgewell/trace-mapping@0.3.31](https://github.com/jridgewell/sourcemaps) - MIT
-[@jridgewell/trace-mapping@0.3.9](https://github.com/jridgewell/trace-mapping) - MIT
-[@tsconfig/node10@1.0.11](https://github.com/tsconfig/bases) - MIT
-[@tsconfig/node12@1.0.11](https://github.com/tsconfig/bases) - MIT
-[@tsconfig/node14@1.0.3](https://github.com/tsconfig/bases) - MIT
-[@tsconfig/node16@1.0.4](https://github.com/tsconfig/bases) - MIT
-[@types/estree@1.0.8](https://github.com/DefinitelyTyped/DefinitelyTyped) - MIT
-[@types/json-schema@7.0.15](https://github.com/DefinitelyTyped/DefinitelyTyped) - MIT
-[@types/node@20.19.14](https://github.com/DefinitelyTyped/DefinitelyTyped) - MIT
-[accessibilityfixer@2.1.1](https://github.com/osdev-challenge/AccessibilityFixer) - MIT\*
-[acorn-jsx@5.3.2](https://github.com/acornjs/acorn-jsx) - MIT
-[acorn-walk@8.3.4](https://github.com/acornjs/acorn) - MIT
-[acorn@8.15.0](https://github.com/acornjs/acorn) - MIT
-[ajv@6.12.6](https://github.com/ajv-validator/ajv) - MIT
-[ansi-styles@4.3.0](https://github.com/chalk/ansi-styles) - MIT
-[arg@4.1.3](https://github.com/zeit/arg) - MIT
-[argparse@2.0.1](https://github.com/nodeca/argparse) - Python-2.0
-[aria-query@5.3.2](https://github.com/A11yance/aria-query) - Apache-2.0
-[array-buffer-byte-length@1.0.2](https://github.com/inspect-js/array-buffer-byte-length) - MIT
-[array-includes@3.1.9](https://github.com/es-shims/array-includes) - MIT
-[array.prototype.flat@1.3.3](https://github.com/es-shims/Array.prototype.flat) - MIT
-[array.prototype.flatmap@1.3.3](https://github.com/es-shims/Array.prototype.flatMap) - MIT
-[arraybuffer.prototype.slice@1.0.4](https://github.com/es-shims/ArrayBuffer.prototype.slice) - MIT
-[ast-types-flow@0.0.8](https://github.com/kyldvs/ast-types-flow) - MIT
-[async-function@1.0.0](https://github.com/ljharb/async-function) - MIT
-[asynckit@0.4.0](https://github.com/alexindigo/asynckit) - MIT
-[available-typed-arrays@1.0.7](https://github.com/inspect-js/available-typed-arrays) - MIT
-[axe-core@4.10.3](https://github.com/dequelabs/axe-core) - MPL-2.0
-[axios@1.12.1](https://github.com/axios/axios) - MIT
-[axobject-query@4.1.0](https://github.com/A11yance/axobject-query) - Apache-2.0
-[balanced-match@1.0.2](https://github.com/juliangruber/balanced-match) - MIT
-[brace-expansion@1.1.12](https://github.com/juliangruber/brace-expansion) - MIT
-[call-bind-apply-helpers@1.0.2](https://github.com/ljharb/call-bind-apply-helpers) - MIT
-[call-bind@1.0.8](https://github.com/ljharb/call-bind) - MIT
-[call-bound@1.0.4](https://github.com/ljharb/call-bound) - MIT
-[callsites@3.1.0](https://github.com/sindresorhus/callsites) - MIT
-[chalk@4.1.2](https://github.com/chalk/chalk) - MIT
-[color-convert@2.0.1](https://github.com/Qix-/color-convert) - MIT
-[color-name@1.1.4](https://github.com/colorjs/color-name) - MIT
-[combined-stream@1.0.8](https://github.com/felixge/node-combined-stream) - MIT
-[concat-map@0.0.1](https://github.com/substack/node-concat-map) - MIT
-[create-require@1.1.1](https://github.com/nuxt-contrib/create-require) - MIT
-[cross-spawn@7.0.6](https://github.com/moxystudio/node-cross-spawn) - MIT
-[damerau-levenshtein@1.0.8](https://github.com/tad-lispy/node-damerau-levenshtein) - BSD-2-Clause
-[data-view-buffer@1.0.2](https://github.com/inspect-js/data-view-buffer) - MIT
-[data-view-byte-length@1.0.2](https://github.com/inspect-js/data-view-byte-length) - MIT
-[data-view-byte-offset@1.0.1](https://github.com/inspect-js/data-view-byte-offset) - MIT
-[debug@4.4.3](https://github.com/debug-js/debug) - MIT
-[deep-is@0.1.4](https://github.com/thlorenz/deep-is) - MIT
-[define-data-property@1.1.4](https://github.com/ljharb/define-data-property) - MIT
-[define-properties@1.2.1](https://github.com/ljharb/define-properties) - MIT
-[delayed-stream@1.0.0](https://github.com/felixge/node-delayed-stream) - MIT
-[diff@4.0.2](https://github.com/kpdecker/jsdiff) - BSD-3-Clause
-[dotenv@17.2.2](https://github.com/motdotla/dotenv) - BSD-2-Clause
-[dunder-proto@1.0.1](https://github.com/es-shims/dunder-proto) - MIT
-[emoji-regex@9.2.2](https://github.com/mathiasbynens/emoji-regex) - MIT
-[es-abstract@1.24.0](https://github.com/ljharb/es-abstract) - MIT
-[es-define-property@1.0.1](https://github.com/ljharb/es-define-property) - MIT
-[es-errors@1.3.0](https://github.com/ljharb/es-errors) - MIT
-[es-object-atoms@1.1.1](https://github.com/ljharb/es-object-atoms) - MIT
-[es-set-tostringtag@2.1.0](https://github.com/es-shims/es-set-tostringtag) - MIT
-[es-shim-unscopables@1.1.0](https://github.com/ljharb/es-shim-unscopables) - MIT
-[es-to-primitive@1.3.0](https://github.com/ljharb/es-to-primitive) - MIT
-[escape-string-regexp@4.0.0](https://github.com/sindresorhus/escape-string-regexp) - MIT
-[eslint-plugin-jsx-a11y@6.10.2](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y) - MIT
-[eslint-scope@8.4.0](https://github.com/eslint/js) - BSD-2-Clause
-[eslint-visitor-keys@3.4.3](https://github.com/eslint/eslint-visitor-keys) - Apache-2.0
-[eslint-visitor-keys@4.2.1](https://github.com/eslint/js) - Apache-2.0
-[eslint@9.35.0](https://github.com/eslint/eslint) - MIT
-[espree@10.4.0](https://github.com/eslint/js) - BSD-2-Clause
-[esquery@1.6.0](https://github.com/estools/esquery) - BSD-3-Clause
-[esrecurse@4.3.0](https://github.com/estools/esrecurse) - BSD-2-Clause
-[estraverse@5.3.0](https://github.com/estools/estraverse) - BSD-2-Clause
-[esutils@2.0.3](https://github.com/estools/esutils) - BSD-2-Clause
-[fast-deep-equal@3.1.3](https://github.com/epoberezkin/fast-deep-equal) - MIT
-[fast-json-stable-stringify@2.1.0](https://github.com/epoberezkin/fast-json-stable-stringify) - MIT
-[fast-levenshtein@2.0.6](https://github.com/hiddentao/fast-levenshtein) - MIT
-[file-entry-cache@8.0.0](https://github.com/jaredwray/file-entry-cache) - MIT
-[find-up@5.0.0](https://github.com/sindresorhus/find-up) - MIT
-[flat-cache@4.0.1](https://github.com/jaredwray/flat-cache) - MIT
-[flatted@3.3.3](https://github.com/WebReflection/flatted) - ISC
-[follow-redirects@1.15.11](https://github.com/follow-redirects/follow-redirects) - MIT
-[for-each@0.3.5](https://github.com/Raynos/for-each) - MIT
-[form-data@4.0.4](https://github.com/form-data/form-data) - MIT
-[function-bind@1.1.2](https://github.com/Raynos/function-bind) - MIT
-[function.prototype.name@1.1.8](https://github.com/es-shims/Function.prototype.name) - MIT
-[functions-have-names@1.2.3](https://github.com/inspect-js/functions-have-names) - MIT
-[get-intrinsic@1.3.0](https://github.com/ljharb/get-intrinsic) - MIT
-[get-proto@1.0.1](https://github.com/ljharb/get-proto) - MIT
-[get-symbol-description@1.1.0](https://github.com/inspect-js/get-symbol-description) - MIT
-[glob-parent@6.0.2](https://github.com/gulpjs/glob-parent) - ISC
-[globals@14.0.0](https://github.com/sindresorhus/globals) - MIT
-[globalthis@1.0.4](https://github.com/ljharb/System.global) - MIT
-[gopd@1.2.0](https://github.com/ljharb/gopd) - MIT
-[has-bigints@1.1.0](https://github.com/ljharb/has-bigints) - MIT
-[has-flag@4.0.0](https://github.com/sindresorhus/has-flag) - MIT
-[has-property-descriptors@1.0.2](https://github.com/inspect-js/has-property-descriptors) - MIT
-[has-proto@1.2.0](https://github.com/inspect-js/has-proto) - MIT
-[has-symbols@1.1.0](https://github.com/inspect-js/has-symbols) - MIT
-[has-tostringtag@1.0.2](https://github.com/inspect-js/has-tostringtag) - MIT
-[hasown@2.0.2](https://github.com/inspect-js/hasOwn) - MIT
-[ignore@5.3.2](https://github.com/kaelzhang/node-ignore) - MIT
-[import-fresh@3.3.1](https://github.com/sindresorhus/import-fresh) - MIT
-[imurmurhash@0.1.4](https://github.com/jensyt/imurmurhash-js) - MIT
-[internal-slot@1.1.0](https://github.com/ljharb/internal-slot) - MIT
-[is-array-buffer@3.0.5](https://github.com/inspect-js/is-array-buffer) - MIT
-[is-async-function@2.1.1](https://github.com/inspect-js/is-async-function) - MIT
-[is-bigint@1.1.0](https://github.com/inspect-js/is-bigint) - MIT
-[is-boolean-object@1.2.2](https://github.com/inspect-js/is-boolean-object) - MIT
-[is-callable@1.2.7](https://github.com/inspect-js/is-callable) - MIT
-[is-data-view@1.0.2](https://github.com/inspect-js/is-data-view) - MIT
-[is-date-object@1.1.0](https://github.com/inspect-js/is-date-object) - MIT
-[is-extglob@2.1.1](https://github.com/jonschlinkert/is-extglob) - MIT
-[is-finalizationregistry@1.1.1](https://github.com/inspect-js/is-finalizationregistry) - MIT
-[is-generator-function@1.1.0](https://github.com/inspect-js/is-generator-function) - MIT
-[is-glob@4.0.3](https://github.com/micromatch/is-glob) - MIT
-[is-map@2.0.3](https://github.com/inspect-js/is-map) - MIT
-[is-negative-zero@2.0.3](https://github.com/inspect-js/is-negative-zero) - MIT
-[is-number-object@1.1.1](https://github.com/inspect-js/is-number-object) - MIT
-[is-regex@1.2.1](https://github.com/inspect-js/is-regex) - MIT
-[is-set@2.0.3](https://github.com/inspect-js/is-set) - MIT
-[is-shared-array-buffer@1.0.4](https://github.com/inspect-js/is-shared-array-buffer) - MIT
-[is-string@1.1.1](https://github.com/inspect-js/is-string) - MIT
-[is-symbol@1.1.1](https://github.com/inspect-js/is-symbol) - MIT
-[is-typed-array@1.1.15](https://github.com/inspect-js/is-typed-array) - MIT
-[is-weakmap@2.0.2](https://github.com/inspect-js/is-weakmap) - MIT
-[is-weakref@1.1.1](https://github.com/inspect-js/is-weakref) - MIT
-[is-weakset@2.0.4](https://github.com/inspect-js/is-weakset) - MIT
-[isarray@2.0.5](https://github.com/juliangruber/isarray) - MIT
-[isexe@2.0.0](https://github.com/isaacs/isexe) - ISC
-[js-tokens@4.0.0](https://github.com/lydell/js-tokens) - MIT
-[js-yaml@4.1.0](https://github.com/nodeca/js-yaml) - MIT
-[jsesc@3.1.0](https://github.com/mathiasbynens/jsesc) - MIT
-[json-buffer@3.0.1](https://github.com/dominictarr/json-buffer) - MIT
-[json-schema-traverse@0.4.1](https://github.com/epoberezkin/json-schema-traverse) - MIT
-[json-stable-stringify-without-jsonify@1.0.1](https://github.com/samn/json-stable-stringify) - MIT
-[jsx-ast-utils@3.3.5](https://github.com/jsx-eslint/jsx-ast-utils) - MIT
-[keyv@4.5.4](https://github.com/jaredwray/keyv) - MIT
-[language-subtag-registry@0.3.23](https://github.com/mattcg/language-subtag-registry) - CC0-1.0
-[language-tags@1.0.9](https://github.com/mattcg/language-tags) - MIT
-[levn@0.4.1](https://github.com/gkz/levn) - MIT
-[locate-path@6.0.0](https://github.com/sindresorhus/locate-path) - MIT
-[lodash.merge@4.6.2](https://github.com/lodash/lodash) - MIT
-[make-error@1.3.6](https://github.com/JsCommunity/make-error) - ISC
-[math-intrinsics@1.1.0](https://github.com/es-shims/math-intrinsics) - MIT
-[mime-db@1.52.0](https://github.com/jshttp/mime-db) - MIT
-[mime-types@2.1.35](https://github.com/jshttp/mime-types) - MIT
-[minimatch@3.1.2](https://github.com/isaacs/minimatch) - ISC
-[ms@2.1.3](https://github.com/vercel/ms) - MIT
-[natural-compare@1.4.0](https://github.com/litejs/natural-compare-lite) - MIT
-[object-inspect@1.13.4](https://github.com/inspect-js/object-inspect) - MIT
-[object-keys@1.1.1](https://github.com/ljharb/object-keys) - MIT
-[object.assign@4.1.7](https://github.com/ljharb/object.assign) - MIT
-[object.fromentries@2.0.8](https://github.com/es-shims/Object.fromEntries) - MIT
-[object.values@1.2.1](https://github.com/es-shims/Object.values) - MIT
-[optionator@0.9.4](https://github.com/gkz/optionator) - MIT
-[own-keys@1.0.1](https://github.com/ljharb/own-keys) - MIT
-[p-limit@3.1.0](https://github.com/sindresorhus/p-limit) - MIT
-[p-locate@5.0.0](https://github.com/sindresorhus/p-locate) - MIT
-[parent-module@1.0.1](https://github.com/sindresorhus/parent-module) - MIT
-[path-exists@4.0.0](https://github.com/sindresorhus/path-exists) - MIT
-[path-key@3.1.1](https://github.com/sindresorhus/path-key) - MIT
-[picocolors@1.1.1](https://github.com/alexeyraspopov/picocolors) - ISC
-[possible-typed-array-names@1.1.0](https://github.com/ljharb/possible-typed-array-names) - MIT
-[prelude-ls@1.2.1](https://github.com/gkz/prelude-ls) - MIT
-[proxy-from-env@1.1.0](https://github.com/Rob--W/proxy-from-env) - MIT
-[punycode@2.3.1](https://github.com/mathiasbynens/punycode.js) - MIT
-[react@19.1.1](https://github.com/facebook/react) - MIT
-[reflect.getprototypeof@1.0.10](https://github.com/es-shims/Reflect.getPrototypeOf) - MIT
-[regexp.prototype.flags@1.5.4](https://github.com/es-shims/RegExp.prototype.flags) - MIT
-[resolve-from@4.0.0](https://github.com/sindresorhus/resolve-from) - MIT
-[safe-array-concat@1.1.3](https://github.com/ljharb/safe-array-concat) - MIT
-[safe-push-apply@1.0.0](https://github.com/ljharb/safe-push-apply) - MIT
-[safe-regex-test@1.1.0](https://github.com/ljharb/safe-regex-test) - MIT
-[set-function-length@1.2.2](https://github.com/ljharb/set-function-length) - MIT
-[set-function-name@2.0.2](https://github.com/ljharb/set-function-name) - MIT
-[set-proto@1.0.0](https://github.com/ljharb/set-proto) - MIT
-[shebang-command@2.0.0](https://github.com/kevva/shebang-command) - MIT
-[shebang-regex@3.0.0](https://github.com/sindresorhus/shebang-regex) - MIT
-[side-channel-list@1.0.0](https://github.com/ljharb/side-channel-list) - MIT
-[side-channel-map@1.0.1](https://github.com/ljharb/side-channel-map) - MIT
-[side-channel-weakmap@1.0.2](https://github.com/ljharb/side-channel-weakmap) - MIT
-[side-channel@1.1.0](https://github.com/ljharb/side-channel) - MIT
-[stop-iteration-iterator@1.1.0](https://github.com/ljharb/stop-iteration-iterator) - MIT
-[string.prototype.includes@2.0.1](https://github.com/mathiasbynens/String.prototype.includes) - MIT
-[string.prototype.trim@1.2.10](https://github.com/es-shims/String.prototype.trim) - MIT
-[string.prototype.trimend@1.0.9](https://github.com/es-shims/String.prototype.trimEnd) - MIT
-[string.prototype.trimstart@1.0.8](https://github.com/es-shims/String.prototype.trimStart) - MIT
-[strip-json-comments@3.1.1](https://github.com/sindresorhus/strip-json-comments) - MIT
-[supports-color@7.2.0](https://github.com/chalk/supports-color) - MIT
-[ts-node@10.9.2](https://github.com/TypeStrong/ts-node) - MIT
-[type-check@0.4.0](https://github.com/gkz/type-check) - MIT
-[typed-array-buffer@1.0.3](https://github.com/inspect-js/typed-array-buffer) - MIT
-[typed-array-byte-length@1.0.3](https://github.com/inspect-js/typed-array-byte-length) - MIT
-[typed-array-byte-offset@1.0.4](https://github.com/inspect-js/typed-array-byte-offset) - MIT
-[typed-array-length@1.0.7](https://github.com/inspect-js/typed-array-length) - MIT
-[typescript@5.9.2](https://github.com/microsoft/TypeScript) - Apache-2.0
-[unbox-primitive@1.1.0](https://github.com/ljharb/unbox-primitive) - MIT
-[undici-types@6.21.0](https://github.com/nodejs/undici) - MIT
-[uri-js@4.4.1](https://github.com/garycourt/uri-js) - BSD-2-Clause
-[v8-compile-cache-lib@3.0.1](https://github.com/cspotcode/v8-compile-cache-lib) - MIT
-[which-boxed-primitive@1.1.1](https://github.com/inspect-js/which-boxed-primitive) - MIT
-[which-builtin-type@1.2.1](https://github.com/inspect-js/which-builtin-type) - MIT
-[which-collection@1.0.2](https://github.com/inspect-js/which-collection) - MIT
-[which-typed-array@1.1.19](https://github.com/inspect-js/which-typed-array) - MIT
-[which@2.0.2](https://github.com/isaacs/node-which) - ISC
-[word-wrap@1.2.5](https://github.com/jonschlinkert/word-wrap) - MIT
-[yn@3.1.1](https://github.com/sindresorhus/yn) - MIT
-[yocto-queue@0.1.0](https://github.com/sindresorhus/yocto-queue) - MIT
+- [@babel/code-frame@7.27.1](https://github.com/babel/babel) - MIT
+- [@babel/generator@7.28.3](https://github.com/babel/babel) - MIT
+- [@babel/helper-globals@7.28.0](https://github.com/babel/babel) - MIT
+- [@babel/helper-string-parser@7.27.1](https://github.com/babel/babel) - MIT
+- [@babel/helper-validator-identifier@7.27.1](https://github.com/babel/babel) - MIT
+- [@babel/parser@7.28.4](https://github.com/babel/babel) - MIT
+- [@babel/template@7.27.2](https://github.com/babel/babel) - MIT
+- [@babel/traverse@7.28.4](https://github.com/babel/babel) - MIT
+- [@babel/types@7.28.4](https://github.com/babel/babel) - MIT
+- [@cspotcode/source-map-support@0.8.1](https://github.com/cspotcode/node-source-map-support) - MIT
+- [@eslint-community/eslint-utils@4.9.0](https://github.com/eslint-community/eslint-utils) - MIT
+- [@eslint-community/regexpp@4.12.1](https://github.com/eslint-community/regexpp) - MIT
+- [@eslint/config-array@0.21.0](https://github.com/eslint/rewrite) - Apache-2.0
+- [@eslint/config-helpers@0.3.1](https://github.com/eslint/rewrite) - Apache-2.0
+- [@eslint/core@0.15.2](https://github.com/eslint/rewrite) - Apache-2.0
+- [@eslint/eslintrc@3.3.1](https://github.com/eslint/eslintrc) - MIT
+- [@eslint/js@9.35.0](https://github.com/eslint/eslint) - MIT
+- [@eslint/object-schema@2.1.6](https://github.com/eslint/rewrite) - Apache-2.0
+- [@eslint/plugin-kit@0.3.5](https://github.com/eslint/rewrite) - Apache-2.0
+- [@humanfs/core@0.19.1](https://github.com/humanwhocodes/humanfs) - Apache-2.0
+- [@humanfs/node@0.16.7](https://github.com/humanwhocodes/humanfs) - Apache-2.0
+- [@humanwhocodes/module-importer@1.0.1](https://github.com/humanwhocodes/module-importer) - Apache-2.0
+- [@humanwhocodes/retry@0.4.3](https://github.com/humanwhocodes/retry) - Apache-2.0
+- [@jridgewell/gen-mapping@0.3.13](https://github.com/jridgewell/sourcemaps) - MIT
+- [@jridgewell/resolve-uri@3.1.2](https://github.com/jridgewell/resolve-uri) - MIT
+- [@jridgewell/sourcemap-codec@1.5.5](https://github.com/jridgewell/sourcemaps) - MIT
+- [@jridgewell/trace-mapping@0.3.31](https://github.com/jridgewell/sourcemaps) - MIT
+- [@jridgewell/trace-mapping@0.3.9](https://github.com/jridgewell/trace-mapping) - MIT
+- [@tsconfig/node10@1.0.11](https://github.com/tsconfig/bases) - MIT
+- [@tsconfig/node12@1.0.11](https://github.com/tsconfig/bases) - MIT
+- [@tsconfig/node14@1.0.3](https://github.com/tsconfig/bases) - MIT
+- [@tsconfig/node16@1.0.4](https://github.com/tsconfig/bases) - MIT
+- [@types/estree@1.0.8](https://github.com/DefinitelyTyped/DefinitelyTyped) - MIT
+- [@types/json-schema@7.0.15](https://github.com/DefinitelyTyped/DefinitelyTyped) - MIT
+- [@types/node@20.19.14](https://github.com/DefinitelyTyped/DefinitelyTyped) - MIT
+- [accessibilityfixer@2.1.1](https://github.com/osdev-challenge/AccessibilityFixer) - MIT\*
+- [acorn-jsx@5.3.2](https://github.com/acornjs/acorn-jsx) - MIT
+- [acorn-walk@8.3.4](https://github.com/acornjs/acorn) - MIT
+- [acorn@8.15.0](https://github.com/acornjs/acorn) - MIT
+- [ajv@6.12.6](https://github.com/ajv-validator/ajv) - MIT
+- [ansi-styles@4.3.0](https://github.com/chalk/ansi-styles) - MIT
+- [arg@4.1.3](https://github.com/zeit/arg) - MIT
+- [argparse@2.0.1](https://github.com/nodeca/argparse) - Python-2.0
+- [aria-query@5.3.2](https://github.com/A11yance/aria-query) - Apache-2.0
+- [array-buffer-byte-length@1.0.2](https://github.com/inspect-js/array-buffer-byte-length) - MIT
+- [array-includes@3.1.9](https://github.com/es-shims/array-includes) - MIT
+- [array.prototype.flat@1.3.3](https://github.com/es-shims/Array.prototype.flat) - MIT
+- [array.prototype.flatmap@1.3.3](https://github.com/es-shims/Array.prototype.flatMap) - MIT
+- [arraybuffer.prototype.slice@1.0.4](https://github.com/es-shims/ArrayBuffer.prototype.slice) - MIT
+- [ast-types-flow@0.0.8](https://github.com/kyldvs/ast-types-flow) - MIT
+- [async-function@1.0.0](https://github.com/ljharb/async-function) - MIT
+- [asynckit@0.4.0](https://github.com/alexindigo/asynckit) - MIT
+- [available-typed-arrays@1.0.7](https://github.com/inspect-js/available-typed-arrays) - MIT
+- [axe-core@4.10.3](https://github.com/dequelabs/axe-core) - MPL-2.0
+- [axios@1.12.1](https://github.com/axios/axios) - MIT
+- [axobject-query@4.1.0](https://github.com/A11yance/axobject-query) - Apache-2.0
+- [balanced-match@1.0.2](https://github.com/juliangruber/balanced-match) - MIT
+- [brace-expansion@1.1.12](https://github.com/juliangruber/brace-expansion) - MIT
+- [call-bind-apply-helpers@1.0.2](https://github.com/ljharb/call-bind-apply-helpers) - MIT
+- [call-bind@1.0.8](https://github.com/ljharb/call-bind) - MIT
+- [call-bound@1.0.4](https://github.com/ljharb/call-bound) - MIT
+- [callsites@3.1.0](https://github.com/sindresorhus/callsites) - MIT
+- [chalk@4.1.2](https://github.com/chalk/chalk) - MIT
+- [color-convert@2.0.1](https://github.com/Qix-/color-convert) - MIT
+- [color-name@1.1.4](https://github.com/colorjs/color-name) - MIT
+- [combined-stream@1.0.8](https://github.com/felixge/node-combined-stream) - MIT
+- [concat-map@0.0.1](https://github.com/substack/node-concat-map) - MIT
+- [create-require@1.1.1](https://github.com/nuxt-contrib/create-require) - MIT
+- [cross-spawn@7.0.6](https://github.com/moxystudio/node-cross-spawn) - MIT
+- [damerau-levenshtein@1.0.8](https://github.com/tad-lispy/node-damerau-levenshtein) - BSD-2-Clause
+- [data-view-buffer@1.0.2](https://github.com/inspect-js/data-view-buffer) - MIT
+- [data-view-byte-length@1.0.2](https://github.com/inspect-js/data-view-byte-length) - MIT
+- [data-view-byte-offset@1.0.1](https://github.com/inspect-js/data-view-byte-offset) - MIT
+- [debug@4.4.3](https://github.com/debug-js/debug) - MIT
+- [deep-is@0.1.4](https://github.com/thlorenz/deep-is) - MIT
+- [define-data-property@1.1.4](https://github.com/ljharb/define-data-property) - MIT
+- [define-properties@1.2.1](https://github.com/ljharb/define-properties) - MIT
+- [delayed-stream@1.0.0](https://github.com/felixge/node-delayed-stream) - MIT
+- [diff@4.0.2](https://github.com/kpdecker/jsdiff) - BSD-3-Clause
+- [dotenv@17.2.2](https://github.com/motdotla/dotenv) - BSD-2-Clause
+- [dunder-proto@1.0.1](https://github.com/es-shims/dunder-proto) - MIT
+- [emoji-regex@9.2.2](https://github.com/mathiasbynens/emoji-regex) - MIT
+- [es-abstract@1.24.0](https://github.com/ljharb/es-abstract) - MIT
+- [es-define-property@1.0.1](https://github.com/ljharb/es-define-property) - MIT
+- [es-errors@1.3.0](https://github.com/ljharb/es-errors) - MIT
+- [es-object-atoms@1.1.1](https://github.com/ljharb/es-object-atoms) - MIT
+- [es-set-tostringtag@2.1.0](https://github.com/es-shims/es-set-tostringtag) - MIT
+- [es-shim-unscopables@1.1.0](https://github.com/ljharb/es-shim-unscopables) - MIT
+- [es-to-primitive@1.3.0](https://github.com/ljharb/es-to-primitive) - MIT
+- [escape-string-regexp@4.0.0](https://github.com/sindresorhus/escape-string-regexp) - MIT
+- [eslint-plugin-jsx-a11y@6.10.2](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y) - MIT
+- [eslint-scope@8.4.0](https://github.com/eslint/js) - BSD-2-Clause
+- [eslint-visitor-keys@3.4.3](https://github.com/eslint/eslint-visitor-keys) - Apache-2.0
+- [eslint-visitor-keys@4.2.1](https://github.com/eslint/js) - Apache-2.0
+- [eslint@9.35.0](https://github.com/eslint/eslint) - MIT
+- [espree@10.4.0](https://github.com/eslint/js) - BSD-2-Clause
+- [esquery@1.6.0](https://github.com/estools/esquery) - BSD-3-Clause
+- [esrecurse@4.3.0](https://github.com/estools/esrecurse) - BSD-2-Clause
+- [estraverse@5.3.0](https://github.com/estools/estraverse) - BSD-2-Clause
+- [esutils@2.0.3](https://github.com/estools/esutils) - BSD-2-Clause
+- [fast-deep-equal@3.1.3](https://github.com/epoberezkin/fast-deep-equal) - MIT
+- [fast-json-stable-stringify@2.1.0](https://github.com/epoberezkin/fast-json-stable-stringify) - MIT
+- [fast-levenshtein@2.0.6](https://github.com/hiddentao/fast-levenshtein) - MIT
+- [file-entry-cache@8.0.0](https://github.com/jaredwray/file-entry-cache) - MIT
+- [find-up@5.0.0](https://github.com/sindresorhus/find-up) - MIT
+- [flat-cache@4.0.1](https://github.com/jaredwray/flat-cache) - MIT
+- [flatted@3.3.3](https://github.com/WebReflection/flatted) - ISC
+- [follow-redirects@1.15.11](https://github.com/follow-redirects/follow-redirects) - MIT
+- [for-each@0.3.5](https://github.com/Raynos/for-each) - MIT
+- [form-data@4.0.4](https://github.com/form-data/form-data) - MIT
+- [function-bind@1.1.2](https://github.com/Raynos/function-bind) - MIT
+- [function.prototype.name@1.1.8](https://github.com/es-shims/Function.prototype.name) - MIT
+- [functions-have-names@1.2.3](https://github.com/inspect-js/functions-have-names) - MIT
+- [get-intrinsic@1.3.0](https://github.com/ljharb/get-intrinsic) - MIT
+- [get-proto@1.0.1](https://github.com/ljharb/get-proto) - MIT
+- [get-symbol-description@1.1.0](https://github.com/inspect-js/get-symbol-description) - MIT
+- [glob-parent@6.0.2](https://github.com/gulpjs/glob-parent) - ISC
+- [globals@14.0.0](https://github.com/sindresorhus/globals) - MIT
+- [globalthis@1.0.4](https://github.com/ljharb/System.global) - MIT
+- [gopd@1.2.0](https://github.com/ljharb/gopd) - MIT
+- [has-bigints@1.1.0](https://github.com/ljharb/has-bigints) - MIT
+- [has-flag@4.0.0](https://github.com/sindresorhus/has-flag) - MIT
+- [has-property-descriptors@1.0.2](https://github.com/inspect-js/has-property-descriptors) - MIT
+- [has-proto@1.2.0](https://github.com/inspect-js/has-proto) - MIT
+- [has-symbols@1.1.0](https://github.com/inspect-js/has-symbols) - MIT
+- [has-tostringtag@1.0.2](https://github.com/inspect-js/has-tostringtag) - MIT
+- [hasown@2.0.2](https://github.com/inspect-js/hasOwn) - MIT
+- [ignore@5.3.2](https://github.com/kaelzhang/node-ignore) - MIT
+- [import-fresh@3.3.1](https://github.com/sindresorhus/import-fresh) - MIT
+- [imurmurhash@0.1.4](https://github.com/jensyt/imurmurhash-js) - MIT
+- [internal-slot@1.1.0](https://github.com/ljharb/internal-slot) - MIT
+- [is-array-buffer@3.0.5](https://github.com/inspect-js/is-array-buffer) - MIT
+- [is-async-function@2.1.1](https://github.com/inspect-js/is-async-function) - MIT
+- [is-bigint@1.1.0](https://github.com/inspect-js/is-bigint) - MIT
+- [is-boolean-object@1.2.2](https://github.com/inspect-js/is-boolean-object) - MIT
+- [is-callable@1.2.7](https://github.com/inspect-js/is-callable) - MIT
+- [is-data-view@1.0.2](https://github.com/inspect-js/is-data-view) - MIT
+- [is-date-object@1.1.0](https://github.com/inspect-js/is-date-object) - MIT
+- [is-extglob@2.1.1](https://github.com/jonschlinkert/is-extglob) - MIT
+- [is-finalizationregistry@1.1.1](https://github.com/inspect-js/is-finalizationregistry) - MIT
+- [is-generator-function@1.1.0](https://github.com/inspect-js/is-generator-function) - MIT
+- [is-glob@4.0.3](https://github.com/micromatch/is-glob) - MIT
+- [is-map@2.0.3](https://github.com/inspect-js/is-map) - MIT
+- [is-negative-zero@2.0.3](https://github.com/inspect-js/is-negative-zero) - MIT
+- [is-number-object@1.1.1](https://github.com/inspect-js/is-number-object) - MIT
+- [is-regex@1.2.1](https://github.com/inspect-js/is-regex) - MIT
+- [is-set@2.0.3](https://github.com/inspect-js/is-set) - MIT
+- [is-shared-array-buffer@1.0.4](https://github.com/inspect-js/is-shared-array-buffer) - MIT
+- [is-string@1.1.1](https://github.com/inspect-js/is-string) - MIT
+- [is-symbol@1.1.1](https://github.com/inspect-js/is-symbol) - MIT
+- [is-typed-array@1.1.15](https://github.com/inspect-js/is-typed-array) - MIT
+- [is-weakmap@2.0.2](https://github.com/inspect-js/is-weakmap) - MIT
+- [is-weakref@1.1.1](https://github.com/inspect-js/is-weakref) - MIT
+- [is-weakset@2.0.4](https://github.com/inspect-js/is-weakset) - MIT
+- [isarray@2.0.5](https://github.com/juliangruber/isarray) - MIT
+- [isexe@2.0.0](https://github.com/isaacs/isexe) - ISC
+- [js-tokens@4.0.0](https://github.com/lydell/js-tokens) - MIT
+- [js-yaml@4.1.0](https://github.com/nodeca/js-yaml) - MIT
+- [jsesc@3.1.0](https://github.com/mathiasbynens/jsesc) - MIT
+- [json-buffer@3.0.1](https://github.com/dominictarr/json-buffer) - MIT
+- [json-schema-traverse@0.4.1](https://github.com/epoberezkin/json-schema-traverse) - MIT
+- [json-stable-stringify-without-jsonify@1.0.1](https://github.com/samn/json-stable-stringify) - MIT
+- [jsx-ast-utils@3.3.5](https://github.com/jsx-eslint/jsx-ast-utils) - MIT
+- [keyv@4.5.4](https://github.com/jaredwray/keyv) - MIT
+- [language-subtag-registry@0.3.23](https://github.com/mattcg/language-subtag-registry) - CC0-1.0
+- [language-tags@1.0.9](https://github.com/mattcg/language-tags) - MIT
+- [levn@0.4.1](https://github.com/gkz/levn) - MIT
+- [locate-path@6.0.0](https://github.com/sindresorhus/locate-path) - MIT
+- [lodash.merge@4.6.2](https://github.com/lodash/lodash) - MIT
+- [make-error@1.3.6](https://github.com/JsCommunity/make-error) - ISC
+- [math-intrinsics@1.1.0](https://github.com/es-shims/math-intrinsics) - MIT
+- [mime-db@1.52.0](https://github.com/jshttp/mime-db) - MIT
+- [mime-types@2.1.35](https://github.com/jshttp/mime-types) - MIT
+- [minimatch@3.1.2](https://github.com/isaacs/minimatch) - ISC
+- [ms@2.1.3](https://github.com/vercel/ms) - MIT
+- [natural-compare@1.4.0](https://github.com/litejs/natural-compare-lite) - MIT
+- [object-inspect@1.13.4](https://github.com/inspect-js/object-inspect) - MIT
+- [object-keys@1.1.1](https://github.com/ljharb/object-keys) - MIT
+- [object.assign@4.1.7](https://github.com/ljharb/object.assign) - MIT
+- [object.fromentries@2.0.8](https://github.com/es-shims/Object.fromEntries) - MIT
+- [object.values@1.2.1](https://github.com/es-shims/Object.values) - MIT
+- [optionator@0.9.4](https://github.com/gkz/optionator) - MIT
+- [own-keys@1.0.1](https://github.com/ljharb/own-keys) - MIT
+- [p-limit@3.1.0](https://github.com/sindresorhus/p-limit) - MIT
+- [p-locate@5.0.0](https://github.com/sindresorhus/p-locate) - MIT
+- [parent-module@1.0.1](https://github.com/sindresorhus/parent-module) - MIT
+- [path-exists@4.0.0](https://github.com/sindresorhus/path-exists) - MIT
+- [path-key@3.1.1](https://github.com/sindresorhus/path-key) - MIT
+- [picocolors@1.1.1](https://github.com/alexeyraspopov/picocolors) - ISC
+- [possible-typed-array-names@1.1.0](https://github.com/ljharb/possible-typed-array-names) - MIT
+- [prelude-ls@1.2.1](https://github.com/gkz/prelude-ls) - MIT
+- [proxy-from-env@1.1.0](https://github.com/Rob--W/proxy-from-env) - MIT
+- [punycode@2.3.1](https://github.com/mathiasbynens/punycode.js) - MIT
+- [react@19.1.1](https://github.com/facebook/react) - MIT
+- [reflect.getprototypeof@1.0.10](https://github.com/es-shims/Reflect.getPrototypeOf) - MIT
+- [regexp.prototype.flags@1.5.4](https://github.com/es-shims/RegExp.prototype.flags) - MIT
+- [resolve-from@4.0.0](https://github.com/sindresorhus/resolve-from) - MIT
+- [safe-array-concat@1.1.3](https://github.com/ljharb/safe-array-concat) - MIT
+- [safe-push-apply@1.0.0](https://github.com/ljharb/safe-push-apply) - MIT
+- [safe-regex-test@1.1.0](https://github.com/ljharb/safe-regex-test) - MIT
+- [set-function-length@1.2.2](https://github.com/ljharb/set-function-length) - MIT
+- [set-function-name@2.0.2](https://github.com/ljharb/set-function-name) - MIT
+- [set-proto@1.0.0](https://github.com/ljharb/set-proto) - MIT
+- [shebang-command@2.0.0](https://github.com/kevva/shebang-command) - MIT
+- [shebang-regex@3.0.0](https://github.com/sindresorhus/shebang-regex) - MIT
+- [side-channel-list@1.0.0](https://github.com/ljharb/side-channel-list) - MIT
+- [side-channel-map@1.0.1](https://github.com/ljharb/side-channel-map) - MIT
+- [side-channel-weakmap@1.0.2](https://github.com/ljharb/side-channel-weakmap) - MIT
+- [side-channel@1.1.0](https://github.com/ljharb/side-channel) - MIT
+- [stop-iteration-iterator@1.1.0](https://github.com/ljharb/stop-iteration-iterator) - MIT
+- [string.prototype.includes@2.0.1](https://github.com/mathiasbynens/String.prototype.includes) - MIT
+- [string.prototype.trim@1.2.10](https://github.com/es-shims/String.prototype.trim) - MIT
+- [string.prototype.trimend@1.0.9](https://github.com/es-shims/String.prototype.trimEnd) - MIT
+- [string.prototype.trimstart@1.0.8](https://github.com/es-shims/String.prototype.trimStart) - MIT
+- [strip-json-comments@3.1.1](https://github.com/sindresorhus/strip-json-comments) - MIT
+- [supports-color@7.2.0](https://github.com/chalk/supports-color) - MIT
+- [ts-node@10.9.2](https://github.com/TypeStrong/ts-node) - MIT
+- [type-check@0.4.0](https://github.com/gkz/type-check) - MIT
+- [typed-array-buffer@1.0.3](https://github.com/inspect-js/typed-array-buffer) - MIT
+- [typed-array-byte-length@1.0.3](https://github.com/inspect-js/typed-array-byte-length) - MIT
+- [typed-array-byte-offset@1.0.4](https://github.com/inspect-js/typed-array-byte-offset) - MIT
+- [typed-array-length@1.0.7](https://github.com/inspect-js/typed-array-length) - MIT
+- [typescript@5.9.2](https://github.com/microsoft/TypeScript) - Apache-2.0
+- [unbox-primitive@1.1.0](https://github.com/ljharb/unbox-primitive) - MIT
+- [undici-types@6.21.0](https://github.com/nodejs/undici) - MIT
+- [uri-js@4.4.1](https://github.com/garycourt/uri-js) - BSD-2-Clause
+- [v8-compile-cache-lib@3.0.1](https://github.com/cspotcode/v8-compile-cache-lib) - MIT
+- [which-boxed-primitive@1.1.1](https://github.com/inspect-js/which-boxed-primitive) - MIT
+- [which-builtin-type@1.2.1](https://github.com/inspect-js/which-builtin-type) - MIT
+- [which-collection@1.0.2](https://github.com/inspect-js/which-collection) - MIT
+- [which-typed-array@1.1.19](https://github.com/inspect-js/which-typed-array) - MIT
+- [which@2.0.2](https://github.com/isaacs/node-which) - ISC
+- [word-wrap@1.2.5](https://github.com/jonschlinkert/word-wrap) - MIT
+- [yn@3.1.1](https://github.com/sindresorhus/yn) - MIT
+- [yocto-queue@0.1.0](https://github.com/sindresorhus/yocto-queue) - MIT
 
 ## License Notice
 
@@ -250,7 +250,7 @@ and their usage complies with all applicable open-source license requirements.
 
 MIT License
 
-Copyright (c) Meta Platforms, Inc. and affiliates.
+Copyright (c) <year> <copyright holders>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -462,7 +462,7 @@ file or class name and description of purpose be included on the
 same "printed page" as the copyright notice for easier
 identification within third-party archives.
 
-Copyright 2020 A11yance
+Copyright [yyyy] [name of copyright owner]
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -480,7 +480,7 @@ limitations under the License.
 
 ## BSD 2-Clause License
 
-Copyright (c) 2015, Scott Motte
+Copyright (c) <YEAR>, <OWNER>
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
@@ -508,7 +508,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 ## BSD 3-Clause License
 
-Copyright (c) 2013, Joel Feenstra
+Copyright (c) <YEAR> <COPYRIGHT HOLDER>
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
@@ -538,7 +538,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 ISC License
 
-Copyright (c) 2018-2020, Andrea Giammarchi, @WebReflection
+Copyright (c) 4-digit year, Company or Person's Name
 
 Permission to use, copy, modify, and/or distribute this software for any
 purpose with or without fee is hereby granted, provided that the above
@@ -915,3 +915,250 @@ Exhibit B - "Incompatible With Secondary Licenses" Notice
       This Source Code Form is "Incompatible
       With Secondary Licenses", as defined by
       the Mozilla Public License, v. 2.0.
+
+## Python 2.0 License
+
+# A. HISTORY OF THE SOFTWARE
+
+Python was created in the early 1990s by Guido van Rossum at Stichting
+Mathematisch Centrum (CWI, see http://www.cwi.nl) in the Netherlands
+as a successor of a language called ABC. Guido remains Python's
+principal author, although it includes many contributions from others.
+
+In 1995, Guido continued his work on Python at the Corporation for
+National Research Initiatives (CNRI, see http://www.cnri.reston.va.us)
+in Reston, Virginia where he released several versions of the
+software.
+
+In May 2000, Guido and the Python core development team moved to
+BeOpen.com to form the BeOpen PythonLabs team. In October of the same
+year, the PythonLabs team moved to Digital Creations, which became
+Zope Corporation. In 2001, the Python Software Foundation (PSF, see
+https://www.python.org/psf/) was formed, a non-profit organization
+created specifically to own Python-related Intellectual Property.
+Zope Corporation was a sponsoring member of the PSF.
+
+All Python releases are Open Source (see http://www.opensource.org for
+the Open Source Definition). Historically, most, but not all, Python
+releases have also been GPL-compatible; the table below summarizes
+the various releases.
+
+    Release         Derived     Year        Owner       GPL-
+                    from                                compatible? (1)
+
+    0.9.0 thru 1.2              1991-1995   CWI         yes
+    1.3 thru 1.5.2  1.2         1995-1999   CNRI        yes
+    1.6             1.5.2       2000        CNRI        no
+    2.0             1.6         2000        BeOpen.com  no
+    1.6.1           1.6         2001        CNRI        yes (2)
+    2.1             2.0+1.6.1   2001        PSF         no
+    2.0.1           2.0+1.6.1   2001        PSF         yes
+    2.1.1           2.1+2.0.1   2001        PSF         yes
+    2.1.2           2.1.1       2002        PSF         yes
+    2.1.3           2.1.2       2002        PSF         yes
+    2.2 and above   2.1.1       2001-now    PSF         yes
+
+Footnotes:
+
+(1) GPL-compatible doesn't mean that we're distributing Python under
+the GPL. All Python licenses, unlike the GPL, let you distribute
+a modified version without making your changes open source. The
+GPL-compatible licenses make it possible to combine Python with
+other software that is released under the GPL; the others don't.
+
+(2) According to Richard Stallman, 1.6.1 is not GPL-compatible,
+because its license has a choice of law clause. According to
+CNRI, however, Stallman's lawyer has told CNRI's lawyer that 1.6.1
+is "not incompatible" with the GPL.
+
+Thanks to the many outside volunteers who have worked under Guido's
+direction to make these releases possible.
+
+# B. TERMS AND CONDITIONS FOR ACCESSING OR OTHERWISE USING PYTHON
+
+## PYTHON SOFTWARE FOUNDATION LICENSE VERSION 2
+
+1. This LICENSE AGREEMENT is between the Python Software Foundation
+   ("PSF"), and the Individual or Organization ("Licensee") accessing and
+   otherwise using this software ("Python") in source or binary form and
+   its associated documentation.
+
+2. Subject to the terms and conditions of this License Agreement, PSF hereby
+   grants Licensee a nonexclusive, royalty-free, world-wide license to reproduce,
+   analyze, test, perform and/or display publicly, prepare derivative works,
+   distribute, and otherwise use Python alone or in any derivative version,
+   provided, however, that PSF's License Agreement and PSF's notice of copyright,
+   i.e., "Copyright (c) 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010,
+   2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020 Python Software Foundation;
+   All Rights Reserved" are retained in Python alone or in any derivative version
+   prepared by Licensee.
+
+3. In the event Licensee prepares a derivative work that is based on
+   or incorporates Python or any part thereof, and wants to make
+   the derivative work available to others as provided herein, then
+   Licensee hereby agrees to include in any such work a brief summary of
+   the changes made to Python.
+
+4. PSF is making Python available to Licensee on an "AS IS"
+   basis. PSF MAKES NO REPRESENTATIONS OR WARRANTIES, EXPRESS OR
+   IMPLIED. BY WAY OF EXAMPLE, BUT NOT LIMITATION, PSF MAKES NO AND
+   DISCLAIMS ANY REPRESENTATION OR WARRANTY OF MERCHANTABILITY OR FITNESS
+   FOR ANY PARTICULAR PURPOSE OR THAT THE USE OF PYTHON WILL NOT
+   INFRINGE ANY THIRD PARTY RIGHTS.
+
+5. PSF SHALL NOT BE LIABLE TO LICENSEE OR ANY OTHER USERS OF PYTHON
+   FOR ANY INCIDENTAL, SPECIAL, OR CONSEQUENTIAL DAMAGES OR LOSS AS
+   A RESULT OF MODIFYING, DISTRIBUTING, OR OTHERWISE USING PYTHON,
+   OR ANY DERIVATIVE THEREOF, EVEN IF ADVISED OF THE POSSIBILITY THEREOF.
+
+6. This License Agreement will automatically terminate upon a material
+   breach of its terms and conditions.
+
+7. Nothing in this License Agreement shall be deemed to create any
+   relationship of agency, partnership, or joint venture between PSF and
+   Licensee. This License Agreement does not grant permission to use PSF
+   trademarks or trade name in a trademark sense to endorse or promote
+   products or services of Licensee, or any third party.
+
+8. By copying, installing or otherwise using Python, Licensee
+   agrees to be bound by the terms and conditions of this License
+   Agreement.
+
+## BEOPEN.COM LICENSE AGREEMENT FOR PYTHON 2.0
+
+BEOPEN PYTHON OPEN SOURCE LICENSE AGREEMENT VERSION 1
+
+1. This LICENSE AGREEMENT is between BeOpen.com ("BeOpen"), having an
+   office at 160 Saratoga Avenue, Santa Clara, CA 95051, and the
+   Individual or Organization ("Licensee") accessing and otherwise using
+   this software in source or binary form and its associated
+   documentation ("the Software").
+
+2. Subject to the terms and conditions of this BeOpen Python License
+   Agreement, BeOpen hereby grants Licensee a non-exclusive,
+   royalty-free, world-wide license to reproduce, analyze, test, perform
+   and/or display publicly, prepare derivative works, distribute, and
+   otherwise use the Software alone or in any derivative version,
+   provided, however, that the BeOpen Python License is retained in the
+   Software, alone or in any derivative version prepared by Licensee.
+
+3. BeOpen is making the Software available to Licensee on an "AS IS"
+   basis. BEOPEN MAKES NO REPRESENTATIONS OR WARRANTIES, EXPRESS OR
+   IMPLIED. BY WAY OF EXAMPLE, BUT NOT LIMITATION, BEOPEN MAKES NO AND
+   DISCLAIMS ANY REPRESENTATION OR WARRANTY OF MERCHANTABILITY OR FITNESS
+   FOR ANY PARTICULAR PURPOSE OR THAT THE USE OF THE SOFTWARE WILL NOT
+   INFRINGE ANY THIRD PARTY RIGHTS.
+
+4. BEOPEN SHALL NOT BE LIABLE TO LICENSEE OR ANY OTHER USERS OF THE
+   SOFTWARE FOR ANY INCIDENTAL, SPECIAL, OR CONSEQUENTIAL DAMAGES OR LOSS
+   AS A RESULT OF USING, MODIFYING OR DISTRIBUTING THE SOFTWARE, OR ANY
+   DERIVATIVE THEREOF, EVEN IF ADVISED OF THE POSSIBILITY THEREOF.
+
+5. This License Agreement will automatically terminate upon a material
+   breach of its terms and conditions.
+
+6. This License Agreement shall be governed by and interpreted in all
+   respects by the law of the State of California, excluding conflict of
+   law provisions. Nothing in this License Agreement shall be deemed to
+   create any relationship of agency, partnership, or joint venture
+   between BeOpen and Licensee. This License Agreement does not grant
+   permission to use BeOpen trademarks or trade names in a trademark
+   sense to endorse or promote products or services of Licensee, or any
+   third party. As an exception, the "BeOpen Python" logos available at
+   http://www.pythonlabs.com/logos.html may be used according to the
+   permissions granted on that web page.
+
+7. By copying, installing or otherwise using the software, Licensee
+   agrees to be bound by the terms and conditions of this License
+   Agreement.
+
+## CNRI LICENSE AGREEMENT FOR PYTHON 1.6.1
+
+1.  This LICENSE AGREEMENT is between the Corporation for National
+    Research Initiatives, having an office at 1895 Preston White Drive,
+    Reston, VA 20191 ("CNRI"), and the Individual or Organization
+    ("Licensee") accessing and otherwise using Python 1.6.1 software in
+    source or binary form and its associated documentation.
+
+2.  Subject to the terms and conditions of this License Agreement, CNRI
+    hereby grants Licensee a nonexclusive, royalty-free, world-wide
+    license to reproduce, analyze, test, perform and/or display publicly,
+    prepare derivative works, distribute, and otherwise use Python 1.6.1
+    alone or in any derivative version, provided, however, that CNRI's
+    License Agreement and CNRI's notice of copyright, i.e., "Copyright (c)
+    1995-2001 Corporation for National Research Initiatives; All Rights
+    Reserved" are retained in Python 1.6.1 alone or in any derivative
+    version prepared by Licensee. Alternately, in lieu of CNRI's License
+    Agreement, Licensee may substitute the following text (omitting the
+    quotes): "Python 1.6.1 is made available subject to the terms and
+    conditions in CNRI's License Agreement. This Agreement together with
+    Python 1.6.1 may be located on the Internet using the following
+    unique, persistent identifier (known as a handle): 1895.22/1013. This
+    Agreement may also be obtained from a proxy server on the Internet
+    using the following URL: http://hdl.handle.net/1895.22/1013".
+
+3.  In the event Licensee prepares a derivative work that is based on
+    or incorporates Python 1.6.1 or any part thereof, and wants to make
+    the derivative work available to others as provided herein, then
+    Licensee hereby agrees to include in any such work a brief summary of
+    the changes made to Python 1.6.1.
+
+4.  CNRI is making Python 1.6.1 available to Licensee on an "AS IS"
+    basis. CNRI MAKES NO REPRESENTATIONS OR WARRANTIES, EXPRESS OR
+    IMPLIED. BY WAY OF EXAMPLE, BUT NOT LIMITATION, CNRI MAKES NO AND
+    DISCLAIMS ANY REPRESENTATION OR WARRANTY OF MERCHANTABILITY OR FITNESS
+    FOR ANY PARTICULAR PURPOSE OR THAT THE USE OF PYTHON 1.6.1 WILL NOT
+    INFRINGE ANY THIRD PARTY RIGHTS.
+
+5.  CNRI SHALL NOT BE LIABLE TO LICENSEE OR ANY OTHER USERS OF PYTHON
+    1.6.1 FOR ANY INCIDENTAL, SPECIAL, OR CONSEQUENTIAL DAMAGES OR LOSS AS
+    A RESULT OF MODIFYING, DISTRIBUTING, OR OTHERWISE USING PYTHON 1.6.1,
+    OR ANY DERIVATIVE THEREOF, EVEN IF ADVISED OF THE POSSIBILITY THEREOF.
+
+6.  This License Agreement will automatically terminate upon a material
+    breach of its terms and conditions.
+
+7.  This License Agreement shall be governed by the federal
+    intellectual property law of the United States, including without
+    limitation the federal copyright law, and, to the extent such
+    U.S. federal law does not apply, by the law of the Commonwealth of
+    Virginia, excluding Virginia's conflict of law provisions.
+    Notwithstanding the foregoing, with regard to derivative works based
+    on Python 1.6.1 that incorporate non-separable material that was
+    previously distributed under the GNU General Public License (GPL), the
+    law of the Commonwealth of Virginia shall govern this License
+    Agreement only as to issues arising under or with respect to
+    Paragraphs 4, 5, and 7 of this License Agreement. Nothing in this
+    License Agreement shall be deemed to create any relationship of
+    agency, partnership, or joint venture between CNRI and Licensee. This
+    License Agreement does not grant permission to use CNRI trademarks or
+    trade name in a trademark sense to endorse or promote products or
+    services of Licensee, or any third party.
+
+8.  By clicking on the "ACCEPT" button where indicated, or by copying,
+    installing or otherwise using Python 1.6.1, Licensee agrees to be
+    bound by the terms and conditions of this License Agreement.
+
+            ACCEPT
+
+## CWI LICENSE AGREEMENT FOR PYTHON 0.9.0 THROUGH 1.2
+
+Copyright (c) 1991 - 1995, Stichting Mathematisch Centrum Amsterdam,
+The Netherlands. All rights reserved.
+
+Permission to use, copy, modify, and distribute this software and its
+documentation for any purpose and without fee is hereby granted,
+provided that the above copyright notice appear in all copies and that
+both that copyright notice and this permission notice appear in
+supporting documentation, and that the name of Stichting Mathematisch
+Centrum or CWI not be used in advertising or publicity pertaining to
+distribution of the software without specific, written prior
+permission.
+
+STICHTING MATHEMATISCH CENTRUM DISCLAIMS ALL WARRANTIES WITH REGARD TO
+THIS SOFTWARE, INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND
+FITNESS, IN NO EVENT SHALL STICHTING MATHEMATISCH CENTRUM BE LIABLE
+FOR ANY SPECIAL, INDIRECT OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
+WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
+ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT
+OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
