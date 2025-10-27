@@ -21,6 +21,12 @@ export function clickEventsHaveKeyEventsFix(
   if (!handlerCall.endsWith(")")) {
     handlerCall += "(event)";
   }
+  
+  const onClickAttribute = onClickMatch[0]; // ex: onClick={() => alert('hi')}
+  const onClickValue = onClickMatch[1]; // ex: {() => alert('hi')}
+
+  // onKeyDown 핸들러를 새로 생성
+  const onKeyDownAttribute = ` onKeyDown={(event) => { if (event.key === 'Enter' || event.key === ' ') { (${onClickValue.slice(1, -1)})(event); } }}`;
 
   // onKeyDown 핸들러 생성
   const onKeyDownAttribute = ` onKeyDown={(event) => { if (event.key === 'Enter' || event.key === ' ') { ${handlerCall}; } }}`;

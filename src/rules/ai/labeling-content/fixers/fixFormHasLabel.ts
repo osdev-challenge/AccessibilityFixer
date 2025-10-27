@@ -49,7 +49,7 @@ export async function fixFormHasLabel(
         rc.document,
         elementRanges.element,
         result.html,
-        "Ensure form controls have labels"
+        "폼 컨트롤에 레이블 제공"
       );
       return [replaceAction];
     } else {
