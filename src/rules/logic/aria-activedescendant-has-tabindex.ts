@@ -18,7 +18,7 @@ export function ariaActivedescendantHasTabindexFix(
   fix.edit = new vscode.WorkspaceEdit();
 
   // 열림 태그에 tabIndex="0" 추가
-  const newCode = context.code.replace(/^<(\w+)/, `<$1 tabIndex="0"`);
+  const newCode = context.code.replace(/^<(\w+)/, `<$1 tabIndex={0}`);
 
   fix.edit.replace(context.document.uri, context.range, newCode);
   fix.diagnostics = [
