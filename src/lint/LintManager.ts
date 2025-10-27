@@ -2,6 +2,7 @@ import * as vscode from "vscode";
 import * as path from "path";
 import * as fs from "fs";
 import { pathToFileURL } from "url";
+import Module from "module";
 import { ESLint } from "eslint";
 import type { Linter } from "eslint";
 import { a11yDiagnosticCollection } from "../diagnostics/collection";
