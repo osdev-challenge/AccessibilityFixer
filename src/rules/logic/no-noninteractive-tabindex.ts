@@ -9,13 +9,24 @@ export const noNoninteractiveTabindexFix: RuleFixer = (
 ): vscode.CodeAction[] => {
   const { code, range, document } = context;
 
-  // tabIndex 속성과 값만 정확히 일치시키는 정규식으로 수정
-  // 공백을 포함하여 'tabIndex' 속성만 정확히 제거하도록 개선
-  const fixed = code.replace(/\s+tabIndex\s*=\s*(?:".*?"|'.*?'|{[^}]*})/, "");
+  // ✅ 정확히 tabIndex={0} 또는 "0" 등을 매칭
+  const tabIndexRegex = /\s*tabIndex\s*=\s*(?:"[^"]*"|'[^']*'|\{[^}]*\})/;
+  const match = code.match(tabIndexRegex);
 
-  if (fixed === code) {
+  if (!match) {
+    console.warn(`[DEBUG] tabIndex not found in code: ${code}`);
     return [];
   }
+
+  const matchText = match[0];
+  const startOffset = code.indexOf(matchText);
+  const endOffset = startOffset + matchText.length;
+
+  // 실제로 교체할 범위 계산 (range 기준 상대 위치로)
+  const tabIndexRange = new vscode.Range(
+    document.positionAt(document.offsetAt(range.start) + startOffset),
+    document.positionAt(document.offsetAt(range.start) + endOffset)
+  );
 
   const fix = new vscode.CodeAction(
     `tabIndex 속성 제거`,
@@ -23,9 +34,9 @@ export const noNoninteractiveTabindexFix: RuleFixer = (
   );
 
   fix.edit = new vscode.WorkspaceEdit();
-  fix.edit.replace(document.uri, range, fixed);
-  fix.isPreferred = true;
+  fix.edit.replace(document.uri, tabIndexRange, ""); 
 
+  fix.isPreferred = true;
   fix.diagnostics = [
     {
       message: `tabIndex는 비인터랙티브 요소에 사용될 수 없습니다.`,
