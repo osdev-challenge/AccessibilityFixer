@@ -1,3 +1,10 @@
+# [2.2.0](https://github.com/osdev-challenge/AccessibilityFixer/compare/v2.1.3...v2.2.0) (2025-10-27)
+
+
+### Features
+
+* filepath and config refactor ([#50](https://github.com/osdev-challenge/AccessibilityFixer/issues/50)) ([e051381](https://github.com/osdev-challenge/AccessibilityFixer/commit/e0513819cb6a55732032a1b05733cda4b019dae8)), closes [#29](https://github.com/osdev-challenge/AccessibilityFixer/issues/29) [#29](https://github.com/osdev-challenge/AccessibilityFixer/issues/29) [#29](https://github.com/osdev-challenge/AccessibilityFixer/issues/29) [feature/#29](https://github.com/osdev-challenge/AccessibilityFixer/issues/29)
+
 ## [2.1.3](https://github.com/osdev-challenge/AccessibilityFixer/compare/v2.1.2...v2.1.3) (2025-10-15)
 
 
