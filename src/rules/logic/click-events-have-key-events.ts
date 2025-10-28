@@ -7,19 +7,14 @@ export function clickEventsHaveKeyEventsFix(
   const { code, range, document } = context;
 
   // 이미 onKeyDown 핸들러가 있으면 수정하지 않음
-  if (/\bonKeyDown\s*=/.test(code)) return [];
+  if (/\bonKeyDown\s*=/.test(code)) {
+    return [];
+  }
 
-  // onClick 핸들러 추출
-  const onClickMatch = code.match(/\bonClick\s*=\s*(\{[^}]+\}|\{[\s\S]*?\})/);
-  if (!onClickMatch) return [];
-
-  const onClickAttribute = onClickMatch[0];
-  const onClickValue = onClickMatch[1];
-
-  // onClick 내용 정제
-  let handlerCall = onClickValue.slice(1, -1).trim();
-  if (!handlerCall.endsWith(")")) {
-    handlerCall += "(event)";
+  // onClick 핸들러와 그 내용을 추출
+  const onClickMatch = code.match(/\bonClick\s*=\s*({[\s\S]*?})/);
+  if (!onClickMatch) {
+    return [];
   }
   
   const onClickAttribute = onClickMatch[0]; // ex: onClick={() => alert('hi')}
@@ -28,27 +23,26 @@ export function clickEventsHaveKeyEventsFix(
   // onKeyDown 핸들러를 새로 생성
   const onKeyDownAttribute = ` onKeyDown={(event) => { if (event.key === 'Enter' || event.key === ' ') { (${onClickValue.slice(1, -1)})(event); } }}`;
 
-  // onKeyDown 핸들러 생성
-  const onKeyDownAttribute = ` onKeyDown={(event) => { if (event.key === 'Enter' || event.key === ' ') { ${handlerCall}; } }}`;
-
-  // 새로운 코드 생성
+  // 기존 onClick 속성 바로 뒤에 onKeyDown 속성을 추가
   const newCode = code.replace(onClickAttribute, onClickAttribute + onKeyDownAttribute);
 
-  // Quick Fix 생성
+  if (newCode === code) {
+    return [];
+  }
+
   const fix = new vscode.CodeAction(
     `키보드 이벤트(onKeyDown) 추가`,
     vscode.CodeActionKind.QuickFix
   );
-  fix.isPreferred = true;
   fix.edit = new vscode.WorkspaceEdit();
   fix.edit.replace(document.uri, range, newCode);
   fix.diagnostics = [
     new vscode.Diagnostic(
       range,
-      `클릭 이벤트만 있는 요소는 키보드 접근성이 부족할 수 있습니다. onKeyDown 핸들러를 추가하여 Enter/Space 키 입력을 처리하세요.`,
+      `클릭 가능한 요소에는 키보드 이벤트도 함께 제공해야 합니다.`,
       vscode.DiagnosticSeverity.Warning
     ),
   ];
-
+  
   return [fix];
 }

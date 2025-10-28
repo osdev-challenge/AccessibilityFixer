@@ -17,7 +17,7 @@ export function interactiveSupportsFocusFix(
   );
   fix.edit = new vscode.WorkspaceEdit();
 
-  const newCode = context.code.replace(/^<(\w+)/, `<$1 tabIndex={0}`);
+  const newCode = context.code.replace(/^<(\w+)/, `<$1 tabIndex="0"`);
 
   fix.edit.replace(context.document.uri, context.range, newCode);
   fix.diagnostics = [
