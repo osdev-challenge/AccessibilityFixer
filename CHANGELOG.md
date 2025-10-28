@@ -1,3 +1,15 @@
+## [2.2.1](https://github.com/osdev-challenge/AccessibilityFixer/compare/v2.2.0...v2.2.1) (2025-10-28)
+
+
+### Bug Fixes
+
+* 6 rules detail fix ([#53](https://github.com/osdev-challenge/AccessibilityFixer/issues/53)) ([49ba255](https://github.com/osdev-challenge/AccessibilityFixer/commit/49ba255cb384f2aeddba2445f5e8fec6f4c1eade)), closes [#29](https://github.com/osdev-challenge/AccessibilityFixer/issues/29) [#29](https://github.com/osdev-challenge/AccessibilityFixer/issues/29) [#29](https://github.com/osdev-challenge/AccessibilityFixer/issues/29) [feature/#29](https://github.com/osdev-challenge/AccessibilityFixer/issues/29)
+
+
+### Reverts
+
+* Revert "fix: 6 rules detail fix ([#53](https://github.com/osdev-challenge/AccessibilityFixer/issues/53))" ([#54](https://github.com/osdev-challenge/AccessibilityFixer/issues/54)) ([86fa1ce](https://github.com/osdev-challenge/AccessibilityFixer/commit/86fa1cee8e14b2277c79b3eb449b8de1df8c1c37))
+
 # [2.2.0](https://github.com/osdev-challenge/AccessibilityFixer/compare/v2.1.3...v2.2.0) (2025-10-27)
 
 
